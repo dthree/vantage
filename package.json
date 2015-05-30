@@ -1,0 +1,42 @@
+{
+  "name": "Vantage",
+  "version": "1.0.0",
+  "description": "A distributed, interactive CLI prompt for your application. In ten minutes.",
+  "main": "vantage.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dthree/cliffy.git"
+  },
+  "keywords": [
+    "repl",
+    "shell",
+    "api",
+    "command",
+    "commander",
+    "prompt",
+    "inquirer"
+  ],
+  "author": "dthree",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dthree/cliffy/issues"
+  },
+  "homepage": "https://github.com/dthree/cliffy#readme",
+  "devDependencies": {
+    "mocha": "^2.2.5",
+    "should": "^6.0.3"
+  },
+  "dependencies": {
+    "colors": "^1.1.0",
+    "commander": "^2.8.1",
+    "inquirer": "^0.8.5",
+    "lodash": "^3.9.1",
+    "minimist": "^1.1.1",
+    "socket.io": "^1.3.5",
+    "socket.io-client": "^1.3.5",
+    "string-argv": "0.0.1"
+  }
+}
