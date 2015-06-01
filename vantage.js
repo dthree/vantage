@@ -8,7 +8,6 @@ var _ = require('lodash')
   , commander = require('commander')
   , inquirer = require('inquirer')
   , minimist = require('minimist')
-  , argparse = require('string-argv')
   , path = require('path')
   , util = require('util')
   , fs = require('fs')
@@ -458,6 +457,19 @@ vantage.exec = function(str, cb, options) {
 
 };
 
+vantage._parseArgs = function(value, env, file) {
+  var reg = /[^\s'"]+|['"]([^'"]*)['"]/gi, str = value, arr = [], match;
+  if (env) { arr.push(env); }
+  if (file) { arr.push(file); }
+  do {
+    match = reg.exec(str);
+    if (match !== null) {
+      arr.push(match[1] ? match[1] : match[0]);
+    }
+  } while (match !== null);
+  return arr;
+};
+
 vantage._exec = function(str, cb, options) {
   cb = cb || function(){}
   options = options || function() {}
@@ -481,7 +493,7 @@ vantage._exec = function(str, cb, options) {
     }
   }
 
-  var parsedArgs = minimist(argparse.parseArgsStringToArgv(args));
+  var parsedArgs = minimist(self._parseArgs(args));
   parsedArgs['_'] = parsedArgs['_'] || [];
   var args = {}
 
