@@ -8,10 +8,10 @@ describe('vantage', function() {
 
   describe('constructor', function() {
 
-  	it('should exist and be a function', function() {
-	    should.exist(vantage);
-	    vantage.should.be.type('function');
-  	});
+    it('should exist and be a function', function() {
+      should.exist(vantage);
+      vantage.should.be.type('function');
+    });
   
   });
 
