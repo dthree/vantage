@@ -27,6 +27,7 @@
   "homepage": "https://github.com/dthree/cliffy#readme",
   "devDependencies": {
     "mocha": "^2.2.5",
+    "pm2": "^0.12.15",
     "should": "^6.0.3"
   },
   "dependencies": {

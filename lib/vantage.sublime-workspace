@@ -1,0 +1,1637 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"vantage-hea",
+				"vantage-heartbeat-downstream"
+			],
+			[
+				"vantage-hear",
+				"vantage-heartbeat-upstream"
+			],
+			[
+				"commandma",
+				"commandMatchLength"
+			],
+			[
+				"ori",
+				"_origDelimeter"
+			],
+			[
+				"auto",
+				"autocomplete"
+			],
+			[
+				"J",
+				"jsPrintSetup"
+			],
+			[
+				"mailStatus",
+				"mailStatusIds"
+			],
+			[
+				"verfied",
+				"verified-status"
+			],
+			[
+				"MarryUpLookup",
+				"MarryUpLookupValue"
+			],
+			[
+				"Exte",
+				"ExternalDatumId"
+			],
+			[
+				"Extn",
+				"ExternalDatumValue"
+			],
+			[
+				"basicsCha",
+				"basicsChartColHeight"
+			],
+			[
+				"congress",
+				"congressStartTabs"
+			],
+			[
+				"address",
+				"addressMatches"
+			],
+			[
+				"lastNamema",
+				"lastNameMatches"
+			],
+			[
+				"firstNam",
+				"firstNameMatches"
+			],
+			[
+				"Material",
+				"MaterialDescription"
+			],
+			[
+				"bestCon",
+				"bestContactMethodPct"
+			],
+			[
+				"b",
+				"be"
+			],
+			[
+				"Avial",
+				"AvailableNumbers"
+			],
+			[
+				"avaial",
+				"AvailableNumbers"
+			],
+			[
+				"lastRegen",
+				"lastRegeneration"
+			],
+			[
+				"type",
+				"typeahead"
+			],
+			[
+				"dep",
+				"depricate"
+			],
+			[
+				"midEditin",
+				"midEditingNewRecord"
+			],
+			[
+				"primar",
+				"primaryErrors"
+			],
+			[
+				"unresol",
+				"unresolvedErrors"
+			],
+			[
+				"unres",
+				"unresolvedErrors"
+			],
+			[
+				"flatten",
+				"flattenedTabs"
+			],
+			[
+				"StandingSt",
+				"StandingStatusDate"
+			],
+			[
+				"Mailingcon",
+				"MailingConstraintDate"
+			],
+			[
+				"Lifes",
+				"LifeStatusDate"
+			],
+			[
+				"scnStan",
+				"scnStandingDate"
+			],
+			[
+				"isDecease",
+				"isDeceasedDate"
+			],
+			[
+				"mailcon",
+				"mailConstraintDate"
+			],
+			[
+				"midedi",
+				"midEditingNewRecord"
+			],
+			[
+				"standar",
+				"standardizeDate"
+			],
+			[
+				"standa",
+				"standardizeDate"
+			],
+			[
+				"mergeFinance",
+				"mergeFinanceAndCentralServices"
+			],
+			[
+				"origin",
+				"originalValue"
+			],
+			[
+				"keyProces",
+				"keyProcessingService"
+			],
+			[
+				"maxPro",
+				"maxProcessing"
+			],
+			[
+				"org-se",
+				"org-select-row"
+			],
+			[
+				"central",
+				"centralFailures"
+			],
+			[
+				"additional",
+				"additionalFields"
+			],
+			[
+				"aded",
+				"addedHTML"
+			],
+			[
+				"each",
+				"eachGroupMember"
+			],
+			[
+				"keyPro",
+				"keyProcurementService"
+			],
+			[
+				"dropdown",
+				"dropdownShown"
+			],
+			[
+				"newPro",
+				"newProcurement"
+			],
+			[
+				"comp",
+				"completions"
+			],
+			[
+				"trainin",
+				"training-level"
+			],
+			[
+				"getCeleb",
+				"getCelebOverride"
+			],
+			[
+				"get",
+				"getCelebLevel"
+			],
+			[
+				"Cr",
+				"CryptoJS"
+			],
+			[
+				"sign",
+				"signatureModel"
+			],
+			[
+				"fully",
+				"fullyPaidPartialPaid"
+			],
+			[
+				"train",
+				"trainingLevel"
+			],
+			[
+				"procu",
+				"procurementCategory"
+			],
+			[
+				"identity",
+				"IdentityNotes"
+			],
+			[
+				"activePhon",
+				"activePhonebookId"
+			],
+			[
+				"corre",
+				"correctAnswer"
+			],
+			[
+				"showAd",
+				"showAdvancedDialControls"
+			],
+			[
+				"show",
+				"showAdvancedDialControls"
+			],
+			[
+				"list",
+				"activeListsData"
+			],
+			[
+				"listsView",
+				"osdialListsView"
+			],
+			[
+				"adaptiveInte",
+				"adaptiveIntensitySlider"
+			],
+			[
+				"adap",
+				"adaptiveIntensityLabel"
+			],
+			[
+				"adaptiveInten",
+				"adaptiveIntensitySlider"
+			],
+			[
+				"maxi",
+				"adaptiveMaximumLevelSlider"
+			],
+			[
+				"adaptive",
+				"adaptive_intensity"
+			],
+			[
+				"adaptive_",
+				"adaptive_maximum_level"
+			],
+			[
+				"campai",
+				"campaignData"
+			],
+			[
+				"diala",
+				"dialable_leads_class"
+			],
+			[
+				"Agent",
+				"AgentData"
+			],
+			[
+				"required",
+				"requiredFilters"
+			],
+			[
+				"exclude",
+				"exclude-global"
+			],
+			[
+				"calls",
+				"callsByDayBreakdown"
+			],
+			[
+				"primary",
+				"primaryListRefId"
+			],
+			[
+				"lastP",
+				"lastPrimaryListRefId"
+			],
+			[
+				"high",
+				"highlightClass"
+			],
+			[
+				"Phone",
+				"PhonebookLayout"
+			],
+			[
+				"recentMessage",
+				"recentMessagesView"
+			],
+			[
+				"Mainten",
+				"MaintenanceModel"
+			],
+			[
+				"onCorrection",
+				"onCorrectionFocus"
+			],
+			[
+				"onDe",
+				"onDeviceCollectionReset"
+			],
+			[
+				"is_",
+				"is_operational"
+			],
+			[
+				"e",
+				"el"
+			],
+			[
+				"device",
+				"onDeviceCollectionReset"
+			],
+			[
+				"selecte",
+				"selectedOptions"
+			],
+			[
+				"view",
+				"View"
+			],
+			[
+				"quick",
+				"quicknav-region"
+			],
+			[
+				"Quic",
+				"QuickNavItem"
+			],
+			[
+				"eventStatus",
+				"eventStatusRecentEntries"
+			],
+			[
+				"classPa",
+				"classPathRoot"
+			],
+			[
+				"push",
+				"published_needed"
+			],
+			[
+				"listcou",
+				"listcount_needed"
+			],
+			[
+				"list-row",
+				"list-row-wrapper"
+			],
+			[
+				"even",
+				"EventListGenerator"
+			],
+			[
+				"Even",
+				"EventListGenerator"
+			],
+			[
+				"cfsoft",
+				"cfsoftAbsoluteDir"
+			],
+			[
+				"cfsof",
+				"cfsoftVirtualURL"
+			],
+			[
+				"NumberBox",
+				"NumberBoxHistoryItem"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/C/moonshot/db/node/server.js",
+			"settings":
+			{
+				"buffer_size": 7536,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/moonshot/modules/vantage/vantage.js",
+			"settings":
+			{
+				"buffer_size": 27481,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/moonshot/db/node/node_modules/koa/lib/application.js",
+			"settings":
+			{
+				"buffer_size": 4859,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "session.js",
+			"settings":
+			{
+				"buffer_size": 316,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/moonshot/modules/vantage/test/http.js",
+			"settings":
+			{
+				"buffer_size": 974,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "option.js",
+			"settings":
+			{
+				"buffer_size": 842,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/moonshot/modules/vantage/test/index.js",
+			"settings":
+			{
+				"buffer_size": 307,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/moonshot/modules/vantage/intercept.js",
+			"settings":
+			{
+				"buffer_size": 350,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/moonshot/modules/vantage/hook.js",
+			"settings":
+			{
+				"buffer_size": 4424,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "vantage-commons.js",
+			"settings":
+			{
+				"buffer_size": 2004,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "command.js",
+			"settings":
+			{
+				"buffer_size": 6175,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/moonshot/db/node/lib/sql.schema.js",
+			"settings":
+			{
+				"buffer_size": 9972,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/moonshot/db/node/lib/sql.js",
+			"settings":
+			{
+				"buffer_size": 9595,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/moonshot/db/node/lib/api.js",
+			"settings":
+			{
+				"buffer_size": 11822,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/moonshot/db/node/lib/api-error-codes.js",
+			"settings":
+			{
+				"buffer_size": 432,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/moonshot/db/node/site.central.json",
+			"settings":
+			{
+				"buffer_size": 360,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/moonshot/db/node/site.local.json",
+			"settings":
+			{
+				"buffer_size": 351,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/moonshot/db/node/test/api.js",
+			"settings":
+			{
+				"buffer_size": 3747,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 81.0,
+		"selected_items":
+		[
+			[
+				"snippet",
+				"Snippet: Get Elements"
+			],
+			[
+				"Snippet: ",
+				"Snippet: #!/usr/bin/env"
+			],
+			[
+				"if else",
+				"Snippet: if … else"
+			],
+			[
+				"snippi",
+				"Snippet: if"
+			]
+		],
+		"width": 416.0
+	},
+	"console":
+	{
+		"height": 0.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/moonshot/modules/vantage/README.md",
+		"/C/moonshot/db/schema/00.00.0001/00.00.0001.sql",
+		"/C/moonshot/modules/vantage/package.json",
+		"/C/moonshot/modules/vantage/hook.js",
+		"/C/moonshot/modules/vantage/inquire.js",
+		"/C/moonshot/db/api/farm/animal/post.sql",
+		"/C/moonshot/db/api/farm/animal/get.sql",
+		"/C/moonshot/db/api/farm/animal/config.json",
+		"/C/moonshot/package.json",
+		"//10.40.103.253/c$/node/server.js",
+		"/C/moonshot/modules/vantage/index.js",
+		"/C/moonshot/modules/cliffy/lib/command.js",
+		"/C/moonshot/db/node/node_modules/reincarnate/testreincarnate.js",
+		"/C/moonshot/db/node/node_modules/reincarnate/reincarnate.js",
+		"/C/moonshot/modules/cliffy/index.js",
+		"/C/moonshot/modules/replifab/lib/command.js",
+		"/C/moonshot/modules/replifab/package.json",
+		"/C/moonshot/modules/replifab/index.js",
+		"/C/moonshot/modules/replifab/node_modules/inquirer/lib/prompts/base.js",
+		"/C/moonshot/modules/replifab/node_modules/inquirer/lib/prompts/input.js",
+		"/C/moonshot/modules/replifab/node_modules/inquirer/lib/ui/prompt.js",
+		"/C/moonshot/modules/replifab/node_modules/inquirer/lib/inquirer.js",
+		"/C/moonshot/modules/replifab/lib/option.js",
+		"/C/moonshot/db/node/command.js",
+		"/C/moonshot/modules/replifab/repl-commander.js",
+		"/C/moonshot/db/node/lib/repl-commander.js",
+		"/C/moonshot/db/repl-quick/test/index.js",
+		"/C/moonshot/db/repl-quick/.travis.yml",
+		"/C/moonshot/db/repl-quick/README.md",
+		"/C/moonshot/db/repl-quick/index.js",
+		"/C/moonshot/db/repl-quick/package.json",
+		"/C/moonshot/db/node/node_modules/repl-quick/index.js",
+		"/C/moonshot/db/node/node_modules/repl-quick/server.js",
+		"/C/moonshot/db/node/node_modules/prompt/node_modules/read/node_modules/mute-stream/mute.js",
+		"/C/moonshot/db/node/node_modules/prompt/node_modules/read/package.json",
+		"/C/moonshot/db/node/node_modules/prompt/node_modules/read/lib/read.js",
+		"/C/moonshot/db/node/node_modules/prompt/lib/prompt.js",
+		"/C/moonshot/db/node/node_modules/inquirer/lib/ui/prompt.js",
+		"/C/moonshot/db/node/node_modules/inquirer/lib/prompts/input.js",
+		"/C/moonshot/db/node/lib/api.prompt.js",
+		"/C/moonshot/db/node/node_modules/inquirer/lib/inquirer.js",
+		"/C/moonshot/db/node/node_modules/inquirer/lib/ui/baseUI.js",
+		"/C/moonshot/db/node/node_modules/inquirer/lib/utils/utils.js",
+		"/C/moonshot/db/node/node_modules/inquirer/lib/prompts/base.js",
+		"/C/moonshot/db/node/commander.js",
+		"/C/moonshot/db/node/node_modules/prompt/node_modules/read/rs.js",
+		"/C/moonshot/db/api/farm/animal/put.sql",
+		"/C/moonshot/db/api/farm/animal/delete.sql",
+		"/C/moonshot/db/node/lib/sql.build.js",
+		"/C/moonshot/db/node/site.json",
+		"/C/moonshot/examples/test.html",
+		"/C/moonshot/db/node/package.json",
+		"/C/moonshot/db/node/test/sql.js",
+		"/C/moonshot/db/node/test/api.js",
+		"/C/moonshot/db/node/test/test.js",
+		"/C/moonshot/db/node/node_modules/mocha/mocha.js",
+		"/C/moonshot/db/node/test.js",
+		"/C/moonshot/db/api/farm/animal/get.json",
+		"/C/moonshot/db/api/sys/inventory/get.sql",
+		"/C/moonshot/db/api/sys/inventory/get.json",
+		"/C/moonshot/db/api/sys/inventory/config.json",
+		"/C/moonshot/db/api/sys/dbo/inventory/get.sql",
+		"/C/moonshot/db/node/lib/glue.js",
+		"/C/moonshot/db/node/lib/test.js",
+		"//10.40.103.253/c$/node/sys/sys.util.js",
+		"/C/moonshot/db/node/node_modules/koa/package.json",
+		"/C/moonshot/db/node/lib/dao.js",
+		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/lib/profile.libs.extensions.js",
+		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/profile.extensions.central.js",
+		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/profile.finance-adaptor.js",
+		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/css/profile.scss",
+		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/profile.printing.js",
+		"/C/moonshot/db/node/server.js",
+		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/profile.extensions.finance.js",
+		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/profile.data-collector.util.js",
+		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/profile.data-collector.adaptor.js",
+		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/profile.data-collector.js",
+		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/profile.app.js",
+		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/profile.html",
+		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/api.js",
+		"/C/Program Files (x86)/PuTTY/README.txt",
+		"//10.40.103.253/resources/for DC/fin-server.js",
+		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/menu.js",
+		"/C/Users/dc2/Documents/API FOR FINANCE SYSTEM UPDATES",
+		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/pac-profile/js/data-collector.adaptor.js",
+		"//10.40.103.253/resources/for DC/blahblah.txt",
+		"/F/asdf.txt",
+		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/Addo - Profile.sublime-project",
+		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/css/marryup.scss",
+		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/marryup.lookups.js",
+		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/menu.html",
+		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/css/menu.scss",
+		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/marryup.io.js",
+		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/marryup.dom.js",
+		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/marryup.app.js",
+		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/marryup.html",
+		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/marryup.events.js",
+		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/marryup.util.js",
+		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/Addo.sublime-project",
+		"//10.40.103.253/resources/for DC/whatever.txt",
+		"//192.168.0.100/c$/var/tomcat/webapps/stat/grade-main.js",
+		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/theme/css/auth.scss",
+		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/marryup.auth.js",
+		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/profile.lookups.js",
+		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/profile.extensions.cf.js",
+		"/F/done.txt",
+		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/index.html",
+		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/test.html",
+		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/css/auth.scss",
+		"//10.40.103.253/c$/node/sys/views/components/components.scss",
+		"//10.40.103.253/c$/node/server/controllers/messaging.js",
+		"//10.40.103.253/c$/node/sys/apps/numberManager/NumberManager.scss",
+		"//10.40.103.253/c$/node/sys/apps/regAssignment/RegAssignment.scss",
+		"//10.40.103.253/c$/node/server/controllers/main.js",
+		"//10.40.103.253/c$/node/sys/views/components/EventProfile.Views.js",
+		"//10.40.103.253/c$/node/sys/views/components/EventProfile.Models.js",
+		"//10.40.103.253/c$/node/sys/views/components/EventProfile.js",
+		"//10.40.103.253/c$/node/sys/apps/eventListGenerator/EventListGenerator.Views.js",
+		"//10.40.103.253/c$/node/sys/apps/numberManager/NumberManager.js",
+		"//10.40.103.253/c$/node/server/controllers/resources.js",
+		"//10.40.103.253/c$/node/server/servlets/eventAdvancedSearcher.js",
+		"//10.40.103.253/c$/node/node_modules/json2csv/lib/json2csv.js",
+		"//10.40.103.253/c$/node/sys/assets/css/base.scss",
+		"//10.40.103.253/c$/node/sys/apps/numberManager/NumberManager.css",
+		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/css/base.scss",
+		"//10.40.103.253/c$/node/server/servlets/pageSender.js",
+		"//10.40.103.253/c$/node/server/workers/twilio.js",
+		"//10.40.103.253/c$/node/server/controllers/authentication.js"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+			"",
+			"orgTerminals",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"self.parent.client.",
+			"self.parent.client",
+			"vantage.",
+			"VantageServer",
+			"vantageServer",
+			"VantageServer.prototype",
+			"self.parent.server",
+			"session",
+			"vantage.",
+			"Vantage",
+			"VantageServer",
+			"VantageClient",
+			"server",
+			"Server",
+			"server",
+			"Server",
+			"server",
+			"Server",
+			"server",
+			"Server",
+			"server",
+			"Server",
+			"server",
+			"Server",
+			"server",
+			"Server",
+			"server",
+			"Server",
+			"server",
+			"new Se",
+			"VantageServer",
+			"_port",
+			"._port",
+			"vantage._port",
+			"Vantage",
+			"vantage",
+			"vantage.",
+			"vantage",
+			"slf",
+			"vantage",
+			"slf",
+			"vantage",
+			"slf",
+			"vantage",
+			"this",
+			"vantage",
+			"vantage.",
+			"vantage",
+			"vantage.",
+			"vantage",
+			"Vantage",
+			"vantage",
+			"Vantage",
+			"vantage",
+			"VantageClient.prototype",
+			"VantageServer.prototype",
+			"Vantage.prototype",
+			"vantage",
+			"Vantage.",
+			"vantage.",
+			": function",
+			": function(",
+			"},",
+			"  },",
+			": function(",
+			"app.callback()",
+			"vantage",
+			"function(){}",
+			"mocha",
+			"options",
+			"Prompt",
+			"prompt",
+			"terminable",
+			"Terminable",
+			"terminable",
+			"Terminable",
+			"terminable",
+			"Terminable",
+			"_isTerminable",
+			"local",
+			"LOCAL",
+			"local",
+			"prompt",
+			"Terminable",
+			"terminable",
+			"Terminable",
+			"terminable",
+			"Terminable",
+			"terminable",
+			"Terminable",
+			"terminable",
+			"terminab",
+			"Terminab",
+			"client",
+			"_prompt",
+			"ocal",
+			"_prompt",
+			"Service Un",
+			"option",
+			"connect",
+			"Connect",
+			"connect",
+			"rejectUnauthorized",
+			"http",
+			"listen",
+			"app",
+			"listen",
+			"(",
+			"app",
+			"callback",
+			"app",
+			"port",
+			"init",
+			"port",
+			"listen",
+			"init",
+			"http",
+			"connect",
+			".connect",
+			"Downstream..",
+			"vantage._debug",
+			"console.log",
+			"._delimiter(",
+			"_delimiter",
+			"Delimiter",
+			"delimiter(",
+			"delimiter",
+			"delimiter("
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"  ",
+			"gakDetails",
+			"hours",
+			"orgTerminals",
+			",",
+			" />",
+			"input action",
+			" input action",
+			"app.cancel",
+			"app.loadProfile",
+			"save",
+			"adjustServiceDatasets",
+			"calculateMaxServices",
+			"calculateServiceData",
+			"drawMetadata",
+			"isMetaInput",
+			"drawer",
+			"updateCFLabelCheckbox",
+			"getFinancePing",
+			"postFinanceMarryup",
+			"postCentralMarryup",
+			"postFinanceMarryup",
+			"getCentralProfile",
+			"getFinanceHistory",
+			"getFinanceProfile",
+			"getAddressoProfile",
+			"getAddressoHistory",
+			"updateAddressDOM",
+			"sliceNoteForFinance",
+			"lookupVal",
+			"lookupString",
+			"clearVal",
+			"activeDS",
+			"financeDS",
+			"-",
+			"org",
+			"/",
+			"\"",
+			"=",
+			">",
+			" ",
+			"<",
+			"\"', \""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/C/moonshot/db/node/server.js",
+					"settings":
+					{
+						"buffer_size": 7536,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4934,
+								4934
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2536.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/C/moonshot/modules/vantage/vantage.js",
+					"settings":
+					{
+						"buffer_size": 27481,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								23843,
+								23843
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 11225.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/C/moonshot/db/node/node_modules/koa/lib/application.js",
+					"settings":
+					{
+						"buffer_size": 4859,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								742,
+								742
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "session.js",
+					"settings":
+					{
+						"buffer_size": 316,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								226,
+								226
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 5,
+			"sheets":
+			[
+				{
+					"buffer": 4,
+					"file": "/C/moonshot/modules/vantage/test/http.js",
+					"settings":
+					{
+						"buffer_size": 974,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								430,
+								430
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "option.js",
+					"settings":
+					{
+						"buffer_size": 842,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								54,
+								54
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 195.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "/C/moonshot/modules/vantage/test/index.js",
+					"settings":
+					{
+						"buffer_size": 307,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								295,
+								295
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "/C/moonshot/modules/vantage/intercept.js",
+					"settings":
+					{
+						"buffer_size": 350,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								350,
+								350
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "/C/moonshot/modules/vantage/hook.js",
+					"settings":
+					{
+						"buffer_size": 4424,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2157,
+								2157
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1338.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "vantage-commons.js",
+					"settings":
+					{
+						"buffer_size": 2004,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								516,
+								516
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 195.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "command.js",
+					"settings":
+					{
+						"buffer_size": 6175,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5684,
+								5684
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2840.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "/C/moonshot/db/node/lib/sql.schema.js",
+					"settings":
+					{
+						"buffer_size": 9972,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								231,
+								231
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "/C/moonshot/db/node/lib/sql.js",
+					"settings":
+					{
+						"buffer_size": 9595,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								206,
+								206
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"file": "/C/moonshot/db/node/lib/api.js",
+					"settings":
+					{
+						"buffer_size": 11822,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								11542,
+								11545
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 4490.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 14,
+					"file": "/C/moonshot/db/node/lib/api-error-codes.js",
+					"settings":
+					{
+						"buffer_size": 432,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								432,
+								432
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 15,
+					"file": "/C/moonshot/db/node/site.central.json",
+					"settings":
+					{
+						"buffer_size": 360,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								357,
+								357
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 16,
+					"file": "/C/moonshot/db/node/site.local.json",
+					"settings":
+					{
+						"buffer_size": 351,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								121,
+								121
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 17,
+					"file": "/C/moonshot/db/node/test/api.js",
+					"settings":
+					{
+						"buffer_size": 3747,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								393,
+								393
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.508333333333,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"adaptor",
+				"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/profile.data-collector.adaptor.js"
+			],
+			[
+				"events.js",
+				"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/marryup.events.js"
+			],
+			[
+				"util.js",
+				"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/marryup.util.js"
+			],
+			[
+				"app.js",
+				"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/marryup.app.js"
+			],
+			[
+				"util",
+				"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/marryup.util.js"
+			],
+			[
+				"app",
+				"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/marryup.app.js"
+			],
+			[
+				"events",
+				"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/marryup.events.js"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"returns",
+				"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/returns.sublime-project"
+			],
+			[
+				"pac ",
+				"//10.40.103.253/c$/node/sys/apps/phoneBook/PAC Profile.sublime-project"
+			],
+			[
+				"retu",
+				"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/returns.sublime-project"
+			],
+			[
+				"return",
+				"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/returns.sublime-project"
+			],
+			[
+				"retur",
+				"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/returns.sublime-project"
+			],
+			[
+				"RETURN",
+				"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/returns.sublime-project"
+			],
+			[
+				"moon",
+				"/C/moonshot/moonshot.sublime-project"
+			],
+			[
+				"addo",
+				"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/Addo.sublime-project"
+			],
+			[
+				"pac pr",
+				"//10.40.103.253/c$/node/sys/apps/phoneBook/PAC Profile.sublime-project"
+			],
+			[
+				"ADDO",
+				"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/Addo.sublime-project"
+			],
+			[
+				"prof",
+				"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/Addo - Profile.sublime-project"
+			],
+			[
+				"profile",
+				"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/Addo - Profile.sublime-project"
+			],
+			[
+				"pac p",
+				"//10.40.103.253/c$/node/sys/apps/phoneBook/PAC Profile.sublime-project"
+			],
+			[
+				"pac",
+				"//10.40.103.253/c$/node/sys/apps/phoneBook/PAC Profile.sublime-project"
+			],
+			[
+				"",
+				"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/Addo - Profile.sublime-project"
+			],
+			[
+				"telex",
+				"//10.40.103.253/c$/node/sys/apps/phoneBook/Telex.sublime-project"
+			],
+			[
+				"ma",
+				"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/Addo.sublime-project"
+			],
+			[
+				"mar",
+				"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/Addo.sublime-project"
+			],
+			[
+				"addo.su",
+				"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/Addo.sublime-project"
+			],
+			[
+				"marr",
+				"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/Addo.sublime-project"
+			],
+			[
+				"pac por",
+				"//10.40.103.253/c$/node/sys/apps/phoneBook/PAC Profile.sublime-project"
+			],
+			[
+				"phone",
+				"//10.40.103.253/c$/node/sys/apps/phoneBookLayout/Phone Book.sublime-project"
+			],
+			[
+				"phone book",
+				"//10.40.103.253/c$/node/sys/apps/phoneBookLayout/Phone Book.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 143.0,
+	"status_bar_visible": true
+}
