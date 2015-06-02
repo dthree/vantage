@@ -419,150 +419,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "/C/moonshot/db/node/server.js",
-			"settings":
-			{
-				"buffer_size": 7536,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/C/moonshot/modules/vantage/vantage.js",
-			"settings":
-			{
-				"buffer_size": 27481,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/C/moonshot/db/node/node_modules/koa/lib/application.js",
-			"settings":
-			{
-				"buffer_size": 4859,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "session.js",
-			"settings":
-			{
-				"buffer_size": 316,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/C/moonshot/modules/vantage/test/http.js",
-			"settings":
-			{
-				"buffer_size": 974,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "option.js",
-			"settings":
-			{
-				"buffer_size": 842,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/C/moonshot/modules/vantage/test/index.js",
-			"settings":
-			{
-				"buffer_size": 307,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/C/moonshot/modules/vantage/intercept.js",
-			"settings":
-			{
-				"buffer_size": 350,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/C/moonshot/modules/vantage/hook.js",
-			"settings":
-			{
-				"buffer_size": 4424,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "vantage-commons.js",
-			"settings":
-			{
-				"buffer_size": 2004,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "command.js",
-			"settings":
-			{
-				"buffer_size": 6175,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/C/moonshot/db/node/lib/sql.schema.js",
-			"settings":
-			{
-				"buffer_size": 9972,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/C/moonshot/db/node/lib/sql.js",
-			"settings":
-			{
-				"buffer_size": 9595,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/C/moonshot/db/node/lib/api.js",
-			"settings":
-			{
-				"buffer_size": 11822,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/C/moonshot/db/node/lib/api-error-codes.js",
-			"settings":
-			{
-				"buffer_size": 432,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/C/moonshot/db/node/site.central.json",
-			"settings":
-			{
-				"buffer_size": 360,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/C/moonshot/db/node/site.local.json",
-			"settings":
-			{
-				"buffer_size": 351,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/C/moonshot/db/node/test/api.js",
-			"settings":
-			{
-				"buffer_size": 3747,
-				"line_ending": "Windows"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -604,10 +460,44 @@
 	},
 	"file_history":
 	[
+		"/C/moonshot/vantage.sublime-project",
+		"/C/moonshot/modules/vantage/vantage.js",
+		"/C/moonshot/db/node/server.js",
+		"/C/moonshot/modules/vantage/lib/session.js",
+		"/C/moonshot/modules/vantage/test/util/server.js",
+		"/X/vantage.sublime-project",
+		"/C/moonshot/modules/vantage/test/integration.js",
+		"/C/moonshot/modules/vantage/test/util/util.js",
+		"/C/moonshot/modules/vantage/test/index.js",
+		"/C/moonshot/modules/vantage/lib/vantage-commons.js",
+		"/C/moonshot/modules/vantage/lib/option.js",
+		"/C/moonshot/modules/vantage/lib/client.js",
+		"/C/moonshot/modules/vantage/lib/server.js",
+		"/C/moonshot/vantage.sublime-workspace",
+		"/C/moonshot/modules/vantage/package.json",
+		"/C/moonshot/modules/vantage/.travis.yml",
+		"/C/moonshot/modules/vantage/lib/command.js",
+		"/C/moonshot/db/node/node_modules/koa/lib/application.js",
+		"/C/moonshot/modules/vantage/node_modules/string-argv/index.js",
+		"/C/moonshot/modules/vantage/lib/intercept.js",
+		"/C/moonshot/modules/vantage/test/http.js",
+		"//10.40.103.253/c$/node/server/controllers/authentication.js",
+		"/C/moonshot/modules/vantage/hook.js",
+		"/C/moonshot/modules/vantage/intercept.js",
+		"/C/moonshot/modules/vantage/test/util/worker.js",
+		"/C/moonshot/modules/vantage/test/util.js",
+		"/C/moonshot/modules/vantage/test/worker.js",
+		"/C/moonshot/modules/vantage/test/instance.js",
+		"/C/moonshot/modules/vantage/test/pm2.js",
+		"/C/moonshot/db/node/test/api.js",
+		"/C/moonshot/db/node/site.local.json",
+		"/C/moonshot/db/node/site.central.json",
+		"/C/moonshot/db/node/lib/api.js",
+		"/C/moonshot/db/node/lib/api-error-codes.js",
+		"/C/moonshot/db/node/lib/sql.js",
+		"/C/moonshot/db/node/lib/sql.schema.js",
 		"/C/moonshot/modules/vantage/README.md",
 		"/C/moonshot/db/schema/00.00.0001/00.00.0001.sql",
-		"/C/moonshot/modules/vantage/package.json",
-		"/C/moonshot/modules/vantage/hook.js",
 		"/C/moonshot/modules/vantage/inquire.js",
 		"/C/moonshot/db/api/farm/animal/post.sql",
 		"/C/moonshot/db/api/farm/animal/get.sql",
@@ -657,7 +547,6 @@
 		"/C/moonshot/examples/test.html",
 		"/C/moonshot/db/node/package.json",
 		"/C/moonshot/db/node/test/sql.js",
-		"/C/moonshot/db/node/test/api.js",
 		"/C/moonshot/db/node/test/test.js",
 		"/C/moonshot/db/node/node_modules/mocha/mocha.js",
 		"/C/moonshot/db/node/test.js",
@@ -676,7 +565,6 @@
 		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/profile.finance-adaptor.js",
 		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/css/profile.scss",
 		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/profile.printing.js",
-		"/C/moonshot/db/node/server.js",
 		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/profile.extensions.finance.js",
 		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/profile.data-collector.util.js",
 		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/profile.data-collector.adaptor.js",
@@ -699,39 +587,7 @@
 		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/marryup.io.js",
 		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/marryup.dom.js",
 		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/marryup.app.js",
-		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/marryup.html",
-		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/marryup.events.js",
-		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/marryup.util.js",
-		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/Addo.sublime-project",
-		"//10.40.103.253/resources/for DC/whatever.txt",
-		"//192.168.0.100/c$/var/tomcat/webapps/stat/grade-main.js",
-		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/theme/css/auth.scss",
-		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/marryup.auth.js",
-		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/profile.lookups.js",
-		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/js/profile.extensions.cf.js",
-		"/F/done.txt",
-		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/index.html",
-		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/test.html",
-		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/css/auth.scss",
-		"//10.40.103.253/c$/node/sys/views/components/components.scss",
-		"//10.40.103.253/c$/node/server/controllers/messaging.js",
-		"//10.40.103.253/c$/node/sys/apps/numberManager/NumberManager.scss",
-		"//10.40.103.253/c$/node/sys/apps/regAssignment/RegAssignment.scss",
-		"//10.40.103.253/c$/node/server/controllers/main.js",
-		"//10.40.103.253/c$/node/sys/views/components/EventProfile.Views.js",
-		"//10.40.103.253/c$/node/sys/views/components/EventProfile.Models.js",
-		"//10.40.103.253/c$/node/sys/views/components/EventProfile.js",
-		"//10.40.103.253/c$/node/sys/apps/eventListGenerator/EventListGenerator.Views.js",
-		"//10.40.103.253/c$/node/sys/apps/numberManager/NumberManager.js",
-		"//10.40.103.253/c$/node/server/controllers/resources.js",
-		"//10.40.103.253/c$/node/server/servlets/eventAdvancedSearcher.js",
-		"//10.40.103.253/c$/node/node_modules/json2csv/lib/json2csv.js",
-		"//10.40.103.253/c$/node/sys/assets/css/base.scss",
-		"//10.40.103.253/c$/node/sys/apps/numberManager/NumberManager.css",
-		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/css/base.scss",
-		"//10.40.103.253/c$/node/server/servlets/pageSender.js",
-		"//10.40.103.253/c$/node/server/workers/twilio.js",
-		"//10.40.103.253/c$/node/server/controllers/authentication.js"
+		"//10.40.103.253/c$/var/tomcat/Tomcat 7.0/webapps/central/marryup.html"
 	],
 	"find":
 	{
@@ -739,7 +595,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 90.0,
+		"height": 0.0,
 		"where_history":
 		[
 			"",
@@ -752,134 +608,134 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"self.parent.client.",
-			"self.parent.client",
-			"vantage.",
-			"VantageServer",
-			"vantageServer",
-			"VantageServer.prototype",
-			"self.parent.server",
-			"session",
-			"vantage.",
+			"_stdout",
+			"console",
+			"variable",
+			"what",
+			"kill",
+			"spawn",
+			"startInstances",
+			"out",
+			"stdout",
+			"done",
+			"be(true",
+			"stdout = '';",
+			"stdout.",
+			"tdout",
+			"onStdout",
+			"stdout",
+			"std",
+			"stdout",
+			"	",
+			"cliffy",
+			"require('colors'",
+			"co",
+			"Co",
+			"co",
+			"Co",
+			"argparse",
+			"_parseArgs",
+			"parseArgsStringToArgv",
+			"_parseArgs",
+			"parseArgs",
+			"myArray",
+			")",
+			"myString",
+			"myRegexp",
+			"parseArgsStringToArgv",
+			"parseString",
+			"parseStringTo",
+			"argparse",
+			"toArray",
+			"stdout",
+			"exec",
+			"silent",
+			"om",
+			"handler",
+			"_queue",
+			"queueHandler",
+			"queue",
+			"str",
+			"Str",
+			"str",
+			"exec",
+			"command",
+			"Command",
+			"command",
+			"commande",
+			"command-down",
+			"command-",
+			"_exec",
 			"Vantage",
-			"VantageServer",
-			"VantageClient",
-			"server",
-			"Server",
-			"server",
-			"Server",
-			"server",
-			"Server",
-			"server",
-			"Server",
-			"server",
-			"Server",
-			"server",
-			"Server",
-			"server",
-			"Server",
-			"server",
-			"Server",
-			"server",
-			"new Se",
-			"VantageServer",
-			"_port",
-			"._port",
-			"vantage._port",
-			"Vantage",
-			"vantage",
-			"vantage.",
-			"vantage",
-			"slf",
-			"vantage",
-			"slf",
-			"vantage",
-			"slf",
-			"vantage",
-			"this",
-			"vantage",
-			"vantage.",
-			"vantage",
-			"vantage.",
 			"vantage",
 			"Vantage",
 			"vantage",
 			"Vantage",
 			"vantage",
-			"VantageClient.prototype",
-			"VantageServer.prototype",
-			"Vantage.prototype",
+			"Vantage",
 			"vantage",
+			"exec",
+			"promise",
+			"Promise",
+			"promise",
+			"Promise",
+			"promise",
+			"_exec",
+			"exec",
+			"inquirer.prompt",
+			"prompt",
+			".log",
+			".pipe",
+			"data",
+			"onData",
+			"pipe",
+			"self",
+			"pipe",
+			".pipe",
+			".log",
+			"log",
+			"console.log",
+			".log",
+			"console",
+			"log",
+			"console.log",
+			"console",
+			".log",
+			"console.",
+			"log",
+			"console.log",
+			".log",
+			"match.log",
+			"match.",
+			"log",
+			".log",
+			"pipe",
+			"console.log",
+			"ssl",
+			"vantage.prototype",
+			"vantage",
+			"Vantage",
+			"vantage",
+			"Vantage",
+			"vantage",
+			"create",
+			"handler",
+			"apps",
+			"ports[i]",
+			"vantage.",
 			"Vantage.",
 			"vantage.",
-			": function",
-			": function(",
-			"},",
-			"  },",
-			": function(",
-			"app.callback()",
 			"vantage",
-			"function(){}",
-			"mocha",
-			"options",
-			"Prompt",
-			"prompt",
-			"terminable",
-			"Terminable",
-			"terminable",
-			"Terminable",
-			"terminable",
-			"Terminable",
-			"_isTerminable",
-			"local",
-			"LOCAL",
-			"local",
-			"prompt",
-			"Terminable",
-			"terminable",
-			"Terminable",
-			"terminable",
-			"Terminable",
-			"terminable",
-			"Terminable",
-			"terminable",
-			"terminab",
-			"Terminab",
-			"client",
-			"_prompt",
-			"ocal",
-			"_prompt",
-			"Service Un",
-			"option",
-			"connect",
-			"Connect",
-			"connect",
-			"rejectUnauthorized",
-			"http",
-			"listen",
-			"app",
-			"listen",
-			"(",
-			"app",
-			"callback",
-			"app",
-			"port",
-			"init",
-			"port",
-			"listen",
-			"init",
-			"http",
-			"connect",
-			".connect",
-			"Downstream..",
-			"vantage._debug",
-			"console.log",
-			"._delimiter(",
-			"_delimiter",
-			"Delimiter",
-			"delimiter(",
-			"delimiter",
-			"delimiter("
+			"exit",
+			"vantage",
+			"Vantage",
+			"vantage",
+			"Vantage",
+			"vantage",
+			"Vantage",
+			"vantage",
+			"Vantage",
+			"vantage"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -940,512 +796,13 @@
 	"groups":
 	[
 		{
-			"selected": 1,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "/C/moonshot/db/node/server.js",
-					"settings":
-					{
-						"buffer_size": 7536,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4934,
-								4934
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 2536.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/C/moonshot/modules/vantage/vantage.js",
-					"settings":
-					{
-						"buffer_size": 27481,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								23843,
-								23843
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 11225.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "/C/moonshot/db/node/node_modules/koa/lib/application.js",
-					"settings":
-					{
-						"buffer_size": 4859,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								742,
-								742
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "session.js",
-					"settings":
-					{
-						"buffer_size": 316,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								226,
-								226
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		},
 		{
-			"selected": 5,
 			"sheets":
 			[
-				{
-					"buffer": 4,
-					"file": "/C/moonshot/modules/vantage/test/http.js",
-					"settings":
-					{
-						"buffer_size": 974,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								430,
-								430
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "option.js",
-					"settings":
-					{
-						"buffer_size": 842,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								54,
-								54
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 195.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "/C/moonshot/modules/vantage/test/index.js",
-					"settings":
-					{
-						"buffer_size": 307,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								295,
-								295
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "/C/moonshot/modules/vantage/intercept.js",
-					"settings":
-					{
-						"buffer_size": 350,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								350,
-								350
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "/C/moonshot/modules/vantage/hook.js",
-					"settings":
-					{
-						"buffer_size": 4424,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2157,
-								2157
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1338.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "vantage-commons.js",
-					"settings":
-					{
-						"buffer_size": 2004,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								516,
-								516
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 195.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 10,
-					"file": "command.js",
-					"settings":
-					{
-						"buffer_size": 6175,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								5684,
-								5684
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 2840.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 11,
-					"file": "/C/moonshot/db/node/lib/sql.schema.js",
-					"settings":
-					{
-						"buffer_size": 9972,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								231,
-								231
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 12,
-					"file": "/C/moonshot/db/node/lib/sql.js",
-					"settings":
-					{
-						"buffer_size": 9595,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								206,
-								206
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 13,
-					"file": "/C/moonshot/db/node/lib/api.js",
-					"settings":
-					{
-						"buffer_size": 11822,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								11542,
-								11545
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 4490.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 14,
-					"file": "/C/moonshot/db/node/lib/api-error-codes.js",
-					"settings":
-					{
-						"buffer_size": 432,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								432,
-								432
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 15,
-					"file": "/C/moonshot/db/node/site.central.json",
-					"settings":
-					{
-						"buffer_size": 360,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								357,
-								357
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 16,
-					"file": "/C/moonshot/db/node/site.local.json",
-					"settings":
-					{
-						"buffer_size": 351,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								121,
-								121
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 17,
-					"file": "/C/moonshot/db/node/test/api.js",
-					"settings":
-					{
-						"buffer_size": 3747,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								393,
-								393
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],

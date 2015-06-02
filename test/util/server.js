@@ -29,6 +29,82 @@ var create = function(fn, port, ssl) {
     });
 
   vantage
+    .command('optional [arg]')
+    .description('Should optionally return an arg.')
+    .action(function(args, cb){
+      return new Promise(function(resolve, reject){
+        console.log(args.arg || '');
+        resolve();
+      });
+    });
+
+  vantage
+    .command('required <arg>')
+    .description('Must return an arg.')
+    .action(function(args, cb){
+      return new Promise(function(resolve, reject){
+        console.log(args.arg);
+        resolve();
+      });
+    });
+
+  vantage
+    .command('deep command [arg]')
+    .description('Tests execution of deep command.')
+    .action(function(args, cb){
+      return new Promise(function(resolve, reject){
+        console.log(args.arg);
+        resolve();
+      });
+    });
+
+  vantage
+    .command('very deep command [arg]')
+    .description('Tests execution of three-deep command.')
+    .action(function(args, cb){
+      return new Promise(function(resolve, reject){
+        console.log(args.arg);
+        resolve();
+      });
+    });
+
+  vantage
+    .command('count <number>')
+    .description('Tests execution of three-deep command.')
+    .action(function(args, cb){
+      return new Promise(function(resolve, reject){
+        console.log(args.number);
+        resolve();
+      });
+    });
+
+  vantage
+    .command('very complicated deep command [arg]')
+    .option('-r', 'Test Option.')
+    .option('-a', 'Test Option.')
+    .option('-d', 'Test Option.')
+    .option('-s, --sleep', 'Test Option.')
+    .option('-t', 'Test Option.')
+    .option('-i [param]', 'Test Option.')
+    .description('Tests execution of three-deep command.')
+    .action(function(args, cb){
+      return new Promise(function(resolve, reject){
+
+        var str = '';
+        str = (args.options.r === true) ? str + 'r' : str;
+        str = (args.options.a === true) ? str + 'a' : str;
+        str = (args.options.d === true) ? str + 'd' : str;
+        str = (args.options.t === true) ? str + 't' : str;
+        str = (args.options.i === 'j') ? str + args.options.i : str;
+        str = (args.options.sleep === 'well') ? str + args.options.sleep : str;
+        str = str + (args.arg || '');
+
+        console.log(str);
+        resolve();
+      });
+    });
+
+  vantage
     .delimiter(port + ':')
     .listen(function(req, res) { }, {
       port: port,

@@ -46,7 +46,7 @@ function init() {
       process.exit(1);
     } else {
 
-      if (envValue.ssl === true) {
+      if (envValue && envValue.ssl === true) {
         options.ssl = true;
       }
 
@@ -161,34 +161,19 @@ Vantage.prototype.init = function() {
 
   self.use(commons);
 
-  //setInterval(self.queueHandler, 500);
+  // this shouldn't have to happen.
+  setInterval(function() {
+    //self.queueHandler.call(self);
+  }, 1000);
 
 };
 
 vantage.queueHandler = function() {
-
-  var q = this._queue || [];
-
-  if (q.length > 0) {
-
-    if (q.completed === true) {
-      q.shift(); return;
-    }
-
-    if (q.started !== true) {
-
-      if (_.isFunction(q.fn)) {
-        q.completed = false;
-        q.started = true;
-        q.fn.call(this);
-      } else {
-
-        throw new Error('Invalid Queue Item - No Function.');
-        q.shift();
-      }
-    }
+  if (this._queue.length > 0 && this._command === undefined) {
+    var item = this._queue.shift();
+    this._execQueueItem(item);
   }
-},
+};
 
 vantage._debug = function(log) {
   this.log(this.server._port + '|' + log);
@@ -424,7 +409,7 @@ vantage._prompt = function() {
     var str = String(result.command).trim();
     if (str == '') { self._prompt(); return; }
 
-    self.exec(str, function(){
+    return self.exec(str, function(){
       self._prompt();
     });
 
@@ -432,25 +417,28 @@ vantage._prompt = function() {
 };
 
 vantage.exec = function(str, cb, options) {
+  var self = this;
+  return new Promise(function(resolve, reject) {
+    self._queue.push({
+      command: str,
+      callback: cb,
+      resolve: resolve,
+      options: options,
+    });
+    self.queueHandler.call(self);
+  });
+};
 
-  cb = cb || function(){}
+vantage._execQueueItem = function(item) {
+
   var self = this;
 
   if (self.is('local')) {
-    return this._exec(str, cb, options);
+    return this._exec(item);
   } else {
-
     return new Promise(function(resolve, reject){
-
-      self._command = {
-        callback: function(data){
-          resolve();
-          cb();
-        },
-      }
-
-      self.send('vantage-command-upstream', 'upstream', { command: str, completed: false });
-
+      self._command = item;
+      self.send('vantage-command-upstream', 'upstream', { command: item.command, completed: false });
     });
 
   }
@@ -470,17 +458,20 @@ vantage._parseArgs = function(value, env, file) {
   return arr;
 };
 
-vantage._exec = function(str, cb, options) {
-  cb = cb || function(){}
-  options = options || function() {}
+vantage._exec = function(item) {
+  
+  item = item  || {}
+  item.callback = item.callback || function() {}
+  item.command = item.command || '';
+  item.resolve = item.resolve || function(){}
 
   var self = this;
-  var parts = str.split(' ');
+  var parts = item.command.split(' ');
   var path = [];
   var match = false;
   var args;
 
-  this._hist.push(str);
+  this._hist.push(item.command);
 
   // Reverse drill-down the string until you find the
   // first command match.
@@ -506,7 +497,7 @@ vantage._exec = function(str, cb, options) {
 
     if (parsedArgs.help || parsedArgs.h || parsedArgs['_'].indexOf('/?') > -1) {
       self.log(match.helpInformation());
-      cb(); return;
+      item.callback(); return;
     } 
 
     for (var i = 0; i < origArgs.length; ++i) {
@@ -515,7 +506,7 @@ vantage._exec = function(str, cb, options) {
         self.log(" ");
         self.log("  Missing required argument. Showing Help:");
         self.log(match.helpInformation());
-        cb(); return;
+        item.callback(); return;
       }
       if (exists) {
         args[origArgs[i].name] = exists;
@@ -532,7 +523,7 @@ vantage._exec = function(str, cb, options) {
         self.log(" ");
         self.log("  Missing required option. Showing Help:");
         self.log(match.helpInformation());
-        cb();
+        item.callback();
         return;
       }
       if (exists) {
@@ -540,17 +531,17 @@ vantage._exec = function(str, cb, options) {
       }
     }
 
-    var res = fn.call(this, args, cb);
+    var res = fn.call(this, args, item.callback);
     if (res && _.isFunction(res.then)) {
-      return res.then(cb).catch(function(err) { 
+      return res.then(item.callback).catch(function(err) { 
         self.log(['', '  Error: '.red + err, '']);
-        cb();
+        item.callback();
         return;
       });
     }
   } else {
-    self.log(this.commandHelp(str));
-    cb();
+    self.log(this.commandHelp(item.command));
+    item.callback();
   }
 };
 
@@ -577,7 +568,7 @@ vantage.commandHelp = function(command) {
 
   var invalidString = 
     (command && matches.length == 0 && singleMatches.length == 0) 
-    ? ['', "  Invalid command. Showing Help:", ''].join('\n')
+    ? ['', "  Invalid Command. Showing Help:", ''].join('\n')
     : '';
 
   var commandMatch = (matches.length > 0) ? true : false;

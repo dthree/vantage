@@ -4,7 +4,7 @@ var pm2 = require('pm2')
 
 module.exports = {
 
-  startInstances: function(options, cb) {
+  spawn: function(options, cb) {
 
     options = options || {}
 
@@ -51,8 +51,15 @@ module.exports = {
       });
     });
 
+  },
 
-
+  kill: function(what, cb) {
+    cb = cb || function(){}
+    pm2.connect(function() {
+      pm2.delete('all', function(){
+        cb();
+      });
+    });
   },
 
 }
