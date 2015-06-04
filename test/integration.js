@@ -20,9 +20,6 @@ var stdout = function() {
   return String(out || '');
 }
 
-
-
-
 describe('integration tests:', function() {
 
   describe('vantage server:', function() {
@@ -42,10 +39,8 @@ describe('integration tests:', function() {
     after('cleanup', function(done) {
       util.kill('all', function(){
         //console.log('------------------');
-        //console.log(stdout());
-        console.log('------------------');
-        console.log(_excess);
-        console.log('------------------');
+        //console.log(_excess);
+        //console.log('------------------');
         done();
       });
     });

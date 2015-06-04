@@ -8,7 +8,7 @@ var assert = require("assert")
 var self = module.exports;
 self.firewall = new Firewall();
 
-describe.only('firewall', function() {
+describe('firewall', function() {
 
   beforeEach('cleanup', function(){
     self.firewall.reset();
