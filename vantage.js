@@ -171,6 +171,14 @@ Vantage.prototype.init = function() {
 vantage.queueHandler = function() {
   if (this._queue.length > 0 && this._command === undefined) {
     var item = this._queue.shift();
+    if (item.reject) {
+      //console.log(util.inspect(item.reject, {showHidden: true, depth: null}));
+    }
+    //if (item.command.indexOf('fail me yes') > -1) {
+     //console.log('--------------A2-----------------');
+      //console.log(util.inspect(item, {showHidden: true, depth: null}));
+    //}
+
     this._execQueueItem(item);
   }
 };
@@ -409,40 +417,54 @@ vantage._prompt = function() {
     var str = String(result.command).trim();
     if (str == '') { self._prompt(); return; }
 
-    return self.exec(str, function(){
+    self.exec(str, function(){
       self._prompt();
     });
 
   });
 };
 
-vantage.exec = function(str, cb, options) {
+vantage.exec = function(str, cb) {
   var self = this;
-  return new Promise(function(resolve, reject) {
-    self._queue.push({
-      command: str,
-      callback: cb,
-      resolve: resolve,
-      options: options,
-    });
+  var command = {
+    command: str,
+    callback: cb,
+  }
+  if (cb !== undefined) {
+    self._queue.push(command);
     self.queueHandler.call(self);
-  });
+  } else {
+    return new Promise(function(resolve, reject) {
+      
+      //console.log(util.inspect(reject, {showHidden: true, depth: null}));
+
+      command.resolve = resolve;
+      command.reject = reject;
+
+      //if (command.command.indexOf('fail me yes') > -1) {
+        //console.log('--------------A1-----------------');
+        //console.log(util.inspect(command, {showHidden: true, depth: null}));
+      //}
+
+      self._queue.push(command);
+      self.queueHandler.call(self);
+    });
+  }
 };
 
 vantage._execQueueItem = function(item) {
-
   var self = this;
-
   if (self.is('local')) {
-    return this._exec(item);
+    this._exec(item);
   } else {
-    return new Promise(function(resolve, reject){
-      self._command = item;
-      self.send('vantage-command-upstream', 'upstream', { command: item.command, completed: false });
-    });
-
-  }
-
+    //console.log('Reassigning self._command to '.red + item.command);
+    self._command = item;
+    //if (self._command.command.indexOf('fail me yes') > -1) {
+      //console.log('--------------A2.5-----------------');
+      //console.log(util.inspect(self._command, {showHidden: true, depth: null}));
+    //}
+    self.send('vantage-command-upstream', 'upstream', { command: item.command, completed: false });
+  };
 };
 
 vantage._parseArgs = function(value, env, file) {
@@ -461,9 +483,14 @@ vantage._parseArgs = function(value, env, file) {
 vantage._exec = function(item) {
   
   item = item  || {}
-  item.callback = item.callback || function() {}
+  // if (item.command.indexOf('fail me yes') > -1) {
+    //console.log('--------------A3-----------------');
+    //console.log(util.inspect(item, {showHidden: true, depth: null}));
+  //}
+  //item.callback = item.callback || function() {}
   item.command = item.command || '';
-  item.resolve = item.resolve || function(){}
+  //item.resolve = item.resolve || function(){}
+  //item.reject = item.reject || function(){}
 
   var self = this;
   var parts = item.command.split(' ');
@@ -487,6 +514,12 @@ vantage._exec = function(item) {
   var parsedArgs = minimist(self._parseArgs(args));
   parsedArgs['_'] = parsedArgs['_'] || [];
   var args = {}
+
+  //if (parsedArgs.cheese) {
+    //console.log(parsedArgs)
+  //}
+
+  //console.log(parsedArgs)
 
   if (match) {
 
@@ -515,29 +548,52 @@ vantage._exec = function(item) {
 
     for (var i = 0; i < origOptions.length; ++i) {
       var o = origOptions[i];
-      var short = String(o.short).replace(/-/g, '');
-      var long = String(o.long).replace(/-/g, '');
+      var short = String(o.short || '').replace(/-/g, '');
+      var long = String(o.long || '').replace(/--no-/g, '').replace(/-/g, '');
+      //var negate = String(o.long || '').replace(/--no-/g, '');
       var flag = String(o.flags).slice(Math.abs(o.required), o.flags.length).replace('>', '').trim();
       var exists = parsedArgs[short] || parsedArgs[long];
-      if (!exists && o.required !== 0) {
+      if (exists === undefined && o.required !== 0) {
         self.log(" ");
         self.log("  Missing required option. Showing Help:");
         self.log(match.helpInformation());
-        item.callback();
+        item.callback('Missing required option.');
         return;
       }
-      if (exists) {
+      if (exists !== undefined) {
         args.options[long || short] = exists;
       }
     }
 
     var res = fn.call(this, args, item.callback);
     if (res && _.isFunction(res.then)) {
-      return res.then(item.callback).catch(function(err) { 
+      //console.log(item)
+
+      return res.then(function(data){
+        if (item.callback !== undefined) { 
+          item.callback(data); 
+        } else if (item.resolve !== undefined) { 
+          return item.resolve(data); 
+        }
+      }).catch(function(err){
         self.log(['', '  Error: '.red + err, '']);
-        item.callback();
-        return;
+        
+        //console.log('WOW WOW CAUGHT ERROR'.magenta)
+        //console.log(item.reject)
+        //console.log(util.inspect(item.reject, {showHidden: true, depth: null}));
+        if (item.callback !== undefined) {
+          item.callback(err);
+        } else if (item.reject !== undefined) {
+          item.reject(err);
+        }
+        //if (item.reject !== undefined) { console.log('returning reject!!'); return item.reject(err); }
+        //if (item.callback !== undefined) { console.log('returning callback'); item.callback(err); }
       });
+      //return res.then(item.callback).catch(function(err) { 
+        //self.log(['', '  Error: '.red + err, '']);
+        //item.callback(err);
+        //return;
+      //});
     }
   } else {
     self.log(this.commandHelp(item.command));
@@ -799,7 +855,7 @@ vantage.listen = function(app, options) {
   return this;
 };
   
-vantage.exit = function(option) {
+vantage.exit = function(option, cb) {
   var self = this;
   if (this.is('local') && !this.is('terminable')) {
     if (option.force) {

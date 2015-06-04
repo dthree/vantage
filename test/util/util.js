@@ -30,6 +30,7 @@ module.exports = {
           (function(port){
             pm2.start({
               script: './test/util/server.js',
+              cluster: false,
               args: [port, false],
               instances: 1,
             }, function(err, apps){

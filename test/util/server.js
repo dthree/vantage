@@ -21,7 +21,7 @@ var create = function(fn, port, ssl) {
   vantage
     .command('fuzzy')
     .description('Should return "wuzzy".')
-    .action(function(args, cb){
+    .action(function(args, cb) {
       return new Promise(function(resolve, reject){
         console.log('wuzzy');
         resolve();
@@ -39,6 +39,23 @@ var create = function(fn, port, ssl) {
     });
 
   vantage
+    .command('port')
+    .description('Returns port.')
+    .action(function(args, cb){
+      console.log(this.server._port);
+      cb(this.server._port);
+    });
+
+  vantage
+    .command('i want')
+    .description('Negative args.')
+    .option('-N, --no-cheese', 'No chease please.')
+    .action(function(args, cb){
+      console.log(args.options.cheese);
+      cb();
+    });
+
+  vantage
     .command('required <arg>')
     .description('Must return an arg.')
     .action(function(args, cb){
@@ -47,6 +64,21 @@ var create = function(fn, port, ssl) {
         resolve();
       });
     });
+
+
+  vantage
+    .command('fail me <arg>')
+    .description('Must return an arg.')
+    .action(function(args, cb){
+      return new Promise(function(resolve, reject){
+        if (args.arg == 'not') {
+          resolve('we are happy');
+        } else {
+          reject('we are not happy.');
+        }
+      });
+    });
+
 
   vantage
     .command('deep command [arg]')
