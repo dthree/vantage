@@ -33,22 +33,25 @@ myapp~$
 
 * [Getting Started](#getting-started)
 * [Methods](#methods)
-  - [command](#command-command-description)
-    - description
-    - alias
-    - action
-      - prompt
-  - delimiter
-  - banner
-  - listen
-  - show
-  - exec
-  - pipe
-  - use
-* Automation
-* Firewall
-* Authentication
-* Extensions
+  - [command](#commandcommand-description)
+    - [description](#commandcommand-description)
+    - [option](#option-syntax)
+    - [action](#action-syntax)
+      - [prompt](#prompting)
+  - [delimiter](#delimiterstring)
+  - [banner](#bannerstring)
+  - [show](#show)
+  - [listen](#listenapp-options)
+    - [as standalone server](#vantage-as-a-standalone-web-server)
+    - [with koa.js](#with-koajs)
+    - [with express.js](#with-expressjs)
+  - [exec](#)
+  - [pipe](#)
+  - [use](#)
+* [Automation](#)
+* [Firewall](#)
+* [Authentication](#)
+* [Extensions](#)
 
 ## Getting Started
 
