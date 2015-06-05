@@ -437,9 +437,77 @@ vantage.listen(someMiddleware, {
 ```
 ## Automation
 
+Vantage allows you execute your API commands from javascript synchronously, using either callbacks or Promises.
+
+### .connect(server, port, [options], [callback])
+
+Connects to another instance of vantage. Returns callack or Promise.
+
+```js
+// Using Promises:
+vantage.connect('127.0.0.1', 8001).then(function(data){
+  // ... celebrate
+}).catch(function(err){
+  console.log('Error connecting: ' + err);
+});
+```
+##### Options
+
+- `ssl`: Set to true if server you are connecting to uses HTTPS.
+
 ### .exec(command, [callback])
 
+Executes an API command string. Returns a callback or Promise.
+
+```js
+// Using Promises:
+vantage.exec('vantage 8001').then(function(data){
+  return vantage.exec('roll dough');
+}).then(function(data){
+  return vantage.exec('add cheese');
+}).then(function(data){
+  return vantage.exec('add pepperoni');
+}).then(function(data){
+  return vantage.exec('shape crust');
+}).then(function(data){
+  return vantage.exec('insert into oven');
+}).then(function(data){
+  return vantage.exec('wait 480000');
+}).then(function(data){
+  return vantage.exec('remove from oven');
+}).then(function(data){
+  return vantage.exec('enjoy');
+}).catch(function(err){
+  console.log('Error baking pizza: ' + err);
+  app.orderOut();
+});
+
+// Using callbacks:
+vantage.exec('vantage 8001', function(err, data) {
+  if (!err) {
+    vantage.exec('bake pizza', function(err, pizza){
+      if (!err) {
+        app.eat(pizza);
+      }
+    });
+  }
+});
+```
+
 ### .pipe(function)
+
+Captures all `stdout` piped through Vantage and passes it through a custom function. The string returned from the function is then logged.
+
+```js
+var onStdout = function(stdout) {
+  app.writeToLog(stdout);
+  return '';
+}
+
+vantage
+  .pipe(onStdout)
+  .connect('127.0.0.1', 80, {});
+```
 
 ## Firewall
 
