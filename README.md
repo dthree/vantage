@@ -400,6 +400,28 @@ var app = express();
 
 vantage.listen(app, 80);
 ```
+#####With SSL / advanced options
+
+You can pass detailed options to your web server with the second argument in place of the port. These options are the same options you would pass into your web server, with two exceptions:
+
+- `options.port`: Tells vantage what port to listen on.
+- `options.ssl`: A boolean that tells Vantage whether to spawn an HTTP or HTTPs server.
+
+Default HTTPs server example:
+
+```js
+var vantage = new Vantage();
+vantage.listen(someMiddleware, {
+  port: 443,
+  ssl: true,
+  key: fs.readFileSync('./../../server.key'),
+  cert: fs.readFileSync('./../../server.crt'),
+  ca: fs.readFileSync('./../../ca.crt'),
+  requestCert: true,
+  rejectUnauthorized: false,
+});
+```
+
 
 ------
 
