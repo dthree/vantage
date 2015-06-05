@@ -41,7 +41,7 @@ myapp~$
   - delimiter
   - banner
   - listen
-  - prompt
+  - show
   - exec
   - pipe
   - use
@@ -70,10 +70,10 @@ server
 server
   .delimiter('webapp~$')
   .listen(80)
-  .prompt();
+  .show();
 ```
 
-You can now run it directly. The `server.prompt()` command enables the prompt from the terminal that started the application:
+You can now run it directly. The `server.show()` command enables the prompt from the terminal that started the application:
 
 ```bash
 $ node server.js
@@ -329,7 +329,7 @@ $ Connected successfully.
 ```
 *Note: See authentication section for auth details.*
 
-###.prompt()
+###.show()
 
 Starts a Vantage CLI prompt from the local terminal that started the application. While useless for deployed servers, this is great for testing an application's functions mid development.
 
@@ -340,7 +340,7 @@ Starts a Vantage CLI prompt from the local terminal that started the application
 
 vantage
   .delimiter('websvr~$')
-  .prompt();
+  .show();
   
 vantage
   .command('build api', 'Builds web server API.')
@@ -362,10 +362,44 @@ websvr~$
 
 ###.listen(app, [options])
 
-Listen starts Vantage as a server. If you just want 
+Starts Vantage as a server. 
 
+####Vantage as a standalone web server
 
+If you just want it to listen on a port independent of your web application, simply pass in the port and Vantage will spawn a new HTTP server.
 
+```js
+var vantage = new Vantage();
+vantage.listen(80);
+```
+
+####Vantage with an existing web server
+
+If you want Vantage to listen on the same port as your web application, you can use Vantage's `listen` function in place of your existing web server's `listen` function.
+
+#####With Koa.js
+
+```js
+var koa = require('koa');
+var Vantage = require('vantage');
+
+var vantage = new Vantage();
+var app = koa();
+
+vantage.listen(app, 80);
+```
+
+#####With Express.js
+
+```js
+var express = require('express');
+var Vantage = require('vantage');
+
+var vantage = new Vantage();
+var app = express();
+
+vantage.listen(app, 80);
+```
 
 ------
 
