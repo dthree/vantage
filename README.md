@@ -43,6 +43,7 @@ myapp~$
   - exec
   - prompt
   - pipe
+  - use
 * Automation
 * Firewall
 * Authentication
