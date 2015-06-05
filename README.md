@@ -9,7 +9,7 @@ Same application. Brand new point of view.
 
 Vantage provides a distributed, interactive command-line interface to your live Node application or web server.
 
-####Doesn't commander.js do that?
+#### Doesn't commander.js do that?
 
 Yes, and no. Inspired by and based on [commander.js](https://www.npmjs.com/package/commander), Vantage allows you to connect into and hop between running Node applications with an interactive prompt provided by [inquirer.js](https://www.npmjs.com/package/inquirer), giving a real-time perspective of your application you otherwise haven't had.
 
@@ -29,7 +29,7 @@ Turned on debugging with verbosity to 7.
 myapp~$ 
 ```
 
-####Contents
+#### Contents
 
 * Getting Started
 * Basic Commands
@@ -50,7 +50,7 @@ myapp~$
 * Authentication
 * Extensions
 
-##Getting Started
+## Getting Started
 
 Setting up a basic application:
 
@@ -114,7 +114,7 @@ webapp~$
 
 ## Basic Commands
 
-###.command(command, [description])
+### .command(command, [description])
 
 Adds a new command to your command line API. Returns a `Command` object, with the following chainable functions:
 
@@ -122,7 +122,7 @@ Adds a new command to your command line API. Returns a `Command` object, with th
 - `.option(string, [description])`: Provides command options, as in `-f` or `--force`.
 - `.action(function)`: Function to execute when command is executed.
 
-####Command Syntax
+#### Command Syntax
 
 The syntax is similar to `commander.js` with the exception of allowing nested sub-commands for grouping large APIs into managable chunks. Examples:
 
@@ -137,7 +137,7 @@ vantage.command('farm tools');
 vantage.command('farm feed [animal]');
 vantage.command('farm with farmer brown and reflect on <subject>');
 ```
-#####Sub-Commands
+##### Sub-Commands
 
 When displaying the help menu, sub-commands will be grouped separately:
 
@@ -168,7 +168,7 @@ webapp~$ farm
     farm with *          1 sub-command.
     
 ```
-####Option Syntax
+#### Option Syntax
 
 You can provide both short and long versions of an option. Examples:
 
@@ -180,7 +180,7 @@ vantage.command(...).option('-A', 'Does amazing things.');
 vantage.command(...).option('--amazing', 'Does amazing things');
 ```
 
-####Action Syntax
+#### Action Syntax
 
 `command.action` passes in an `arguments` object and `callback`.
 
@@ -244,7 +244,7 @@ command(...).action(function(args, cb){
   return app.promisedAction(args.action);
 });
 ```
-####Prompting
+#### Prompting
 
 Vantage supports mid-command prompting. You can make full use of [inquirer.js](https://www.npmjs.com/package/inquirer)'s `prompt` function, which is exposed through `vantage.prompt`.
 
@@ -276,7 +276,7 @@ Good move.
 webapp~$
 ```
 
-###.delimiter(string)
+### .delimiter(string)
 
 Sets the prompt delimiter for the given Vantage server.
 
@@ -297,7 +297,7 @@ appsvr:3000~$ exit -f
 $
 ```
 
-###.banner(string)
+### .banner(string)
 
 Sets a banner for display when logging in to a given Vantage server.
 
@@ -360,11 +360,11 @@ Successfully built API.
 websvr~$
 ```
 
-###.listen(app, [options])
+### .listen(app, [options])
 
 Starts Vantage as a server. 
 
-####Vantage as a standalone web server
+#### Vantage as a standalone web server
 
 If you just want it to listen on a port independent of your web application, simply pass in the port and Vantage will spawn a new HTTP server.
 
@@ -373,7 +373,7 @@ var vantage = new Vantage();
 vantage.listen(80);
 ```
 
-####Vantage with an existing web server
+#### Vantage with an existing web server
 
 If you want Vantage to listen on the same port as your web application, you can use Vantage's `listen` function in place of your existing web server's `listen` function.
 
@@ -381,11 +381,9 @@ This is usefull when running clustered instances of your server, such as behind 
 
 **Warning: If you tag on to a public-facing port, such as 80, ensure you have proper security settings in place to prevent evil people from getting into your Vantage API.**\*
 
+\* *Unless your Vantage server only displays a [Star Wars asciimation](http://www.asciimation.co.nz/) upon login.*
 
-
-\* *Unless your Vantage server displays a [Star Wars asciimation](http://www.asciimation.co.nz/) upon login.*
-
-#####With Koa.js
+##### With Koa.js
 
 ```js
 var koa = require('koa');
@@ -397,7 +395,7 @@ var app = koa();
 vantage.listen(app, 80);
 ```
 
-#####With Express.js
+##### With Express.js
 
 ```js
 var express = require('express');
@@ -408,7 +406,7 @@ var app = express();
 
 vantage.listen(app, 80);
 ```
-#####With SSL / advanced options
+##### With SSL / advanced options
 
 You can pass detailed options to your web server with the second argument in place of the port. These options are the same options you would pass into your web server, with two exceptions:
 
