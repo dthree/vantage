@@ -13,6 +13,8 @@ Vantage provides a distributed, interactive command-line interface to your live 
 
 Yes, and no. Inspired by and based on [commander.js](https://www.npmjs.com/package/commander), Vantage allows you to connect into and hop between running Node applications with an interactive prompt provided by [inquirer.js](https://www.npmjs.com/package/inquirer), giving a real-time perspective of your application you otherwise haven't had.
 
+The CLI includes built-in help, command history and autocompletion.
+
 ```bash
 $ npm install vantage -g
 $ vantage 127.0.0.1:80
@@ -32,13 +34,15 @@ myapp~$
 * Getting Started
 * Basic Commands
   - command
-  - description
-  - alias
-  - action
+    - description
+    - alias
+    - action
   - delimiter
   - listen
   - prompt
   - exec
+  - prompt
+  - pipe
 * Automation
 * Firewall
 * Authentication
