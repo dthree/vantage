@@ -135,7 +135,7 @@ vantage.command('foo <bar>'); // Required argument.
 vantage.command('farm animals');
 vantage.command('farm tools');
 vantage.command('farm feed [animal]');
-vantage.command('farm sit with farmer brown and reflect on <subject>');
+vantage.command('farm with farmer brown and reflect on <subject>');
 ```
 #####Sub-Commands
 
@@ -165,7 +165,7 @@ webapp~$ farm
   
   Command Groups:
   
-    farm see *          1 sub-command.
+    farm with *          1 sub-command.
     
 ```
 ####Option Syntax
