@@ -31,6 +31,17 @@ myapp~$
 
 * Getting Started
 * Basic Commands
+  - command
+  - description
+  - alias
+  - action
+  - delimiter
+  - listen
+  - prompt
+  - exec
+* Automation
+* Firewall
+* Authentication
 
 ##Getting Started
 
