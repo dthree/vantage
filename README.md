@@ -121,7 +121,7 @@ Adds a new command to your command line API. Returns a `Command` object, with th
 - `.option(string, [description])`: Provides command options, as in `-f` or `--force`.
 - `.action(function)`: Function to execute when command is executed.
 
-#####Command Syntax
+####Command Syntax
 
 The syntax is similar to `commander.js` with the exception of allowing nested sub-commands for grouping large APIs into managable chunks. Examples:
 
@@ -136,20 +136,19 @@ vantage.command('farm tools');
 vantage.command('farm feed [animal]');
 vantage.command('farm sit with farmer brown and reflect on <subject>');
 ```
+#####Sub-Commands
+
 When displaying the help menu, sub-commands will be grouped separately:
 
 ```bash
 webapp~$ help
 
-  Commands:
-  
-     ...
+  Commands: ( ... )
   
   Command Groups:
   
     farm *            4 sub-commands.
-    
-webapp~$
+
 ```
 
 Entering `farm` or `farm --help` would then drill down on the commands:
@@ -167,9 +166,8 @@ webapp~$ farm
   
     farm see *          1 sub-command.
     
-webapp~$
 ```
-#####Option Syntax
+####Option Syntax
 
 You can provide both short and long versions of an option. Examples:
 
@@ -181,11 +179,11 @@ vantage.command(...).option('-A', 'Does amazing things.');
 vantage.command(...).option('--amazing', 'Does amazing things');
 ```
 
-#####Action Syntax
+####Action Syntax
 
 `command.action` passes in an `arguments` object and `callback`.
 
-Given the following command,
+Given the following command -
 
 ```js
 vantage
@@ -200,7 +198,7 @@ vantage
     cb();
   });
 ```
-Args would be returned as follows:
+- args would be returned as follows:
 
 ```bash
 $webapp~$ order pizza pepperoni -pod --size "medium" --no-anchovies
@@ -216,7 +214,7 @@ $webapp~$ order pizza pepperoni -pod --size "medium" --no-anchovies
 }
 ```
 
-Actions are executed async and must either call the passed `callback` upon completion or return a Promise.
+Actions are executed async and must either call the passed `callback` upon completion or return a `Promise`.
 
 ```js
 // As a callback:
@@ -245,4 +243,38 @@ command(...).action(function(args, cb){
   return myApp.promisedAction(args.action);
 });
 ```
+####Prompting
+
+Vantage supports mid-command prompting. You can make full use of [inquirer.js](https://www.npmjs.com/package/inquirer)'s `prompt` function, which is exposed through `vantage.prompt`.
+
+Regardless of a direct vantage connection or one proxying your request through ten hops, `vantage.prompt` will send the remote prompt request to your local client and pipe response back to the remote application.
+
+```js
+vantage.command('destroy database').action(function(args, cb){
+  this.prompt({
+    type: "confirm",
+    name: "continue",
+    default: false,
+    message: "That sounds like a really bad idea. Continue?",
+  }, function(result){
+    if (result.continue) {
+      console.log('Good move.');
+      cb();
+    } else {
+      console.log('Time to dust off that resume.');
+      myApp.destroyDatabase(function(){
+        cb();
+      });
+    }
+  });
+});
+```
+Example in use:
+```bash
+webapp~$ destroy database
+? That sounds like a really bad idea. Continue? y/N: N
+Good move.
+webapp~$
+```
+
 
