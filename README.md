@@ -379,7 +379,7 @@ If you want Vantage to listen on the same port as your web application, you can 
 
 This is usefull when running clustered instances of your server, such as behind a reverse proxy, where every instance has a separate port that can only be accessed internally. In this way, you can hop into any running instance without having to remember a separate set of ports.
 
-**Warning: If you tag on to a public-facing port, such as 80, ensure you have proper security settings in place to prevent anyone from getting into your Vantage API.**
+**Warning: If you tag on to a public-facing port, such as 80, ensure you have proper security settings in place to prevent evil people from getting into your Vantage API.* **
 
 #####With Koa.js
 
