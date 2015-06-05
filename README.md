@@ -33,25 +33,31 @@ myapp~$
 
 * [Getting Started](#getting-started)
 * [Methods](#methods)
-  - [command](#commandcommand-description)
-    - [description](#commandcommand-description)
-    - [option](#option-syntax)
-    - [action](#action-syntax)
-      - [prompt](#prompting)
-  - [delimiter](#delimiterstring)
-  - [banner](#bannerstring)
-  - [show](#show)
-  - [listen](#listenapp-options)
+  - [.command](#commandcommand-description)
+    - [.description](#commandcommand-description)
+    - [.option](#option-syntax)
+    - [.action](#action-syntax)
+      - [.prompt](#prompting)
+  - [.delimiter](#delimiterstring)
+  - [.banner](#bannerstring)
+  - [.show](#show)
+  - [.listen](#listenapp-options)
     - [as standalone server](#vantage-as-a-standalone-web-server)
     - [with koa.js](#with-koajs)
     - [with express.js](#with-expressjs)
-  - [exec](#)
-  - [pipe](#)
-  - [use](#)
 * [Automation](#)
+  - [.exec](#)
+  - [.pipe](#)
 * [Firewall](#)
+  - [.policy](#) 
+  - [.accept](#) 
+  - [.reject](#) 
+  - [.policy](#) 
+  - [.rules](#) 
+  - [.reject](#) 
 * [Authentication](#)
 * [Extensions](#)
+  - [use](#)
 
 ## Getting Started
 
@@ -430,6 +436,31 @@ vantage.listen(someMiddleware, {
   rejectUnauthorized: false,
 });
 ```
+## Automation
+
+### .exec(command, [callback])
+
+### .pipe(function)
+
+## Firewall
+
+### .firewall.policy(string)
+
+### .firewall.accept(address, [subnet])
+
+### .firewall.reject(address, [subnet])
+
+### .firewall.policy()
+
+### .firewall.rules()
+
+### .firewall.reset()
+
+## Authentication
+
+## Extensions
+
+### .use(middleware)
 
 
 ------
