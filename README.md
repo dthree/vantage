@@ -82,7 +82,7 @@ webapp~$
 A built-in help lists all available commands:
 
 ```bash
-webapp~$ foo
+webapp~$ help
 
   Commands
   
