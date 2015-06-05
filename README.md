@@ -117,13 +117,9 @@ webapp~$
 
 Adds a new command to your command line API. Returns a `Command` object, with the following chainable functions:
 
-`.description(string)`: Used in automated help for your command.
-
-`.alias(string)`: Aliases to execute the same command.
-
-`.option(string, [description])`: Provides command options, as in `-f` or `--force` or `--no-cheese`.
-
-`.action(function)`: Function to execute when command is executed.
+- `.description(string)`: Used in automated help for your command.
+- `.option(string, [description])`: Provides command options, as in `-f` or `--force`.
+- `.action(function)`: Function to execute when command is executed.
 
 #####Command Syntax
 
@@ -173,3 +169,80 @@ webapp~$ farm
     
 webapp~$
 ```
+#####Option Syntax
+
+You can provide both short and long versions of an option. Examples:
+
+```js
+vantage.command(...).option('-f, --force', 'Force file overwrite.');
+vantage.command(...).option('-a, --amount <coffee>', 'Number of cups of coffee.');
+vantage.command(...).option('-v, --verbosity [level]', 'Sets verbosity level.');
+vantage.command(...).option('-A', 'Does amazing things.');
+vantage.command(...).option('--amazing', 'Does amazing things');
+```
+
+#####Action Syntax
+
+`command.action` passes in an `arguments` object and `callback`.
+
+Given the following command,
+
+```js
+vantage
+  .command('order pizza [type]', 'Orders a type of food.')
+  .option('-s, --size <size>', 'Size of pizza.')
+  .option('-a, --anchovies', 'Include anchovies.')
+  .option('-p, --pineapple', 'Include pineapples.')
+  .option('-o', 'Include olives.')
+  .option('-d, --delivery', 'Pizza should be delivered')
+  .action(function(args, cb){
+    console.log(args);
+    cb();
+  });
+```
+Args would be returned as follows:
+
+```bash
+$webapp~$ order pizza pepperoni -pod --size "medium" --no-anchovies
+{
+  "type": "pepperoni",
+  "options": {
+    "pineapple": true,
+    "o": true,
+    "delivery": true,
+    "anchovies": false,
+    "size": "medium",
+  }
+}
+```
+
+Actions are executed async and must either call the passed `callback` upon completion or return a Promise.
+
+```js
+// As a callback:
+command(...).action(function(args, cb){
+  doSomethingAsync(function(results){
+    console.log(results);
+    // If this is not called, Vantage will not 
+    // return its CLI prompt after command completion.
+    cb();
+  });
+});
+
+// As a newly created Promise:
+command(...).action(function(args, cb){
+  return new Promise(function(resolve, reject) {
+    if (skiesAlignTonight) {
+      resolve();
+    } else {
+      reject('Better luck next time');
+    }
+  });
+});
+
+// Or as a pre-packaged promise of your app:
+command(...).action(function(args, cb){
+  return myApp.promisedAction(args.action);
+});
+```
+
