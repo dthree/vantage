@@ -46,6 +46,7 @@ myapp~$
 * Automation
 * Firewall
 * Authentication
+* Extensions
 
 ##Getting Started
 
