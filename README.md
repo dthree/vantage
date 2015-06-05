@@ -37,12 +37,12 @@ myapp~$
     - description
     - alias
     - action
+      - prompt
   - delimiter
   - banner
   - listen
   - prompt
   - exec
-  - prompt
   - pipe
   - use
 * Automation
@@ -319,15 +319,53 @@ vantage
 $ vantage 3000
 $ Connecting to 127.0.0.1:3000...
 $ Connected successfully.
-######################################################################" 
-#                    Welcome to joescrabshack.com                    #" 
-#                                                                    #"
-#              All connections are monitored and recorded            #" 
-#      Disconnect IMMEDIATELY if you are not an authorized user      #" 
-######################################################################";
+######################################################################
+#                    Welcome to joescrabshack.com                    # 
+#                                                                    #
+#              All connections are monitored and recorded            # 
+#      Disconnect IMMEDIATELY if you are not an authorized user      # 
+######################################################################
 ? user: 
 ```
-Note: Authentication is covered later.
+*Note: See authentication section for auth details.*
+
+###.prompt()
+
+Starts a Vantage CLI prompt from the local terminal that started the application. While useless for deployed servers, this is great for testing an application's functions mid development.
+
+```js
+// websvr.js
+
+// ... (your web server code)
+
+vantage
+  .delimiter('websvr~$')
+  .prompt();
+  
+vantage
+  .command('build api', 'Builds web server API.')
+  .action(function(args, cb){
+    return app.buildAPI();
+  });
+```
+
+```bash
+node websvr.js
+Successfully started Web Server.
+websvr~$ 
+websvr~$ build API
+Building API...
+...
+Successfully built API.
+websvr~$
+```
+
+###.listen(app, [options])
+
+Listen starts Vantage as a server. If you just want 
+
+
+
 
 ------
 
