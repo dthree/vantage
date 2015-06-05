@@ -31,9 +31,9 @@ myapp~$
 
 #### Contents
 
-* Getting Started
-* Basic Commands
-  - command
+* [Getting Started](#getting-started)
+* [Methods](#methods)
+  - [command](#command-command-description)
     - description
     - alias
     - action
@@ -112,7 +112,7 @@ webapp~$ help
 webapp~$
 ```
 
-## Basic Commands
+## Methods
 
 ### .command(command, [description])
 
