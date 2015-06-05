@@ -138,10 +138,11 @@ var create = function(fn, port, ssl) {
 
   vantage
     .delimiter(port + ':')
-    .listen(function(req, res) { }, {
-      port: port,
-      ssl: ssl
-    });
+    .listen(port);
+    //.listen(function(req, res) { }, {
+      //port: port,
+      //ssl: ssl
+    //});
 
 
   return vantage;

@@ -1,5 +1,5 @@
 {
-  "name": "Vantage",
+  "name": "vantage",
   "version": "0.0.2",
   "description": "A distributed, interactive CLI prompt for your application. In ten minutes.",
   "main": "vantage.js",
