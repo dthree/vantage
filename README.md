@@ -13,7 +13,7 @@ Vantage provides a distributed, interactive command-line interface to your live 
 
 Yes, and no. Inspired by and based on [commander.js](https://www.npmjs.com/package/commander), Vantage allows you to connect into and hop between running Node applications with an interactive prompt provided by [inquirer.js](https://www.npmjs.com/package/inquirer), giving a real-time perspective of your application you otherwise haven't had.
 
-The CLI includes built-in help, command history and autocompletion.
+The CLI includes built-in help, command history and tabbed auto-completion.
 
 ```bash
 $ npm install vantage -g
@@ -38,6 +38,7 @@ myapp~$
     - alias
     - action
   - delimiter
+  - banner
   - listen
   - prompt
   - exec
@@ -240,7 +241,7 @@ command(...).action(function(args, cb){
 
 // Or as a pre-packaged promise of your app:
 command(...).action(function(args, cb){
-  return myApp.promisedAction(args.action);
+  return app.promisedAction(args.action);
 });
 ```
 ####Prompting
@@ -262,9 +263,7 @@ vantage.command('destroy database').action(function(args, cb){
       cb();
     } else {
       console.log('Time to dust off that resume.');
-      myApp.destroyDatabase(function(){
-        cb();
-      });
+      app.destroyDatabase(cb);
     }
   });
 });
@@ -276,6 +275,59 @@ webapp~$ destroy database
 Good move.
 webapp~$
 ```
+
+###.delimiter(string)
+
+Sets the prompt delimiter for the given Vantage server.
+
+```js
+new Vantage().delimiter('appsvr:3000~$').listen(3000);
+new Vantage().delimiter('appsvr:3001~$').listen(3001);
+new Vantage().delimiter('appsvr:3002~$').listen(3002);
+```
+
+```bash
+$ vantage 3000
+appsvr:3000~$ 
+appsvr:3000~$ vantage 3001
+appsvr:3001~$ vantage 3002
+appsvr:3002~$ exit
+appsvr:3001~$ exit
+appsvr:3000~$ exit -f
+$
+```
+
+###.banner(string)
+
+Sets a banner for display when logging in to a given Vantage server.
+
+```js
+var banner = 
+"######################################################################" + 
+"#                    Welcome to joescrabshack.com                    #" + 
+"#                                                                    #" +
+"#              All connections are monitored and recorded            #" + 
+"#      Disconnect IMMEDIATELY if you are not an authorized user      #" + 
+"######################################################################";
+vantage
+  .delimiter('appsvr:3000~$')
+  .banner(banner)
+  .listen(3000);
+```
+
+```bash
+$ vantage 3000
+$ Connecting to 127.0.0.1:3000...
+$ Connected successfully.
+######################################################################" 
+#                    Welcome to joescrabshack.com                    #" 
+#                                                                    #"
+#              All connections are monitored and recorded            #" 
+#      Disconnect IMMEDIATELY if you are not an authorized user      #" 
+######################################################################";
+? user: 
+```
+Note: Authentication is covered later.
 
 ------
 
