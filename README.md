@@ -111,4 +111,65 @@ webapp~$ help
 webapp~$
 ```
 
+## Basic Commands
 
+###.command(command, [description])
+
+Adds a new command to your command line API. Returns a `Command` object, with the following chainable functions:
+
+`.description(string)`: Used in automated help for your command.
+
+`.alias(string)`: Aliases to execute the same command.
+
+`.option(string, [description])`: Provides command options, as in `-f` or `--force` or `--no-cheese`.
+
+`.action(function)`: Function to execute when command is executed.
+
+#####Command Syntax
+
+The syntax is similar to `commander.js` with the exception of allowing nested sub-commands for grouping large APIs into managable chunks. Examples:
+
+```js
+vantage.command('foo'); // Simple command with no arguments.
+vantage.command('foo [bar]'); // Optional argument.
+vantage.command('foo <bar>'); // Required argument.
+
+// Example of nested subcommands:
+vantage.command('farm animals');
+vantage.command('farm tools');
+vantage.command('farm feed [animal]');
+vantage.command('farm sit with farmer brown and reflect on <subject>');
+```
+When displaying the help menu, sub-commands will be grouped separately:
+
+```bash
+webapp~$ help
+
+  Commands:
+  
+     ...
+  
+  Command Groups:
+  
+    farm *            4 sub-commands.
+    
+webapp~$
+```
+
+Entering `farm` or `farm --help` would then drill down on the commands:
+
+```bash
+webapp~$ farm
+
+  Commands:
+  
+    farm animals        Lists all animals in the farm.
+    farm tools          Lists all tools in the farm.
+    farm feed [animal]  Feeds a given animal.
+  
+  Command Groups:
+  
+    farm see *          1 sub-command.
+    
+webapp~$
+```
