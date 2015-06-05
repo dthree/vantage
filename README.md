@@ -183,7 +183,7 @@ vantage.command(...).option('--amazing', 'Does amazing things');
 
 `command.action` passes in an `arguments` object and `callback`.
 
-Given the following command -
+Given the following command --
 
 ```js
 vantage
@@ -198,7 +198,7 @@ vantage
     cb();
   });
 ```
-- args would be returned as follows:
+-- args would be returned as follows:
 
 ```bash
 $webapp~$ order pizza pepperoni -pod --size "medium" --no-anchovies
@@ -257,7 +257,7 @@ vantage.command('destroy database').action(function(args, cb){
     default: false,
     message: "That sounds like a really bad idea. Continue?",
   }, function(result){
-    if (result.continue) {
+    if (!result.continue) {
       console.log('Good move.');
       cb();
     } else {
