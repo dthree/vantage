@@ -1,6 +1,6 @@
 {
   "name": "vantage",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A distributed, interactive CLI prompt for your application. In ten minutes.",
   "main": "vantage.js",
   "scripts": {
