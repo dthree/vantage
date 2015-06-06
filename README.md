@@ -561,11 +561,58 @@ Reverts `vantage.firewall` to an `ACCEPT` policy and erases all rules.
 
 ## Authentication
 
+*Vantage does not yet support authentication.*
+
+The idea is to allow separate Node.js modules as authentication middleware. Something like this:
+
+```js
+var pam = require('vantage-pam');
+vantage.auth(pam);
+```
+
+This will then be able to support multiple authentication strategies based on systems or preferences. Feel free to submit a pull request if you are able to assist in getting this done.
+
 ## Extensions
+
+Vantage supports command extensions and this is the primary reason for supporting sub-commands. For example, someone could create a suite of server diagnostic commands under the namespace `system` and publish it as `vantage-system`:
+
+```js
+var system = require('vantage-system');
+vantage.use(system);
+
+/* 
+  Your API would now include a suite of system commands:
+  system list processes
+  system status
+  system ... etc.
+*/
+```
 
 ### .use(middleware)
 
+Imports an array of vantage commands and registers them.
 
-------
+To use your module must expose an array of commands listed as objects:
 
-... Note: this is a live document and is I/P being edited.
+```js
+var status = {
+  command: 'system status',
+  description: 'lists a summary of system resources',
+  options: [
+    ['-p, --pretty', 'Displays them in a pretty fashion.']
+  ],
+  action: function(args, cb) {
+    // do things...
+    cb();
+  }
+}
+
+module.exports = [status, /* ... more commands */];
+```
+```bash
+npm install vantage-system
+```
+```js
+var system = require('vantage-system');
+vantage.use(system);
+```
