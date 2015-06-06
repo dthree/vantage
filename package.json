@@ -11,11 +11,14 @@
     "url": "git+https://github.com/dthree/vantage.git"
   },
   "keywords": [
+    "api",
+    "cli",
     "repl",
     "shell",
-    "api",
     "command",
     "commander",
+    "distributed",
+    "automated",
     "prompt",
     "inquirer"
   ],
