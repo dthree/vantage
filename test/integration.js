@@ -51,7 +51,6 @@ describe('integration tests:', function() {
 
     it('should accept a vantage connection', function(done) {
       vantage
-        .silent()
         .pipe(onStdout)
         .connect('127.0.0.1', '8040', {}).then(function(){
           stdout();

@@ -139,6 +139,7 @@ var create = function(fn, port, ssl) {
   vantage
     .delimiter(port + ':')
     .listen(port);
+    //.show()
     //.listen(function(req, res) { }, {
       //port: port,
       //ssl: ssl

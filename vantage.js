@@ -1,3 +1,6 @@
+/**
+ * Module dependencies.
+ */
 
 var _ = require('lodash')
   , EventEmitter = require('events').EventEmitter
@@ -8,16 +11,28 @@ var _ = require('lodash')
   , commander = require('commander')
   , inquirer = require('inquirer')
   , minimist = require('minimist')
-  , path = require('path')
-  , util = require('util')
-  , fs = require('fs')
   ;
 
-//exports = module.exports = vantage = new (function(name, slave) {
+/**
+ * Vantage prototype.
+ */
+
+var vantage = Vantage.prototype;
+
+/**
+ * Expose `Vantage`.
+ */
 
 exports = module.exports = Vantage;
 
-var vantage = Vantage.prototype;
+/**
+ * Handles vantage when run as a program
+ * as opposed to being imported into an application.
+ * Connects to a Node application running an
+ * instance of Vantage.
+ *
+ * @api public
+ */
 
 function init() {
 
@@ -72,29 +87,26 @@ function init() {
 
       return new Vantage().client.connect(server, port, options);
     }
-
-  } else {
-
-    // Defaults as interminable if file run is 
-    // not vantage.js.
-
-    //self.is('terminable', false); // to do
   }
 
   return self;
 };
 
+/**
+ * Initialize a new `Vantage` instance.
+ *
+ * @api public
+ */
 
 function Vantage() {
-
-  // Registred `vantage.command` commands and 
-  // their options.
-  this.commands = [];
-  this.options = [];
 
   // Program version
   // Exposed through vantage.version(str);
   this._version = '';
+
+  // Registered `vantage.command` commands and 
+  // their options.
+  this.commands = [];
 
   // Prompt delimiter.
   // Exposed through vantage.delimiter(str).
@@ -111,6 +123,23 @@ function Vantage() {
   // Hook to reference active inquirer prompt.
   this._activePrompt;
 
+  // Determines whether or not to show a prompt on the
+  // local Vantage server terminal. Exposed through
+  // Vantage.show();
+  this._isSilent = true;
+
+  // Fail-safe to ensure there is no double 
+  // prompt in odd situations.
+  this._midPrompt = false;
+
+  // Vantage client connects to other instances
+  // of Vantage.
+  this.client = new VantageClient(this);
+  
+  // Vantage server receives connections from
+  // other vantages. Activated by vantage.listen();
+  this.server = new VantageServer(this);
+
   // If one uses vantage to connect
   // into another session, they are a 'client'.
   // If Vantage is receiving a client and piping the
@@ -123,68 +152,68 @@ function Vantage() {
   this._isServer = false;
   this._isTerminable = false;
 
-  this._isSilent = false;
-
-  // Fail-safe to ensure there is no double 
-  // prompt in odd situations.
-  this._midPrompt = false;
-
-  this.client = new VantageClient(this);
-  this.server = new VantageServer(this);
-
+  // Handle for inquirer's prompt. 
   this.inquirer = inquirer;
 
+  // Middleware for piping stdout through.
   this._pipeFn = void 0;
 
+  // Queue of IP requests, executed async, in sync.
+  // Yeah, that doesn't make much sense. But it works.
   this._queue = [];
 
+  // Current command being executed.
   this._command = void 0;
 
-  this.init();
-
+  this._init();
   return this;
 }
+
+/**
+ * Extension to `constructor`.
+ * @api private
+ */
+
+Vantage.prototype._init = function() {
+  var self = this;
+  inquirer.prompt.prompts.input.prototype.onKeypress = function(e) {
+    return self.keypressHandler(e, this);
+  };
+  self.events = new EventEmitter();
+  self.use(commons);
+};
+
+/**
+ * Programatically connect to another server 
+ * instance running Vantage.
+ *
+ * @param {Server} server
+ * @param {Integer} port
+ * @param {Object} options
+ * @param {Function} cb
+ * @return {Promise}
+ * @api public
+ */
 
 vantage.connect = function(server, port, options, cb) {
   return this.client.connect(server, port, options, cb);
 };
 
-Vantage.prototype.init = function() {
+/**
+ * Commands issued to Vantage server
+ * are executed in sequence. Called once
+ * when a command is inserted or completes
+ * and shifts the next command into 
+ * vantage._command.
+ *
+ * @api private
+ */
 
-  var self = this;
-
-  inquirer.prompt.prompts.input.prototype.onKeypress = function(e) {
-    return self.keypressHandler(e, this);
-  };
-
-  self.events = new EventEmitter();
-
-  self.use(commons);
-
-  // this shouldn't have to happen.
-  setInterval(function() {
-    //self.queueHandler.call(self);
-  }, 1000);
-
-};
-
-vantage.queueHandler = function() {
+vantage._queueHandler = function() {
   if (this._queue.length > 0 && this._command === undefined) {
     var item = this._queue.shift();
-    if (item.reject) {
-      //console.log(util.inspect(item.reject, {showHidden: true, depth: null}));
-    }
-    //if (item.command.indexOf('fail me yes') > -1) {
-     //console.log('--------------A2-----------------');
-      //console.log(util.inspect(item, {showHidden: true, depth: null}));
-    //}
-
     this._execQueueItem(item);
   }
-};
-
-vantage._debug = function(log) {
-  this.log(this.server._port + '|' + log);
 };
 
 // Simple getter / setter for Vantage's role
@@ -335,17 +364,21 @@ vantage.command = function(name, desc, opts) {
   
 };
 
-vantage.silent = function(bool) {
-  if (bool === false) {
-    this._isSilent = false;
-  } else {
-    this._isSilent = true;
-  }
+vantage.hide = function() {
+  this._isSilent = true;
+  return this;
+};
+
+vantage.show = function() {
+  this._isSilent = false;
+  console.log*('HI PROMPT')
+  this._prompt();
   return this;
 };
 
 vantage.version = function(str) {
   this._version = str;
+  return this;
 };
 
 vantage.delimiter = function(str) {
@@ -398,7 +431,7 @@ vantage._prompt = function() {
   }
 
   // ... we just don't show prompts - for automation.
-  if (self._isSilent) {
+  if (self._isSilent === true) {
     return;  
   } 
 
@@ -432,7 +465,7 @@ vantage.exec = function(str, cb) {
   }
   if (cb !== undefined) {
     self._queue.push(command);
-    self.queueHandler.call(self);
+    self._queueHandler.call(self);
   } else {
     return new Promise(function(resolve, reject) {
       
@@ -447,7 +480,7 @@ vantage.exec = function(str, cb) {
       //}
 
       self._queue.push(command);
-      self.queueHandler.call(self);
+      self._queueHandler.call(self);
     });
   }
 };
@@ -885,13 +918,4 @@ vantage.exit = function(option, cb) {
 };
 
 init();
-
-
-//vantage.init();
-
-
-
-
-
-
 
