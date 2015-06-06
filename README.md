@@ -441,12 +441,11 @@ Vantage allows you execute your API commands from javascript synchronously, usin
 
 ### .connect(server, port, [options], [callback])
 
-Connects to another instance of vantage. Returns callack or Promise.
+Connects to another instance of Vantage. Returns callback or Promise.
 
 ```js
-// Using Promises:
 vantage.connect('127.0.0.1', 8001).then(function(data){
-  // ... celebrate
+  // ... 
 }).catch(function(err){
   console.log('Error connecting: ' + err);
 });
@@ -511,17 +510,54 @@ vantage
 
 ## Firewall
 
+If your Vantage server is listening on a public-facing web port such as 80 or 443, your organization's firewall is not going to help you. This is a barebones IP firewall for limiting connections down to your internal subnets. For sensitive applications, this obviously does not replace authentication.
+
 ### .firewall.policy(string)
+
+Sets the default policy for the firewall to either `ACCEPT` or `REJECT`. Any request that does not match a rule will fall back to this policy. Returns `vantage.firewall`.
+
+**Defaults to `ACCEPT`.** 
+
+```js
+// This will reject all remote connections.
+vantage.firewall.policy('REJECT');
+```
 
 ### .firewall.accept(address, [subnet])
 
+Allows a particular address / subnet to connect to Vantage. Returns `vantage.firewall`. If no arguments are passed, returns the currently applied policiy.
+
+```js
+vantage.firewall
+  .policy('REJECT')
+  .accept('10.0.0.0/8')
+  .accept('192.168.0.0', 24);
+
+console.log(vantage.firewall.policy()) // -> REJECT  
+```
+
 ### .firewall.reject(address, [subnet])
 
-### .firewall.policy()
+Denies access to a particular address / subnet. Returns `vantage.firewall`.
 
+```js
+vantage.firewall
+  .policy('ACCEPT')
+  .reject('64.0.0.0', 8)
+  .reject('192.168.0.0/16');
+```
 ### .firewall.rules()
 
+Returns an array of applied rules.
+
+```js
+console.log(vantage.firewall.rules());
+// -> [{ ip: '64.0.0.0', subnet: 8, rule: 'REJECT' }]
+```
+
 ### .firewall.reset()
+
+Reverts `vantage.firewall` to an `ACCEPT` policy and erases all rules.
 
 ## Authentication
 
