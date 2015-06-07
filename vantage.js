@@ -1,3 +1,4 @@
+
 /**
  * Module dependencies.
  */
@@ -235,8 +236,14 @@ vantage._tempDelimiter = function(str) {
   }
 };
 
-// Simple getter / setter for Vantage's role
-// as a client or server.
+/**
+ * Getter / Setter for Vantage's role, i.e.
+ * a client, server, proxy, etc.
+ *
+ * @param {String} role
+ * @param {Boolean} setter
+ * @api private
+ */
 
 vantage.is = function(role, setter) {
   this._isClient = (role == 'client' && setter !== undefined) ? setter : this._isClient;
@@ -1014,7 +1021,6 @@ vantage._getKeypressResult = function(key, value) {
   }
 };
 
-
 /**
  * Starts vantage listening as a server.
  *
@@ -1073,4 +1079,3 @@ vantage.exit = function(options, cb) {
  */
 
 init();
-
