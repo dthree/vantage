@@ -7,6 +7,7 @@ var _ = require('lodash')
   , Command = require('./lib/command')
   , VantageServer = require('./lib/server')
   , VantageClient = require('./lib/client')
+  , VantageUtil = require('./lib/util')
   , commons = require('./lib/vantage-commons')
   , commander = require('commander')
   , inquirer = require('inquirer')
@@ -95,6 +96,7 @@ function init() {
 /**
  * Initialize a new `Vantage` instance.
  *
+ * @return {Vantage}
  * @api public
  */
 
@@ -177,42 +179,59 @@ function Vantage() {
 Vantage.prototype._init = function() {
   var self = this;
   inquirer.prompt.prompts.input.prototype.onKeypress = function(e) {
-    return self.keypressHandler(e, this);
+    return self._keypressHandler(e, this);
   };
   self.events = new EventEmitter();
   self.use(commons);
 };
 
 /**
- * Programatically connect to another server 
- * instance running Vantage.
+ * Sets version of your application's API.
  *
- * @param {Server} server
- * @param {Integer} port
- * @param {Object} options
- * @param {Function} cb
- * @return {Promise}
+ * @param {String} version
+ * @return {Vantage}
  * @api public
  */
 
-vantage.connect = function(server, port, options, cb) {
-  return this.client.connect(server, port, options, cb);
+vantage.version = function(version) {
+  this._version = version;
+  return this;
 };
 
 /**
- * Commands issued to Vantage server
- * are executed in sequence. Called once
- * when a command is inserted or completes
- * and shifts the next command into 
- * vantage._command.
+ * Sets the permanent delimiter for this
+ * Vantage server instance.
  *
+ * @param {String} str
+ * @return {Vantage}
+ * @api public
+ */
+
+vantage.delimiter = function(str) {
+  var slf = this;
+  this._delimiter = String(str).trim() + ' ';
+  this._origdelimiter = String(str).trim() + ' ';
+  inquirer.prompt.prompts.input.prototype.prefix = function() {
+    return slf._delimiter;
+  }
+  return this;
+};
+
+/**
+ * Sets the temporarily delimiter based
+ * on the delimiter provided by another
+ * vantage server to this instance's client
+ * upon the establishment of a session.
+ *
+ * @param {String} str
  * @api private
  */
 
-vantage._queueHandler = function() {
-  if (this._queue.length > 0 && this._command === undefined) {
-    var item = this._queue.shift();
-    this._execQueueItem(item);
+vantage._tempDelimiter = function(str) {
+  var self = this;
+  this._delimiter = String(str || '').trim() + ' ';
+  inquirer.prompt.prompts.input.prototype.prefix = function() {
+    return self._delimiter;
   }
 };
 
@@ -237,24 +256,47 @@ vantage.is = function(role, setter) {
   return response;
 };
 
+/**
+ * Programatically connect to another server 
+ * instance running Vantage.
+ *
+ * @param {Server} server
+ * @param {Integer} port
+ * @param {Object} options
+ * @param {Function} cb
+ * @return {Promise}
+ * @api public
+ */
+
+vantage.connect = function(server, port, options, cb) {
+  return this.client.connect(server, port, options, cb);
+};
+
+/**
+ * Imports a library of Vantage API commands
+ * from another Node module as an extension
+ * of Vantage.
+ *
+ * @param {Array} commands
+ * @return {Vantage}
+ * @api public
+ */
+
 vantage.use = function(commands) {
   commands = _.isArray(commands) ? commands : [commands];
   for (var i = 0; i < commands.length; ++i) {
     var cmd = commands[i];
     if (cmd.command) {
       var command = this.command(cmd.command);
-
       if (cmd.description) {
         command.description(cmd.description);
       }
-
       if (cmd.options) {
         cmd.options = _.isArray(cmd.options) ? cmd.options : [cmd.options];
         for (var j = 0; j < cmd.options.length; ++j) {
           command.option(cmd.options[j][0], cmd.options[j][1]);
         }
       }
-
       if (cmd.action) {
         command.action(cmd.action);
       }
@@ -263,7 +305,17 @@ vantage.use = function(commands) {
   return this;
 };
 
-vantage.getHistory = function(direction) {
+/**
+ * Returns the appropriate command history
+ * string based on an 'Up' or 'Down' arrow
+ * key pressed by the user.
+ *
+ * @param {String} direction
+ * @return {String} 
+ * @api private
+ */
+
+vantage._getHistory = function(direction) {
   if (direction == 'up') {
     this._histCtr++;
     this._histCtr = (this._histCtr > this._hist.length) ? this._hist.length : this._histCtr;
@@ -271,45 +323,108 @@ vantage.getHistory = function(direction) {
     this._histCtr--;
     this._histCtr = (this._histCtr < 1) ? 1 : this._histCtr;
   }
-
   return this._hist[this._hist.length-(this._histCtr)];
 };
 
-vantage.getAutocomplete = function(str) {
+/**
+ * Handles tab-completion. Takes a partial
+ * string as 'he' and fills it in to 'help', etc.
+ * Works the same as a linux terminal's auto-complete.
+ *
+ * @param {String} str
+ * @return {String} 
+ * @api private
+ */
+
+vantage._getAutocomplete = function(str) {
   var names = _.pluck(this.commands, "_name");
   var auto = this._autocomplete(str, names);
   return auto;
 };
 
-vantage.redraw = function(prompt, str, options) {
-    prompt.rl.line = str;
-    prompt.rl.cursor = str.length;
-    prompt.cacheCursorPos();
-    prompt.clean().render().write( prompt.rl.line );
-    prompt.restoreCursorPos();
-};
+/**
+ * Independent / stateless auto-complete function.
+ * Parses an array of strings for the best match.
+ *
+ * @param {String} str
+ * @param {Array} arr
+ * @return {String} 
+ * @api private
+ */
 
-vantage.start = function(options) {
-  var slf = exports;
-  options = options || {}
+vantage._autocomplete = function(str, arr) {
+  arr.sort();
+  var arrX = _.clone(arr);
+  var strX = String(str);
 
-  _.defaults(options, {
-    pad: true,
-  })
-
-  if (options.pad === true) {
-    for (var i = 0; i < 100; ++i) {
-      this.log('');
+  var go = function() {
+    var matches = [];
+    for (var i = 0; i < arrX.length; i++) {
+      if (arrX[i].slice(0, strX.length).toLowerCase() == strX.toLowerCase()) {
+        matches.push(arrX[i]);
+      }
+    }
+    if (matches.length == 1) {
+      return matches[0] + ' ';
+    } else if (matches.length == 0) {
+      return void 0;
+    } else {
+      var furthest = strX;
+      for (var i = strX.length; i < matches[0].length; ++i) {
+        var curr = String(matches[0].slice(0, i)).toLowerCase();
+        var same = 0;
+        for (var j = 0; j < matches.length; ++j) {
+          var sliced = String(matches[j].slice(0, curr.length)).toLowerCase();
+          if (sliced == curr) {
+            same++;
+          }
+        }
+        if (same == matches.length) {
+          furthest = curr;
+          continue;
+        } else {
+          break;
+        }
+      }
+      if (furthest != strX) {
+        return furthest;
+      } else {
+        return void 0;
+      }
     }
   }
 
-  this._prompt();
+  return go();
 };
 
-// This function only gets called all the way 
-// downstream.
-vantage.log = function(log, options) {
-  options = options || {}
+/**
+ * Redraws the inquirer prompt with a new string.
+ *
+ * @param {Prompt} prompt
+ * @param {String} str
+ * @return {Vantage} 
+ * @api private
+ */
+
+vantage._redraw = function(prompt, str) {
+  prompt.rl.line = str;
+  prompt.rl.cursor = str.length;
+  prompt.cacheCursorPos();
+  prompt.clean().render().write( prompt.rl.line );
+  prompt.restoreCursorPos();
+  return this;
+};
+
+/**
+ * Writes to console or, if `vantage.pipe` is
+ * called, pipes out to a function first.
+ *
+ * @param {String} log
+ * @return {Vantage} 
+ * @api public
+ */
+
+vantage.log = function(log) {
   log = (_.isArray(log)) ? log : [log];
   for (var i = 0; i < log.length; ++i) {
     if (this._pipeFn !== undefined) {
@@ -325,79 +440,98 @@ vantage.log = function(log, options) {
       console.log(log[i]);
     }
   }
+  return this;
 };
+
+/**
+ * Intercepts all logging through `vantage.log`
+ * and runs it through the function declared by
+ * `vantage.pipe()`.
+ *
+ * @param {Function} fn
+ * @return {Vantage} 
+ * @api public
+ */
 
 vantage.pipe = function(fn){
   this._pipeFn = fn;
   return this;
 };
 
+/**
+ * Registers a new command in the vantage API.
+ *
+ * @param {String} name
+ * @param {String} desc
+ * @param {Object} opts
+ * @return {Command} 
+ * @api public
+ */
+
 vantage.command = function(name, desc, opts) {
+  opts = opts || {};
+  name = String(name);
 
-    opts = opts || {};
+  var args = 
+    (name.indexOf('[') > -1) ? name.split('[') : 
+    (name.indexOf('<') > -1) ? name.split('<') : [name];
 
-    name = String(name);
+  if (args[1]) {
+    args[1] = (String(args[1]).indexOf(']') > -1) ? '[' + args[1] : args[1];
+    args[1] = (String(args[1]).indexOf('>') > -1) ? '<' + args[1] : args[1];
+  }
 
-    var args = 
-      (name.indexOf('[') > -1) ? name.split('[') : 
-      (name.indexOf('<') > -1) ? name.split('<') : [name];
-
-    if (args[1]) {
-      args[1] = (String(args[1]).indexOf(']') > -1) ? '[' + args[1] : args[1];
-      args[1] = (String(args[1]).indexOf('>') > -1) ? '<' + args[1] : args[1];
-    }
-
-    var cmd = new Command(String(args.shift()).trim(), exports);
-
-    if (desc) {
-      cmd.description(desc);
-      this.executables = true;
-    }
-
-    cmd._noHelp = !!opts.noHelp;
-    this.commands.push(cmd);
-    cmd._parseExpectedArgs(args);
-    cmd.parent = this;
-
-    if (desc) return this;
-    return cmd;
-  
+  var cmd = new Command(String(args.shift()).trim(), exports);
+  if (desc) {
+    cmd.description(desc);
+    this.executables = true;
+  }
+  cmd._noHelp = !!opts.noHelp;
+  this.commands.push(cmd);
+  cmd._parseExpectedArgs(args);
+  cmd.parent = this;
+  if (desc) return this;
+  return cmd;
 };
+
+/**
+ * Enables the vantage prompt on the 
+ * local terminal.
+ *
+ * @return {Vantage} 
+ * @api public
+ */
+
+vantage.show = function() {
+  this._isSilent = false;
+  this._prompt();
+  return this;
+};
+
+/**
+ * Disables the vantage prompt on the 
+ * local terminal.
+ *
+ * @return {Vantage} 
+ * @api public
+ */
 
 vantage.hide = function() {
   this._isSilent = true;
   return this;
 };
 
-vantage.show = function() {
-  this._isSilent = false;
-  console.log*('HI PROMPT')
-  this._prompt();
-  return this;
-};
-
-vantage.version = function(str) {
-  this._version = str;
-  return this;
-};
-
-vantage.delimiter = function(str) {
-  var slf = this;
-  this._delimiter = String(str).trim() + ' ';
-  this._origdelimiter = String(str).trim() + ' ';
-  inquirer.prompt.prompts.input.prototype.prefix = function() {
-    return slf._delimiter;
-  }
-  return this;
-};
-
-vantage._tempDelimiter = function(str) {
-  var self = this;
-  this._delimiter = String(str || '').trim() + ' ';
-  inquirer.prompt.prompts.input.prototype.prefix = function() {
-    return self._delimiter;
-  }
-};
+/**
+ * For use in vantage API commands, sends
+ * a prompt command downstream to the local
+ * terminal. Executes a prompt and returns
+ * the response upstream to the API command.
+ *
+ * @param {Object} options
+ * @param {Function} cb
+ * @return {Vantage} 
+ * @api public
+ */
 
 vantage.prompt = function(options, cb) {
   var self = this;
@@ -416,9 +550,18 @@ vantage.prompt = function(options, cb) {
       cb(response);
     });
 
-    self.send('vantage-prompt-downstream', 'downstream', { options: options, value: void 0 });
+    self._send('vantage-prompt-downstream', 'downstream', { options: options, value: void 0 });
   }
+  return self;
 };
+
+/**
+ * Renders the CLI prompt or sends the
+ * request to do so downstream.
+ *
+ * @return {Vantage} 
+ * @api private
+ */
 
 vantage._prompt = function() {
   var self = this;
@@ -426,7 +569,7 @@ vantage._prompt = function() {
   // If we somehow got to _prompt and aren't the 
   // local client, send the command downstream.
   if (this.is('server')) {
-    this.send('vantage-resume-downstream', 'downstream'); 
+    this._send('vantage-resume-downstream', 'downstream'); 
     return;
   }
 
@@ -453,84 +596,112 @@ vantage._prompt = function() {
     self.exec(str, function(){
       self._prompt();
     });
-
   });
+  return self;
 };
 
-vantage.exec = function(str, cb) {
+/**
+ * Executes a vantage API command and
+ * returns the response either through a 
+ * callback or Promise in the absence
+ * of a callback.
+ *
+ * A little black magic here - because 
+ * we sometimes have to send commands 10
+ * miles upstream through 80 other instances
+ * of vantage and we aren't going to send 
+ * the callback / promise with us on that 
+ * trip, we store the command, callback,
+ * resolve and reject objects (as they apply)
+ * in a local vantage._command variable.
+ *
+ * When the command eventually comes back 
+ * downstream, we dig up the callbacks and 
+ * finally resolve or reject the promise, etc.
+ * 
+ * Lastly, to add some more complexity, we throw 
+ * command and callbacks into a queue that will 
+ * be unearthed and sent in due time.
+ *
+ * @param {String} cmd
+ * @param {Function} cb
+ * @return {Promise or Vantage} 
+ * @api public
+ */
+
+vantage.exec = function(cmd, cb) {
   var self = this;
   var command = {
-    command: str,
+    command: cmd,
     callback: cb,
   }
   if (cb !== undefined) {
     self._queue.push(command);
     self._queueHandler.call(self);
+    return self;
   } else {
     return new Promise(function(resolve, reject) {
-      
-      //console.log(util.inspect(reject, {showHidden: true, depth: null}));
-
       command.resolve = resolve;
       command.reject = reject;
-
-      //if (command.command.indexOf('fail me yes') > -1) {
-        //console.log('--------------A1-----------------');
-        //console.log(util.inspect(command, {showHidden: true, depth: null}));
-      //}
-
       self._queue.push(command);
       self._queueHandler.call(self);
     });
   }
 };
 
-vantage._execQueueItem = function(item) {
+/**
+ * Commands issued to Vantage server
+ * are executed in sequence. Called once
+ * when a command is inserted or completes,
+ * shifts the next command in the queue  
+ * and sends it to `vantage._execQueueItem`.
+ *
+ * @api private
+ */
+
+vantage._queueHandler = function() {
+  if (this._queue.length > 0 && this._command === undefined) {
+    var item = this._queue.shift();
+    this._execQueueItem(item);
+  }
+};
+
+/**
+ * Fires off execution of a command - either
+ * calling upstream or executing locally.
+ *
+ * @param {Object} cmd
+ * @api private
+ */
+
+vantage._execQueueItem = function(cmd) {
   var self = this;
   if (self.is('local')) {
-    this._exec(item);
+    this._exec(cmd);
   } else {
-    //console.log('Reassigning self._command to '.red + item.command);
-    self._command = item;
-    //if (self._command.command.indexOf('fail me yes') > -1) {
-      //console.log('--------------A2.5-----------------');
-      //console.log(util.inspect(self._command, {showHidden: true, depth: null}));
-    //}
-    self.send('vantage-command-upstream', 'upstream', { command: item.command, completed: false });
+    self._command = cmd;
+    self._send('vantage-command-upstream', 'upstream', { command: cmd.command, completed: false });
   };
 };
 
-vantage._parseArgs = function(value, env, file) {
-  var reg = /[^\s'"]+|['"]([^'"]*)['"]/gi, str = value, arr = [], match;
-  if (env) { arr.push(env); }
-  if (file) { arr.push(file); }
-  do {
-    match = reg.exec(str);
-    if (match !== null) {
-      arr.push(match[1] ? match[1] : match[0]);
-    }
-  } while (match !== null);
-  return arr;
-};
+/**
+ * Executes a vantage API command.
+ * Warning: Dragons lie beyond this point.
+ *
+ * @param {String} item
+ * @api private
+ */
 
 vantage._exec = function(item) {
-  
   item = item  || {}
-  // if (item.command.indexOf('fail me yes') > -1) {
-    //console.log('--------------A3-----------------');
-    //console.log(util.inspect(item, {showHidden: true, depth: null}));
-  //}
-  //item.callback = item.callback || function() {}
   item.command = item.command || '';
-  //item.resolve = item.resolve || function(){}
-  //item.reject = item.reject || function(){}
-
   var self = this;
   var parts = item.command.split(' ');
   var path = [];
   var match = false;
   var args;
 
+  // History for our 'up' and 'down' arrows.
   this._hist.push(item.command);
 
   // Reverse drill-down the string until you find the
@@ -544,16 +715,12 @@ vantage._exec = function(item) {
     }
   }
 
-  var parsedArgs = minimist(self._parseArgs(args));
+  // This basically makes the arguments human readable.
+  var parsedArgs = minimist(VantageUtil.parseArgs(args));
   parsedArgs['_'] = parsedArgs['_'] || [];
   var args = {}
 
-  //if (parsedArgs.cheese) {
-    //console.log(parsedArgs)
-  //}
-
-  //console.log(parsedArgs)
-
+  // Match means we found a suitable command.
   if (match) {
 
     var fn = match._fn;
@@ -561,11 +728,14 @@ vantage._exec = function(item) {
     var origOptions = match.options;
     args.options = {}
 
+    // Looks for a help arg and throws help if any.
     if (parsedArgs.help || parsedArgs.h || parsedArgs['_'].indexOf('/?') > -1) {
       self.log(match.helpInformation());
       item.callback(); return;
     } 
 
+    // looks for ommitted required args 
+    // and throws help.
     for (var i = 0; i < origArgs.length; ++i) {
       var exists = parsedArgs._[i];
       if (!exists && origArgs[i].required === true) {
@@ -579,11 +749,12 @@ vantage._exec = function(item) {
       }
     }
 
+    // Looks for ommitted required options 
+    // and throws help.
     for (var i = 0; i < origOptions.length; ++i) {
       var o = origOptions[i];
       var short = String(o.short || '').replace(/-/g, '');
       var long = String(o.long || '').replace(/--no-/g, '').replace(/-/g, '');
-      //var negate = String(o.long || '').replace(/--no-/g, '');
       var flag = String(o.flags).slice(Math.abs(o.required), o.flags.length).replace('>', '').trim();
       var exists = parsedArgs[short] || parsedArgs[long];
       if (exists === undefined && o.required !== 0) {
@@ -598,43 +769,61 @@ vantage._exec = function(item) {
       }
     }
 
+    // Warning: Do not touch unless you have a 
+    // really good understand of callbacks and 
+    // Promises (I don't).
+
+    // So what I think I made this do, is call the
+    // function declared in the command's .action()
+    // method. 
+
+    // If calling it seems to return a Promise, we 
+    // are going to guess they didn't call the 
+    // callback we passed in. 
+    
+    // If the 'action' function didn't throw an
+    // error, call the `exec`'s callback if it 
+    // exists, and call it's `resolve` if its a
+    // Promise.
+
+    // If the `action` function threw an error, 
+    // callback with the error or reject the Promise.
+    
     var res = fn.call(this, args, item.callback);
     if (res && _.isFunction(res.then)) {
-      //console.log(item)
-
       return res.then(function(data){
         if (item.callback !== undefined) { 
           item.callback(data); 
         } else if (item.resolve !== undefined) { 
           return item.resolve(data); 
         }
-      }).catch(function(err){
+      }).catch(function(err) {
         self.log(['', '  Error: '.red + err, '']);
-        
-        //console.log('WOW WOW CAUGHT ERROR'.magenta)
-        //console.log(item.reject)
-        //console.log(util.inspect(item.reject, {showHidden: true, depth: null}));
         if (item.callback !== undefined) {
           item.callback(err);
         } else if (item.reject !== undefined) {
           item.reject(err);
         }
-        //if (item.reject !== undefined) { console.log('returning reject!!'); return item.reject(err); }
-        //if (item.callback !== undefined) { console.log('returning callback'); item.callback(err); }
       });
-      //return res.then(item.callback).catch(function(err) { 
-        //self.log(['', '  Error: '.red + err, '']);
-        //item.callback(err);
-        //return;
-      //});
     }
   } else {
-    self.log(this.commandHelp(item.command));
+    // If no command match, just return.
+    self.log(this._commandHelp(item.command));
+
+    // To do - if `exec` uses Promises, 
+    // I think we need to return a promise here...
     item.callback();
   }
 };
 
-vantage.commandHelp = function(command) {
+/**
+ * Returns help string for a given command.
+ *
+ * @param {String} command
+ * @api private
+ */
+
+vantage._commandHelp = function(command) {
   if (!this.commands.length) return '';
 
   var self = this;
@@ -670,7 +859,7 @@ vantage.commandHelp = function(command) {
     return (String(cmd._name).trim().split(' ').length <= commandMatchLength);
   }).map(function(cmd) {
     var args = cmd._args.map(function(arg) {
-      return self._humanReadableArgName(arg);
+      return VantageUtil.humanReadableArgName(arg);
     }).join(' ');
 
     return [
@@ -701,14 +890,14 @@ vantage.commandHelp = function(command) {
     counts[cmd]++;
     return cmd;
   })).map(function(cmd){
-    return '    ' + self.pad(cmd + ' *', width) + '  ' + counts[cmd] + ' sub-command' + ((counts[cmd] == 1) ? '' : 's') + '.';
+    return '    ' + VantageUtil.pad(cmd + ' *', width) + '  ' + counts[cmd] + ' sub-command' + ((counts[cmd] == 1) ? '' : 's') + '.';
   });
 
   var str = [
       invalidString + '\n  Commands:'
     , ''
     , commands.map(function(cmd) {
-      return self.pad(cmd[0], width) + '  ' + cmd[1];
+      return VantageUtil.pad(cmd[0], width) + '  ' + cmd[1];
     }).join('\n').replace(/^/gm, '    ')
     , (groups.length < 1 
       ? ''
@@ -718,95 +907,22 @@ vantage.commandHelp = function(command) {
   return str;
 };
 
-vantage._humanReadableArgName = function(arg) {
-    var nameOutput = arg.name + (arg.variadic === true ? '...' : '');
+/**
+ * Abstracts the logic for sending and
+ * receiving sockets upstream and downstream.
+ *
+ * To do: Has the start of logic for vantage sessions, 
+ * which I haven't fully confronted yet.
+ *
+ * @param {String} str
+ * @param {String} direction
+ * @param {String} data
+ * @param {Object} options
+ * @api private
+ */
 
-    return arg.required
-      ? '<' + nameOutput + '>'
-      : '[' + nameOutput + ']'
-};
-
-vantage._autocomplete = function(str, arr) {
-
-    arr.sort();
-
-    var arrX = _.clone(arr);
-    var strX = String(str);
-
-    var go = function() {
-
-      var matches = [];
-      for (var i = 0; i < arrX.length; i++) {
-        if (arrX[i].slice(0, strX.length).toLowerCase() == strX.toLowerCase()) {
-          matches.push(arrX[i]);
-        }
-      }
-
-      if (matches.length == 1) {
-        return matches[0] + ' ';
-      } else if (matches.length == 0) {
-        return void 0;
-      } else {
-
-        //var strXX = strX + 
-
-        var furthest = strX;
-
-        for (var i = strX.length; i < matches[0].length; ++i) {
-
-          var curr = String(matches[0].slice(0, i)).toLowerCase();
-
-          var same = 0;
-
-          for (var j = 0; j < matches.length; ++j) {
-
-            var sliced = String(matches[j].slice(0, curr.length)).toLowerCase();
-
-            if (sliced == curr) {
-
-              same++;
-            }
-          }
-
-          if (same == matches.length) {
-
-            furthest = curr;
-            continue;
-          
-          } else {
-
-            break;
-          }
-
-        }
-
-        if (furthest != strX) {
-          return furthest;
-        } else {
-          return void 0;
-        }
-      }
-    }
-
-    return go();
-};
-
-vantage.pad = function(str, width, delimiter) {
-    delimiter = delimiter || ' ';
-    var len = Math.max(0, width - str.length);
-    return str + Array(len + 1).join(' ');
-};
-
-vantage._listen = function() {
-
-};
-
-// Abstracts the logic for sending and receiving
-// sockets upstream and downstream.
-vantage.send = function(str, direction, data, options) {
-  
+vantage._send = function(str, direction, data, options) {
   options = options || {}
-
   if (direction == 'upstream') {
     this.client.io.emit(str, data);
   } else if (direction == 'downstream') {
@@ -825,26 +941,43 @@ vantage.send = function(str, direction, data, options) {
   }
 };
 
-// Handles the 'middleman' in a 3+-way vagrant session.
-// If a vagrant instance is a 'client' and 'server', it is
-// now considered a 'proxy' and its sole purpose is to pipe
-// information through, upstream or downstream.
-//
-// If vantage is not a proxy, it resolves a promise for further
-// code that assumes one is now an end user. If it ends up 
-// piping the traffic through, it never resolves the promise.
-vantage._pipe = function(str, direction, data, options) {
+/**
+ * Handles the 'middleman' in a 3+-way vagrant session.
+ * If a vagrant instance is a 'client' and 'server', it is
+ * now considered a 'proxy' and its sole purpose is to proxy
+ * information through, upstream or downstream.
+ *
+ * If vantage is not a proxy, it resolves a promise for further
+ * code that assumes one is now an end user. If it ends up 
+ * piping the traffic through, it never resolves the promise.
+ *
+ * @param {String} str
+ * @param {String} direction
+ * @param {String} data
+ * @param {Object} options
+ * @api private
+ */
+vantage._proxy = function(str, direction, data, options) {
   var self = this;
   return new Promise(function(resolve, reject){
     if (self.is('proxy')) {
-      self.send(str, direction, data, options);
+      self._send(str, direction, data, options);
     } else {
       resolve();
     }
   });
 };
 
-vantage.keypressHandler = function(e, prompt) {
+/**
+ * Event handler for keypresses - deals with command history
+ * and tabbed auto-completion.                                   
+ *
+ * @param {Event} e
+ * @param {Prompt} prompt
+ * @api private
+ */
+
+vantage._keypressHandler = function(e, prompt) {
   this._activePrompt = prompt;
   var key = (e.key || {}).name;
   var keyMatch = (['up', 'down', 'tab'].indexOf(key) > -1);
@@ -854,44 +987,62 @@ vantage.keypressHandler = function(e, prompt) {
     if (keyMatch) {
       var result = this._getKeypressResult(key, value);
       if (result !== undefined) { 
-        this.redraw(prompt, result)
+        this._redraw(prompt, result)
       }
     } else {
       this._histCtr = 0;
     }
   } else {
-    this.send('vantage-keypress-upstream', 'upstream', { key: key, value: value });
+    this._send('vantage-keypress-upstream', 'upstream', { key: key, value: value });
   }
 };
+
+/**
+ * Helper for vantage._keypressHandler.
+ *
+ * @param {String} key
+ * @param {String} value
+ * @return {Function}
+ * @api private
+ */
 
 vantage._getKeypressResult = function(key, value) {
   if (['up', 'down'].indexOf(key) > -1) {
-    return this.getHistory(key);
+    return this._getHistory(key);
   } else if (key == 'tab') {
-    return str = this.getAutocomplete(value);
+    return str = this._getAutocomplete(value);
   }
 };
 
-  // Generates a random id.
-vantage._guid = function() {
-  function s4() {
-    return Math.floor((1 + Math.random()) * 0x10000)
-      .toString(16)
-      .substring(1);
-  }
-  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-    s4() + '-' + s4() + s4() + s4();
-};
+
+/**
+ * Starts vantage listening as a server.
+ *
+ * @param {Mixed} app
+ * @param {Object} options
+ * @return {Vantage}
+ * @api public
+ */
 
 vantage.listen = function(app, options) {
   this.server.init(app, options);
   return this;
 };
+
+/**
+ * Kills a remote vantage session. If user 
+ * is running on a direct terminal, will kill
+ * node instance after confirmation.
+ *
+ * @param {Object} options
+ * @param {Function} cb
+ * @api private
+ */
   
-vantage.exit = function(option, cb) {
+vantage.exit = function(options, cb) {
   var self = this;
   if (this.is('local') && !this.is('terminable')) {
-    if (option.force) {
+    if (options.force) {
       process.exit(1);
     } else {
       this.prompt({
@@ -916,6 +1067,10 @@ vantage.exit = function(option, cb) {
     }
   }
 };
+
+/**
+ * Gets things started if run from command line.
+ */
 
 init();
 
