@@ -58,6 +58,8 @@ myapp~$
 * [Authentication](#authentication)
 * [Extensions](#extensions)
   - [use](#usemiddleware)
+* [Roadmap](#roadmap)
+* [License](#license)
 
 ## Getting Started
 
@@ -338,7 +340,7 @@ $ Connected successfully.
 ```
 *Note: See authentication section for auth details.*
 
-###.show()
+### .show()
 
 Starts a Vantage CLI prompt from the local terminal that started the application. While useless for deployed servers, this is great for testing an application's functions mid development.
 
@@ -617,3 +619,18 @@ npm install vantage-system
 var system = require('vantage-system');
 vantage.use(system);
 ```
+
+## Roadmap
+
+- Aliases
+- Variadic arguments
+- Authentication
+- Multiple-session support
+
+##### Known Issues
+
+- On unexpected logging, prompt does not redraw.
+
+## License
+
+MIT

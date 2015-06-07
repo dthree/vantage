@@ -103,6 +103,8 @@ function init() {
 
 function Vantage() {
 
+  if (!(this instanceof Vantage)) return new Vantage;
+
   // Program version
   // Exposed through vantage.version(str);
   this._version = '';

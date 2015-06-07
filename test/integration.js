@@ -6,7 +6,6 @@ var assert = require("assert")
   ;
 
 var vantage = new Vantage();
-
 var _stdout = '';
 var _excess = '';
 
