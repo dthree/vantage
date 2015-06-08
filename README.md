@@ -3,30 +3,44 @@
 
 [<img src="https://travis-ci.org/dthree/vantage.svg" alt="Build Status" />](http://travis-ci.org/dthree/vantage)
 
-Same application. Brand new point of view.
+Your existing application. A brand new point of view.
 
     npm install vantage -g
 
 Vantage provides a distributed, interactive command-line interface to your live Node application or web server.
 
-#### Doesn't commander.js do that?
+Inspired by and based on [commander.js](https://www.npmjs.com/package/commander), Vantage allows you to connect into and hop between running Node applications with an interactive prompt provided by [inquirer.js](https://www.npmjs.com/package/inquirer), giving a real-time perspective of your application you otherwise haven't had.
 
-Yes, and no. Inspired by and based on [commander.js](https://www.npmjs.com/package/commander), Vantage allows you to connect into and hop between running Node applications with an interactive prompt provided by [inquirer.js](https://www.npmjs.com/package/inquirer), giving a real-time perspective of your application you otherwise haven't had.
+By including Vantage, you make your existing application a first-class citizen CLI, including:
 
-The CLI includes built-in help, command history and tabbed auto-completion.
+- Built-in and automated help.
+- Command history (up / down arrows).
+- Tabbed command auto-completion.
+- Support for API plugins.
+- Familiar API based on `commander.js`.
+
+Unlike other REPL or CLI modules, Vantage allows you to remotely connect to your live application and access this CLI without interrupting the application. Like an SSH session, Vantage can connect through an unlimited number of running Node instances across multiple machines, piping commands and information to and from your local machine. 
 
 ```bash
 $ npm install vantage -g
-$ vantage 127.0.0.1:80
-$ Connecting to 127.0.0.1:80 using http...
-$ Connected successfully.
+$ vantage 10.40.80.20:80
+$ Connecting to 10.40.80.20:80 using http...
 myapp~$ 
 myapp~$ debug on -v 7
 Turned on debugging with verbosity to 7.
 ... [live logging] ...
 ...
 ...
-myapp~$ 
+myapp~$ debug off
+myapp~$ vantage 10.40.80.40:443 --ssl
+$ Connecting to 10.40.80.20:443 using https...
+myotherapp~$ 
+myotherapp~$ rebuild indexes
+Successfully rebuilt application indexes.
+myotherapp~$
+myotherapp~$ exit
+myapp~$ exit
+$
 ```
 
 #### Contents
