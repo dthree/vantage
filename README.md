@@ -51,7 +51,6 @@ $
     - [.description](#commandcommand-description)
     - [.option](#option-syntax)
     - [.action](#action-syntax)
-      - [.prompt](#prompting)
   - [.delimiter](#delimiterstring)
   - [.banner](#bannerstring)
   - [.show](#show)
@@ -59,19 +58,14 @@ $
     - [as standalone server](#vantage-as-a-standalone-web-server)
     - [with koa.js](#with-koajs)
     - [with express.js](#with-expressjs)
+* [Events](#events)
 * [Automation](#automation)
   - [.connect](#connectserver-port-options-callback)
   - [.exec](#execcommand-callback)
   - [.pipe](#pipefunction)
 * [Firewall](#firewall)
-  - [.policy](#firewallpolicystring) 
-  - [.accept](#firewallacceptaddress-subnet) 
-  - [.reject](#firewallrejectaddress-subnet) 
-  - [.rules](#firewallrules) 
-  - [.reset](#firewallreset) 
 * [Authentication](#authentication)
 * [Extensions](#extensions)
-  - [use](#usemiddleware)
 * [Roadmap](#roadmap)
 * [License](#license)
 
@@ -452,6 +446,31 @@ vantage.listen(someMiddleware, {
   rejectUnauthorized: false,
 });
 ```
+
+## Events
+
+Vantage extends `EventEmitter.prototype`. Simply use `vantage.on('event', fn)` and `vantage.emit('event', data')`. The following events are supported:
+
+##### Socket.IO client / server events
+
+Vantage uses `Socket.IO` in to handle all communication between instances. The following events map to the default `Socket.IO` events:
+
+- `client_connect`: Maps to `connect` for `socket.io-client`.
+- `client_connect_error`: Maps to `connect_error` for `socket.io-client`.
+- `client_error`: Maps to `error` for `socket.io-client`.
+- `client_disconnect`: Maps to `disconnect` for `socket.io-client`.
+
+- `server_connection`: Maps to `connection` for `socket.io`.
+- `server_disconnect`: Maps to `disconnect` for `socket.io`.
+
+##### Vantage events
+
+- `client_keypress`: Fires on keypress on local client terminal.
+
+- `server_command_received`: Fires at the end-server actually executing a command receives the command.
+- `server_command_executed`: Fires at the end-server once the command has successfully executed.
+- `server_command_error`: Fires at the end-server if the command has thrown an error.
+
 ## Automation
 
 Vantage allows you execute your API commands from javascript synchronously, using either callbacks or Promises.
