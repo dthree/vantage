@@ -456,11 +456,15 @@ Vantage extends `EventEmitter.prototype`. Simply use `vantage.on('event', fn)` a
 Vantage uses `Socket.IO` in to handle all communication between instances. The following events map to the default `Socket.IO` events:
 
 - `client_connect`: Maps to `connect` for `socket.io-client`.
+
 - `client_connect_error`: Maps to `connect_error` for `socket.io-client`.
+
 - `client_error`: Maps to `error` for `socket.io-client`.
+
 - `client_disconnect`: Maps to `disconnect` for `socket.io-client`.
 
 - `server_connection`: Maps to `connection` for `socket.io`.
+
 - `server_disconnect`: Maps to `disconnect` for `socket.io`.
 
 ##### Vantage events
@@ -468,7 +472,9 @@ Vantage uses `Socket.IO` in to handle all communication between instances. The f
 - `client_keypress`: Fires on keypress on local client terminal.
 
 - `server_command_received`: Fires at the end-server actually executing a command receives the command.
+
 - `server_command_executed`: Fires at the end-server once the command has successfully executed.
+
 - `server_command_error`: Fires at the end-server if the command has thrown an error.
 
 ## Automation
