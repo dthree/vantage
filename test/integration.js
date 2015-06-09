@@ -37,9 +37,7 @@ describe('integration tests:', function() {
 
     after('cleanup', function(done) {
       util.kill('all', function(){
-        //console.log('------------------');
         //console.log(_excess);
-        //console.log('------------------');
         done();
       });
     });
@@ -49,6 +47,7 @@ describe('integration tests:', function() {
     });
 
     it('should accept a vantage connection', function(done) {
+
       vantage
         .pipe(onStdout)
         .connect('127.0.0.1', '8040', {}).then(function(){
