@@ -69,9 +69,24 @@ $
 * [Roadmap](#roadmap)
 * [License](#license)
 
+
 ## Getting Started
 
-Setting up a basic application:
+##### Tutorial
+
+[This Vantage Tutorial](https://github.com/dthree/vantage/examples/tutorial) will give you a live tour of Vantage's features.
+
+```bash
+git clone git://github.com/dthree/vantage.git vantage
+cd ./vantage
+npm install
+node ./examples/tutorial/tutorial.js
+```
+##### Examples
+
+
+
+##### Quick Start
 
 ```js
 // server.js
