@@ -136,8 +136,11 @@ var create = function(fn, port, ssl) {
       });
     });
 
+  var welcome = 'SERVER BANNER: ' + port;
+
   vantage
     .delimiter(port + ':')
+    //.banner(welcome)
     .listen(port);
 
   return vantage;

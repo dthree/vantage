@@ -6,11 +6,13 @@ var assert = require("assert")
   ;
 
 var vantage = new Vantage();
+var _all = '';
 var _stdout = '';
 var _excess = '';
 
 var onStdout = function(str) {
   _stdout += str;
+  _all += str;
 }
 
 var stdout = function() {
@@ -46,18 +48,6 @@ describe('integration tests:', function() {
       _excess += stdout(); 
     });
 
-    it('should accept a vantage connection', function(done) {
-
-      vantage
-        .pipe(onStdout)
-        .connect('127.0.0.1', '8040', {}).then(function(){
-          stdout();
-          done();
-        }).catch(function(err){
-          done(err);
-        });
-    });
-
     var exec = function(cmd, done, cb) {
       vantage.exec(cmd).then(function(){
         cb();
@@ -70,6 +60,25 @@ describe('integration tests:', function() {
         done(err);
       });
     }
+
+    it('should accept a vantage connection', function(done) {
+      vantage
+        .pipe(onStdout)
+        .connect('127.0.0.1', '8040', {}).then(function(){
+          stdout();
+          done();
+        }).catch(function(err){
+          done(err);
+        });
+    });
+
+    /*
+      it('should work', function(done) {
+        vantage.exec('help').then(function(data){
+          done();
+        }).catch(function(err){ console.log('!!!'); done(err); });
+      });
+    */
 
     describe('promise execution', function(){
 
@@ -89,19 +98,23 @@ describe('integration tests:', function() {
         });
       });
 
-
     });
 
     describe('command execution', function(){
 
       it('should execute a simple command', function(done) {
         exec('fuzzy', done, function(err) {
-          //console.log(stdout());
           stdout().should.equal('wuzzy');
           done(err);
         });
       });
 
+      it('should execute help', function(done) {
+        exec('help', done, function(err) {
+          String(stdout()).toLowerCase().should.containEql('help');
+          done(err);
+        });
+      });
 
       it('should chain two async commands', function(done) {
         vantage.exec('foo').then(function() {
