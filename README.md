@@ -39,6 +39,8 @@ Inspired by and based on [commander.js](https://www.npmjs.com/package/commander)
 
 ## Getting Started
 
+##### Tell Me More
+
 By using Vantage, you take your existing application and turn it into a first-class citizen CLI, including:
 
 - Built-in and automated help.
