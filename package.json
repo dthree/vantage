@@ -24,6 +24,10 @@
   ],
   "author": "dthree",
   "license": "MIT",
+  "preferGlobal": true,
+  "bin": {
+    "vantage": "./lib/vantage.js"
+  },
   "bugs": {
     "url": "https://github.com/dthree/vantage/issues"
   },
