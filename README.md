@@ -471,6 +471,12 @@ Vantage uses `Socket.IO` in to handle all communication between instances. The f
 
 - `client_keypress`: Fires on keypress on local client terminal.
 
+- `client_prompt_submit`: Fires when the CLI prompt has been submitted with a command, including ''.
+
+- `client_command_executed`: Fires at the client once the command has been received back as executed.
+
+- `client_command_error`: Fires at the client if a command comes back with an error thrown.
+
 - `server_command_received`: Fires at the end-server actually executing a command receives the command.
 
 - `server_command_executed`: Fires at the end-server once the command has successfully executed.
