@@ -46,6 +46,9 @@ $
 #### Contents
 
 * [Getting Started](#getting-started)
+  - [Tutorial](#tutorial)
+  - [Examples](#examples)
+  - [Quick Start](#quick-start)
 * [Methods](#methods)
   - [.command](#commandcommand-description)
     - [.description](#commandcommand-description)
@@ -60,21 +63,17 @@ $
     - [with express.js](#with-expressjs)
 * [Events](#events)
 * [Automation](#automation)
-  - [.connect](#connectserver-port-options-callback)
-  - [.exec](#execcommand-callback)
-  - [.pipe](#pipefunction)
 * [Firewall](#firewall)
 * [Authentication](#authentication)
 * [Extensions](#extensions)
 * [Roadmap](#roadmap)
 * [License](#license)
 
-
 ## Getting Started
 
 ##### Tutorial
 
-[This Vantage Tutorial](https://github.com/dthree/vantage/examples/tutorial) will give you a live tour of Vantage's features.
+[This Vantage Tutorial](https://github.com/dthree/vantage/tree/master/examples/tutorial) will give you a live tour of Vantage's features.
 
 ```bash
 git clone git://github.com/dthree/vantage.git vantage
@@ -84,12 +83,15 @@ node ./examples/tutorial/tutorial.js
 ```
 ##### Examples
 
-
+- Simple Vantage Server
+- Vantage 
+- REPL Client
 
 ##### Quick Start
 
+Add the following to a file named `server.js`.
+
 ```js
-// server.js
 var Vantage = require('vantage');
 var server = new Vantage();
 
