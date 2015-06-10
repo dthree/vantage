@@ -11,7 +11,35 @@ Vantage provides a distributed, interactive command-line interface to your live 
 
 Inspired by and based on [commander.js](https://www.npmjs.com/package/commander), Vantage allows you to connect into and hop between running Node applications with an interactive prompt provided by [inquirer.js](https://www.npmjs.com/package/inquirer), giving a real-time perspective of your application you otherwise haven't had.
 
-By including Vantage, you make your existing application a first-class citizen CLI, including:
+#### Contents
+
+* [Getting Started](#getting-started)
+  - [Tutorial](#tutorial)
+  - [Examples](#examples)
+  - [Quick Start](#quick-start)
+* [Methods](#methods)
+  - [.command](#commandcommand-description)
+    - [.description](#commandcommand-description)
+    - [.option](#option-syntax)
+    - [.action](#action-syntax)
+  - [.delimiter](#delimiterstring)
+  - [.banner](#bannerstring)
+  - [.show](#show)
+  - [.listen](#listenapp-options)
+    - [as standalone server](#vantage-as-a-standalone-web-server)
+    - [with koa.js](#with-koajs)
+    - [with express.js](#with-expressjs)
+* [Events](#events)
+* [Automation](#automation)
+* [Firewall](#firewall)
+* [Authentication](#authentication)
+* [Extensions](#extensions)
+* [Roadmap](#roadmap)
+* [License](#license)
+
+## Getting Started
+
+By using Vantage, you take your existing application and turn it into a first-class citizen CLI, including:
 
 - Built-in and automated help.
 - Command history (up / down arrows).
@@ -43,34 +71,6 @@ myapp~$ exit
 $
 ```
 
-#### Contents
-
-* [Getting Started](#getting-started)
-  - [Tutorial](#tutorial)
-  - [Examples](#examples)
-  - [Quick Start](#quick-start)
-* [Methods](#methods)
-  - [.command](#commandcommand-description)
-    - [.description](#commandcommand-description)
-    - [.option](#option-syntax)
-    - [.action](#action-syntax)
-  - [.delimiter](#delimiterstring)
-  - [.banner](#bannerstring)
-  - [.show](#show)
-  - [.listen](#listenapp-options)
-    - [as standalone server](#vantage-as-a-standalone-web-server)
-    - [with koa.js](#with-koajs)
-    - [with express.js](#with-expressjs)
-* [Events](#events)
-* [Automation](#automation)
-* [Firewall](#firewall)
-* [Authentication](#authentication)
-* [Extensions](#extensions)
-* [Roadmap](#roadmap)
-* [License](#license)
-
-## Getting Started
-
 ##### Tutorial
 
 [This Vantage Tutorial](https://github.com/dthree/vantage/tree/master/examples/tutorial) will give you a live tour of Vantage's features.
@@ -83,9 +83,15 @@ node ./examples/tutorial/tutorial.js
 ```
 ##### Examples
 
-- Simple Vantage Server
-- Vantage 
-- REPL Client
+  *Coming soon...*
+
+- Standalone Vantage Server
+- Koa.js with Vantage
+- Express with Vantage
+- Using an extension - make a REPL client
+- Making an extension
+- Using Automation
+- Using the Vantage Firewall
 
 ##### Quick Start
 
