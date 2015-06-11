@@ -41,7 +41,7 @@ var commander = require('commander'),
 
     server = (!server) ? '127.0.0.1' : server;
     port = (!port) ? '80' : port;
-    
+
     if (String(server).split('.').length !== 4 || isNaN(port)) {
       self.log('\n  Invalid server/port passed: ' + server + ':' + port + '\n');
       process.exit(1);
