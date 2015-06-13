@@ -8,7 +8,7 @@ var assert = require("assert")
 var create = function(port, ssl) {
 
   var debug = false;
-  var ctr = 1, max = 11;
+  var ctr = 1, max = 8;
 
   if (!port) {
     console.error('Bad Arguments', port, ssl);
@@ -18,18 +18,14 @@ var create = function(port, ssl) {
   var vantage = Vantage();
 
   var logs = {
-    1: 'lotsoflogslotsoflogslotsoflogslotsoflogslotsoflogslotsoflogslotsoflogslotsoflogs'.grey,
-    2: 'lotsoflogslotsoflogslotsoflogslotsoflogslotsoflogslotsoflogslotsoflogslotsoflogs'.grey,
-    3: 'lotsoflogslotsoflogslotsoflogslotsoflogslotsoflogslotsoflogslotsoflogslotsoflogs'.grey,
+    1: 'loglogloglogloglogloglogloglogloglogloglogloglogloglogloglogloglogloglogloglog'.grey,
+    2: 'loglogloglogloglogloglogloglogloglogloglogloglogloglogloglogloglogloglogloglog'.grey,
+    3: 'loglogloglogloglogloglogloglogloglogloglogloglogloglogloglogloglogloglogloglog'.grey,
     4: '',
-    5: '  Woah - Lots of logging!',
-    6: "  Notice how the logging doesn't interrupt the prompt? That's useful.",
-    4: '',
-    7: "  When you feel like it, type 'debug off'.",
+    5: "  Notice how the logging doesn't interrupt the prompt? That's useful.",
+    6: '',
+    7: '  When you feel like it, type "debug off".',
     8: '',
-    9: 'lotsoflogslotsoflogslotsoflogslotsoflogslotsoflogslotsoflogslotsoflogslotsoflogs'.grey,
-    10: 'lotsoflogslotsoflogslotsoflogslotsoflogslotsoflogslotsoflogslotsoflogslotsoflogs'.grey,
-    11: 'lotsoflogslotsoflogslotsoflogslotsoflogslotsoflogslotsoflogslotsoflogslotsoflogs'.grey,
   }
   
   // Simulated random logging :)
@@ -75,7 +71,7 @@ var create = function(port, ssl) {
       cb();
     });
     
-  var welcome = 'Welcome to the Tutorial Server on port ' + port + '!';
+  var welcome = '\n\n  Welcome to the Tutorial Server on port ' + port + '!';
 
   vantage
     .delimiter('tutorialsvr:' + port + '~$')

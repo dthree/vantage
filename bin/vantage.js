@@ -30,10 +30,6 @@ var commander = require('commander'),
 
     var str = (!cmdValue) ? '' : cmdValue;
 
-    //console.log(__filename);
-    //console.log('----')
-    //console.log(__dirname);
-
     if (str === 'tutorial') {
       var fs = require('fs');
       var path = require('path');
@@ -64,6 +60,8 @@ var commander = require('commander'),
       self.log('\n  Invalid server/port passed: ' + server + ':' + port + '\n');
       process.exit(1);
     }
+
+    var vantage = new Vantage();
 
     return new Vantage().connect(server, port, options).then(function() {
 

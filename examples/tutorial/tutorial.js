@@ -79,42 +79,42 @@ var steps = {
       this.counter = 0;
     }
     if (this.counter > 2) {
-      log.br().cols(2, [2, hdr], 1, 'Well done! Feels like a normal CLI, right?'.white);
+      //log.br().cols(2, [2, hdr], 1, 'Well done! Feels like a normal CLI, right?'.white);
       server.removeListener('client_prompt_submit', steps.step1Listener);
       steps.step2();
     }
   },
 
   step2: function() {
-    log.cols(2, [2, hdr], 1, '2. Now, type "help" and press [enter].\n'.cyan);
+    log.br().cols(2, [2, hdr], 1, '2. Now, type "help" and press [enter].\n'.cyan);
     server.on('client_command_executed', steps.step2Listener);
   },
 
   step2Listener: function(data) {
     if (String(data.command).trim().toLowerCase() == 'help') {
       server.removeListener('client_command_executed', steps.step2Listener);
-      log.cols(2, [2, hdr], 1, 'Awesome! Those are all of the available commands you can execute.'.white);
+      log.cols(2, [2, hdr], 1, 'Above are all of the available commands you can execute.'.white).br();
       steps.step3();
     } else {
-      log.cols(2, [2, hdr], 1, "Hmmm... Let's try the 'help' command.".yellow);
+      log.cols(2, [2, hdr], 1, "Hmmm... Let's try the 'help' command.".yellow).br();
     }
   },
 
   step3: function() {
-    log.cols(2, [2, hdr], 1, "3. Now, Press the 'up' arrow on your keyboard to pull up the last command. Then press [enter] and run help again.".cyan).br();
+    log.cols(2, [2, hdr], 1, "3. Press the [up] arrow on your keyboard to pull up the last command. Then press [enter] and run help again.".cyan).br();
     server.on('client_command_executed', steps.step3Listener);
   },
 
   step3Listener: function(data) {
     if (String(data.command).trim().toLowerCase() == 'help') {
       server.removeListener('client_command_executed', steps.step3Listener);
-      log.cols(2, [2, hdr], 1, 'The full command history for the duration of the node session is stored.'.white);
+      //log.cols(2, [2, hdr], 1, 'The full command history for the duration of the node session is stored.'.white);
       steps.step4();
     } 
   },
 
   step4: function() {
-    log.cols(2, [2, hdr], 1, "4. You can use tabbed auto-completion, too!. Type 'he' and press the tab key. Then run help.".cyan).br();
+    log.cols(2, [2, hdr], 1, '4. Vantage supports auto-completion as well. Type "he" and press the [tab] key. Then press [enter] to run help again.'.cyan).br();
     server.on('client_command_executed', steps.step4Listener);
   },
 
@@ -126,7 +126,10 @@ var steps = {
   },
 
   step5: function() {
-    log.cols(2, [2, hdr], 1, "5. Okay! Now, let's fire up another Vantage server. I made a command for you - enter 'start server [port]'. You can pick the port.".cyan).br();
+    log.cols(2, [2, hdr], 1, "Starting to feel like a normal CLI?".white).br();
+    log.cols(2, [2, hdr], 1, "5. Now, let's fire up another Vantage server. I made a command for you:".cyan).br();
+    log.cols(5, "start server [port]".cyan).br();
+    log.cols(2, [2, hdr], 1, "You can pick the port.".cyan).br();
     server.on('client_command_executed', steps.step5Listener);
   },
 
@@ -142,8 +145,9 @@ var steps = {
   },
 
   step6: function(port) {
-    log.br().cols(2, [2, hdr], 1, "6. Great! Now let's connect to it!".cyan);
-    log.cols(2, [2, hdr], 1, String("Type 'vantage " + port + "'.").cyan).br();
+    log.cols(2, [2, hdr], 1, "That created another instance of Vantage, which is now listening to port " + port + " on a different process.".white);
+    log.br().cols(2, [2, hdr], 1, "6. Let's connect to it:".cyan).br();
+    log.cols(5, ("vantage " + port + "").cyan).br();
     server.on('client_command_executed', steps.step6Listener);
   },
 
@@ -157,8 +161,8 @@ var steps = {
   },
 
   step7: function(port) {
-    log.br().cols(2, [2, hdr], 1, "You're in! Check out the prompt: look different?".white);
-    log.br().cols(2, [2, hdr], 1, "7. Let's make sure we're on the new server. Type 'port' to get this server's port.".cyan).br();
+    log.br().cols(2, [2, hdr], 1, "You're in. Notice the prompt changed.".white);
+    log.br().cols(2, [2, hdr], 1, '7. To verify we are on the new server, run "port" to get this server\'s listening port.'.cyan).br();
     server.on('client_command_executed', steps.step7Listener);
   },
 
@@ -170,8 +174,8 @@ var steps = {
   },
 
   step8: function(port) {
-    log.br().cols(2, [2, hdr], 1, "That looks about right. If you type 'help', you'll notice this server has less commands too. Play around a bit - you'll see everything works the same, but on this new server. You aren't really 'logged in' to it, Vantage is just really good at tricking you.".white);
-    log.br().cols(2, [2, hdr], 1, "8. Let's see what this server has to say.  Type 'debug on'.".cyan).br();
+    log.br().cols(2, [2, hdr], 1, 'That looks about right. When you type "help", you\'ll notice this server has less commands than the last one. Play around a bit - you\'ll see everything works the same, but on this new server. You can hop through as many Vantage instances as you would like. You aren\'t really "logged in" to it, Vantage is just really good at tricking you.'.white);
+    log.br().cols(2, [2, hdr], 1, '8. Let\'s see what this server has to say. Use "help" and figure out how to turn debug mode on for the app.'.cyan).br();
     server.on('client_command_executed', steps.step8Listener);
   },
 
@@ -183,9 +187,8 @@ var steps = {
   },
 
   step9: function(port) {
-    log.br().cols(2, [2, hdr], 1, "Sweet!".white);
-    log.br().cols(2, [2, hdr], 1, "8. Type 'exit' to go back to the first server.".cyan);
-    log.cols(2, [2, hdr], 1, "This doesn't exit the process - just your viewing session.".cyan).br();
+    log.br().cols(2, [2, hdr], 1, "Getting the hang of it?".white);
+    log.br().cols(2, [2, hdr], 1, '8. Run "exit" to go back to the first server (this doesn\'t exit the process - just your viewing session).'.cyan).br();
     server.on('client_command_executed', steps.step9Listener);
   },
 
@@ -199,12 +202,11 @@ var steps = {
   },
 
   step10: function(port) {
-    log.br().cols(2, [2, hdr], 1, "Nice. By the way, you've now used all of Vantage's built in commands:".white);
+    log.br().cols(2, [2, hdr], 1, "Welcome back. By the way, you've now used all of Vantage's built in commands:".white);
     log.br().cols(5, 'help [command]');
     log.br().cols(5, 'vantage [server]');
     log.br().cols(5, 'exit');
-    log.br().cols(2, [2, hdr], 1, "That concludes the tour and shows some of the things Vantage can do!".white);
-    log.br().cols(2, [2, hdr], 1, "To get started building your own Vantage magic, check out the other examples.".white);
+    log.br().cols(2, [2, hdr], 1, "That concludes the tour and shows some of the things Vantage can do! To get started building your own Vantage magic, check out the other examples.".white);
     log.br().cols(2, [2, hdr], 1, "9. To fully exit the tutorial, type 'exit -f'.".cyan).br();
   },
 
