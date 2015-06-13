@@ -19,16 +19,10 @@ Inspired by and based on [commander.js](https://www.npmjs.com/package/commander)
   - [Quick Start](#quick-start)
 * [Methods](#methods)
   - [.command](#commandcommand-description)
-    - [.description](#commandcommand-description)
-    - [.option](#option-syntax)
-    - [.action](#action-syntax)
   - [.delimiter](#delimiterstring)
   - [.banner](#bannerstring)
   - [.show](#show)
   - [.listen](#listenapp-options)
-    - [as standalone server](#vantage-as-a-standalone-web-server)
-    - [with koa.js](#with-koajs)
-    - [with express.js](#with-expressjs)
 * [Events](#events)
 * [Automation](#automation)
 * [Firewall](#firewall)
@@ -83,9 +77,7 @@ $
 
 ##### Examples
 
-  *Coming soon...*
-
-- Standalone Vantage Server
+- [Standalone Vantage Server](https://github.com/dthree/vantage/tree/master/examples/server)
 - Koa.js with Vantage
 - Express with Vantage
 - Using an extension - make a REPL client
