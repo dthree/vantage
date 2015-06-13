@@ -39,6 +39,14 @@ Inspired by and based on [commander.js](https://www.npmjs.com/package/commander)
 
 ## Getting Started
 
+##### Tutorial
+
+[This Vantage Tutorial](https://github.com/dthree/vantage/tree/master/examples/tutorial) will give you a live tour of Vantage's features.
+
+```bash
+$ npm install -g vantage
+$ vantage tutorial
+```
 ##### Tell Me More
 
 By using Vantage, you take your existing application and turn it into a first-class citizen CLI, including:
@@ -73,16 +81,6 @@ myapp~$ exit
 $
 ```
 
-##### Tutorial
-
-[This Vantage Tutorial](https://github.com/dthree/vantage/tree/master/examples/tutorial) will give you a live tour of Vantage's features.
-
-```bash
-git clone git://github.com/dthree/vantage.git vantage
-cd ./vantage
-npm install
-node ./examples/tutorial/tutorial.js
-```
 ##### Examples
 
   *Coming soon...*

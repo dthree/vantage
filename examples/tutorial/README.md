@@ -7,9 +7,6 @@ The purpose of this is to give you a better idea of what Vantage is. For code sa
 ### How to run the tutorial
 
 ```bash
-git clone git://github.com/dthree/vantage.git vantage
-cd ./vantage
-npm install
-node ./examples/tutorial/tutorial.js
+$ npm install -g vantage
+$ vantage tutorial
 ```
-

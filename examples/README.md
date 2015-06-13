@@ -4,6 +4,11 @@
 
 An interactive guide that familiarizes you with Vantage.
 
+```bash
+$ npm install -g vantage
+$ vantage tutorial
+```
+
 ## ./server
 
 Sets up a basic standalone Vantage server, making use of all of its main commands.
