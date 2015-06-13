@@ -128,7 +128,6 @@ vantage.firewall.reject('10.40.50.24/32');
 // the '10.0.0.0/8' subnet.
 vantage.firewall.accept('10.0.0.0/8');
 
-
 /**
  * Chaining
  *

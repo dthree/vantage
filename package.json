@@ -33,6 +33,8 @@
   },
   "homepage": "https://github.com/dthree/vantage#readme",
   "devDependencies": {
+    "express": "^4.12.4",
+    "koa": "^0.21.0",
     "mocha": "^2.2.5",
     "should": "^6.0.3"
   },

@@ -77,13 +77,15 @@ $
 
 ##### Examples
 
+*Non-linked examples are in progress.*
+
 - [Standalone Vantage Server](https://github.com/dthree/vantage/tree/master/examples/server)
-- Koa.js with Vantage
-- Express with Vantage
+- [Koa.js with Vantage](https://github.com/dthree/vantage/tree/master/examples/koa)
+- [Express.js with Vantage](https://github.com/dthree/vantage/tree/master/examples/express)
 - Using an extension - make a REPL client
 - Making an extension
 - Using Automation
-- Using the Vantage Firewall
+- [Firewall](https://github.com/dthree/vantage/tree/master/examples/firewall)
 
 ##### Quick Start
 
