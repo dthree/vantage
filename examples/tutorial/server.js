@@ -2,8 +2,6 @@ var assert = require("assert")
   , should = require('should')
   , colors = require('colors')
   , Vantage = require('./../../lib/vantage')
-  , log = require('./../../lib/logger')
-  , util = require('./../../lib/util')
   , http = require('http')
   ;
 
@@ -19,8 +17,6 @@ var create = function(port, ssl) {
 
   var vantage = Vantage();
 
-  log = log(vantage); 
-  
   var logs = {
     1: 'lotsoflogslotsoflogslotsoflogslotsoflogslotsoflogslotsoflogslotsoflogslotsoflogs'.grey,
     2: 'lotsoflogslotsoflogslotsoflogslotsoflogslotsoflogslotsoflogslotsoflogslotsoflogs'.grey,

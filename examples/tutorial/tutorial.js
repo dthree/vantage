@@ -220,5 +220,4 @@ server
   .banner(banner)
   .show();
 
-steps.step5();
-
+steps.step1();
