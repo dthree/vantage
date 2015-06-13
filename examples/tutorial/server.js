@@ -43,7 +43,6 @@ var create = function(port, ssl) {
       }, Math.floor(Math.round(Math.random()*1000)/2))
     }
   }
-  
 
   vantage
     .command('port')

@@ -53,6 +53,7 @@
   },
   "files": [
     "lib",
-    "bin"
+    "bin",
+    "examples"
   ]
 }

@@ -2,6 +2,7 @@
 
 var commander = require('commander'),
     Vantage = require('../lib/vantage')
+    colors = require('colors')
   ;
 
   var cmdValue, envValue, script, options = {}, self = this;
@@ -28,6 +29,23 @@ var commander = require('commander'),
     }
 
     var str = (!cmdValue) ? '' : cmdValue;
+
+    //console.log(__filename);
+    //console.log('----')
+    //console.log(__dirname);
+
+    if (str === 'tutorial') {
+      var fs = require('fs');
+      var path = require('path');
+      var file = '/../examples/tutorial/tutorial.js';
+      console.log(__dirname + file);
+      if (fs.existsSync(__dirname + file)) {
+        require(__dirname + file); return;
+      } else {
+        console.log("\n  Looks like the tutorial isn't included in your Vantage instance.\n  Ensure ./examples/ is in your Vantage directory.\n".yellow);
+        process.exit(1);
+      }
+    }
 
     var parts = String(str).split(':');
 

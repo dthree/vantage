@@ -55,7 +55,7 @@ var commands = function(svr, opt) {
         ports: [args.port]
       }, function(err) {
         if (!err) {
-          console.log('  Successfully spawned server.');
+          console.log('  Successfully spawned server.\n');
         }
         cb('Started!');
       });

@@ -29,12 +29,12 @@ module.exports = {
         for (var i = 0; i < ports.length; ++i) {
           (function(port){
             pm2.start({
-              script: './examples/tutorial/server.js',
+              script: __dirname + '/server.js',
               cluster: false,
               args: [port, false],
               instances: 1,
-              error_file: './server.stderr.log',
-            }, function(err, apps){
+              //error_file: './server.stderr.log',
+            }, function(err, apps) {
               if (err) {
                 console.error(err)
               }
