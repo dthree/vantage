@@ -47,5 +47,7 @@ var commander = require('commander'),
       process.exit(1);
     }
 
-    return new Vantage().show().client.connect(server, port, options);
+    return new Vantage().connect(server, port, options).then(function() {
+
+    });
   }

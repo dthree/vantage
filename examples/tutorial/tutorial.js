@@ -11,6 +11,8 @@
 var Vantage = require('../../')
   , pm2 = require('./pm2')
   , util = require('./../../lib/util')
+  , log = (require('./../../lib/logger'))
+  , ut = require('util')
   , colors = require('colors')
   ;
 
@@ -22,6 +24,8 @@ var banner =
   util.pad('# ', process.stdout.columns-1, ' ') + '#' + '\n' +  
   util.pad('', process.stdout.columns, '#') + '\n' + 
   util.pad('', 0, '\n') + '';
+
+var hdr = "#".grey;
   
 var commands = function(svr, opt) {
 
@@ -50,7 +54,9 @@ var commands = function(svr, opt) {
       pm2.spawn({
         ports: [args.port]
       }, function(err) {
-        console.log('  Successfully spawned server.');
+        if (!err) {
+          console.log('  Successfully spawned server.');
+        }
         cb('Started!');
       });
     });
@@ -60,7 +66,7 @@ var commands = function(svr, opt) {
 var steps = {
 
   step1: function() {
-    server.log("  1. To start, press [enter] 3 times.\n".cyan);
+    log.cols(2, [2, hdr], 1, "1. To start, press [enter] 3 times.".cyan).br();
     server.on('client_prompt_submit', steps.step1Listener);
   },
 
@@ -69,46 +75,46 @@ var steps = {
     if (e == '') {
       this.counter++;
     } else {
-      server.log("\n  Don't get too excited - let's press [enter] 3 times first.".yellow);
+      log.br().cols(2, [2, hdr], 1, "Don't get too excited - let's press [enter] 3 times first.".yellow);
       this.counter = 0;
     }
     if (this.counter > 2) {
-      server.log('\n  Well done! Feels like a normal CLI, right?'.white);
+      log.br().cols(2, [2, hdr], 1, 'Well done! Feels like a normal CLI, right?'.white);
       server.removeListener('client_prompt_submit', steps.step1Listener);
       steps.step2();
     }
   },
 
   step2: function() {
-    server.log('  2. Now, type "help" and press [enter].\n'.cyan);
+    log.cols(2, [2, hdr], 1, '2. Now, type "help" and press [enter].\n'.cyan);
     server.on('client_command_executed', steps.step2Listener);
   },
 
   step2Listener: function(data) {
     if (String(data.command).trim().toLowerCase() == 'help') {
       server.removeListener('client_command_executed', steps.step2Listener);
-      server.log('  Awesome! Those are all of the available commands you can execute.'.white);
+      log.cols(2, [2, hdr], 1, 'Awesome! Those are all of the available commands you can execute.'.white);
       steps.step3();
     } else {
-      server.log("\n  Hmmm... Let's try the 'help' command.".yellow);
+      log.cols(2, [2, hdr], 1, "Hmmm... Let's try the 'help' command.".yellow);
     }
   },
 
   step3: function() {
-    server.log("  3. Now, Press the 'up' arrow on your keyboard to pull up the last command.\n  Then press [enter] and run help again.\n".cyan);
+    log.cols(2, [2, hdr], 1, "3. Now, Press the 'up' arrow on your keyboard to pull up the last command. Then press [enter] and run help again.".cyan).br();
     server.on('client_command_executed', steps.step3Listener);
   },
 
   step3Listener: function(data) {
     if (String(data.command).trim().toLowerCase() == 'help') {
       server.removeListener('client_command_executed', steps.step3Listener);
-      server.log('  The full command history for the duration of the node session is stored.'.white);
+      log.cols(2, [2, hdr], 1, 'The full command history for the duration of the node session is stored.'.white);
       steps.step4();
     } 
   },
 
   step4: function() {
-    server.log("  4. You can use tabbed auto-completion, too!.\n  Type 'he' and press the tab key. Then run help.\n".cyan);
+    log.cols(2, [2, hdr], 1, "4. You can use tabbed auto-completion, too!. Type 'he' and press the tab key. Then run help.".cyan).br();
     server.on('client_command_executed', steps.step4Listener);
   },
 
@@ -120,7 +126,7 @@ var steps = {
   },
 
   step5: function() {
-    server.log("  5. Okay! Now, let's fire up another Vantage server.\n  I made a command for you - enter 'start server [port]'\n  You can pick the port.\n".cyan);
+    log.cols(2, [2, hdr], 1, "5. Okay! Now, let's fire up another Vantage server. I made a command for you - enter 'start server [port]'. You can pick the port.".cyan).br();
     server.on('client_command_executed', steps.step5Listener);
   },
 
@@ -136,8 +142,8 @@ var steps = {
   },
 
   step6: function(port) {
-    server.log("\n  6. Great! Now let's connect to it!".cyan);
-    server.log(String("  Type 'vantage " + port + "'\n").cyan);
+    log.br().cols(2, [2, hdr], 1, "6. Great! Now let's connect to it!".cyan);
+    log.cols(2, [2, hdr], 1, String("Type 'vantage " + port + "'.").cyan).br();
     server.on('client_command_executed', steps.step6Listener);
   },
 
@@ -151,8 +157,8 @@ var steps = {
   },
 
   step7: function(port) {
-    server.log("\n  You're in!\n  Check out the prompt: look different?".white);
-    server.log("\n  7. Let's make sure we're on the new server.\n  Type 'port' to get this server's port.\n".cyan);
+    log.br().cols(2, [2, hdr], 1, "You're in! Check out the prompt: look different?".white);
+    log.br().cols(2, [2, hdr], 1, "7. Let's make sure we're on the new server. Type 'port' to get this server's port.".cyan).br();
     server.on('client_command_executed', steps.step7Listener);
   },
 
@@ -164,10 +170,8 @@ var steps = {
   },
 
   step8: function(port) {
-    server.log("\n  That looks about right.\n  If you type 'help', you'll notice this server has less commands too.".white);
-    server.log("\n  Play around a bit - you'll see everything works the same,\n  but on this new server.".white);
-    server.log("\n  You aren't really 'logged in' to it, Vantage is just really \n  good at tricking you.".white);
-    server.log("\n  8. Let's see what this server has to say. \n  Type 'debug on'.\n".cyan);
+    log.br().cols(2, [2, hdr], 1, "That looks about right. If you type 'help', you'll notice this server has less commands too. Play around a bit - you'll see everything works the same, but on this new server. You aren't really 'logged in' to it, Vantage is just really good at tricking you.".white);
+    log.br().cols(2, [2, hdr], 1, "8. Let's see what this server has to say.  Type 'debug on'.".cyan).br();
     server.on('client_command_executed', steps.step8Listener);
   },
 
@@ -179,9 +183,9 @@ var steps = {
   },
 
   step9: function(port) {
-    server.log("\n  Sweet!".white);
-    server.log("\n  8. Type 'exit' to go back to the first server.".cyan);
-    server.log("  This doesn't exit the process - just your viewing session.\n".cyan);
+    log.br().cols(2, [2, hdr], 1, "Sweet!".white);
+    log.br().cols(2, [2, hdr], 1, "8. Type 'exit' to go back to the first server.".cyan);
+    log.cols(2, [2, hdr], 1, "This doesn't exit the process - just your viewing session.".cyan).br();
     server.on('client_command_executed', steps.step9Listener);
   },
 
@@ -195,15 +199,20 @@ var steps = {
   },
 
   step10: function(port) {
-    server.log("\n  Nice. By the way, you've now used all of Vantage's built in commands:\n\n  help [command]\n  vantage [server]\n  exit".white);
-    server.log("\n  That concludes the tour and shows some of the things Vantage can do!".white);
-    server.log("\n  To get started building your own Vantage magic, check out the other examples.".white);
-    server.log("\n  9. To fully exit the tutorial, type 'exit -f'.\n".cyan);
+    log.br().cols(2, [2, hdr], 1, "Nice. By the way, you've now used all of Vantage's built in commands:".white);
+    log.br().cols(5, 'help [command]');
+    log.br().cols(5, 'vantage [server]');
+    log.br().cols(5, 'exit');
+    log.br().cols(2, [2, hdr], 1, "That concludes the tour and shows some of the things Vantage can do!".white);
+    log.br().cols(2, [2, hdr], 1, "To get started building your own Vantage magic, check out the other examples.".white);
+    log.br().cols(2, [2, hdr], 1, "9. To fully exit the tutorial, type 'exit -f'.".cyan).br();
   },
 
 }
 
 var server = new Vantage();
+
+log = log(server);
 
 server
   .use(commands)
@@ -211,5 +220,5 @@ server
   .banner(banner)
   .show();
 
-steps.step1();
+steps.step5();
 

@@ -52,10 +52,7 @@ describe('integration tests:', function() {
       vantage.exec(cmd).then(function(){
         cb();
       }).catch(function(err){
-        //console.log(typeof (Error))
-        //console.log(err, data)
-        var errr = new Error('COW');
-        console.log(typeof errr)
+        console.log('---------EXEC CALLED ERROR----------')
         console.log(err);
         done(err);
       });
@@ -68,6 +65,8 @@ describe('integration tests:', function() {
           stdout();
           done();
         }).catch(function(err){
+          console.log('---EXEC ERROR---')
+          console.log(err);
           done(err);
         });
     });

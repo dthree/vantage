@@ -33,7 +33,11 @@ module.exports = {
               cluster: false,
               args: [port, false],
               instances: 1,
+              error_file: './server.stderr.log',
             }, function(err, apps){
+              if (err) {
+                console.error(err)
+              }
               handler(err, cb);
             });
           })(ports[i]);
