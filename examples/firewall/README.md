@@ -1,4 +1,4 @@
-# Vantage Server with Koa.js
+# Vantage Server with Firewall
 
 This is an example of a Vantage server with a built-in firewall for basic access control.
  
