@@ -57,5 +57,15 @@
     "lib",
     "bin",
     "examples"
-  ]
+  ],
+  "eslintConfig": {
+    "env": {
+      "node": true,
+      "browser": false
+    },
+    "rules": {
+      "no-underscore-dangle": 0,
+      "no-process-exit": 0
+    }
+  }
 }
