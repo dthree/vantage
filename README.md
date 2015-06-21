@@ -688,10 +688,18 @@ vantage.use(system);
 - Variadic arguments
 - Authentication
 - Multiple-session support
+- Promise polyfill
+
+##### Supported Versions
+
+The support is limited to the latest versions of Node as I use promises, however as soon as I implement a polyfill for promises, this support can be increased.
+
+* `node`: `>=0.11.16`
+* `iojs`: `>=1.0.0`
 
 ##### Known Issues
 
-- On unexpected logging, prompt does not redraw.
+*No known issues as of 20 June.*
 
 ## License
 
