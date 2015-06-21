@@ -466,7 +466,7 @@ vantage.listen(someMiddleware, {
 
 ## Events
 
-Vantage extends `EventEmitter.prototype`. Simply use `vantage.on('event', fn)` and `vantage.emit('event', data')`. The following events are supported:
+Vantage extends `EventEmitter.prototype`. Simply use `vantage.on('event', fn)` and `vantage.emit('event', data)`. The following events are supported:
 
 ##### Socket.IO client / server events
 
