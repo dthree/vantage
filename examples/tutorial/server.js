@@ -1,6 +1,4 @@
-var assert = require("assert")
-  , should = require('should')
-  , colors = require('colors')
+var colors = require('colors')
   , Vantage = require('./../../lib/vantage')
   , http = require('http')
   ;
