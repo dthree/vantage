@@ -446,10 +446,11 @@ vantage.listen(app, 80);
 ```
 ##### With SSL / advanced options
 
-You can pass detailed options to your web server with the second argument in place of the port. These options are the same options you would pass into your web server, with two exceptions:
+You can pass detailed options to your web server with the second argument in place of the port. These options are the same options you would pass into your web server, with a few exceptions:
 
 - `options.port`: Tells vantage what port to listen on.
 - `options.ssl`: A boolean that tells Vantage whether to spawn an HTTP or HTTPs server.
+- `options.logActivity`: When true, a TTY acting as a Vantage server that receives a connection will log when clients log in and out of the server. Defaults to `false`.
 
 Default HTTPs server example:
 
