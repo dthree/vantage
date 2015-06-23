@@ -396,17 +396,19 @@ Successfully built API.
 websvr~$
 ```
 
-### .listen(app, [options])
+### .listen(app, [options or callback], [callback])
 
 Starts Vantage as a server. 
 
 #### Vantage as a standalone web server
 
-If you just want it to listen on a port independent of your web application, simply pass in the port and Vantage will spawn a new HTTP server.
+If you just want it to listen on a port independent of your web application, simply pass in the port and Vantage will spawn a new HTTP server. Every time a client connects to vantage, the connection callback will be thrown and include the `socket.io` connection object.
 
 ```js
 var vantage = new Vantage();
-vantage.listen(80);
+vantage.listen(80, function(socket){
+  console.log('Accepted a connection.')
+});
 ```
 
 #### Vantage with an existing web server

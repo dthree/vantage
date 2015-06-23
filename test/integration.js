@@ -39,6 +39,7 @@ describe('integration tests:', function() {
 
     after('cleanup', function(done) {
       util.kill('all', function(){
+        //console.log(_all);
         //console.log(_excess);
         done();
       });
@@ -52,7 +53,6 @@ describe('integration tests:', function() {
       vantage.exec(cmd).then(function(){
         cb();
       }).catch(function(err){
-        console.log('---------EXEC CALLED ERROR----------')
         console.log(err);
         done(err);
       });
@@ -92,7 +92,6 @@ describe('integration tests:', function() {
           stdout();
           done();
         }).catch(function(err){
-          console.log('---EXEC ERROR---')
           console.log(err);
           done(err);
         });

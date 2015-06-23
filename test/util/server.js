@@ -140,8 +140,9 @@ var create = function(fn, port, ssl) {
 
   vantage
     .delimiter(port + ':')
-    //.banner(welcome)
-    .listen(port);
+    .listen(port, function(){
+      // Callback shouldn't throw.
+    });
 
   return vantage;
 }
@@ -151,8 +152,6 @@ var handler = function(req, res) {
   res.write('');
   res.end();
 }
-
-
 
 var svr = create(handler, process.argv[2], process.argv[3]);
 

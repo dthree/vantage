@@ -74,7 +74,9 @@ var create = function(port, ssl) {
   vantage
     .delimiter('tutorialsvr:' + port + '~$')
     .banner(welcome)
-    .listen(port)
+    .listen(port, function(){
+      
+    })
     .show()
     ;
 
