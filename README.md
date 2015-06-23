@@ -504,15 +504,23 @@ Vantage uses `Socket.IO` in to handle all communication between instances. The f
 
 Vantage allows you execute your API commands from javascript synchronously, using either callbacks or Promises.
 
-### .connect(server, port, [options], [callback])
+### .connect(server, port, [options or callback], [callback])
 
 Connects to another instance of Vantage. Returns callback or Promise.
 
 ```js
+// With a promise
 vantage.connect('127.0.0.1', 8001).then(function(data){
   // ... 
 }).catch(function(err){
   console.log('Error connecting: ' + err);
+});
+
+// With a callback
+vantage.connect('127.0.0.1', 8001, function(err) {
+  if (!err) {
+    // ... connected
+  }
 });
 ```
 ##### Options

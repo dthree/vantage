@@ -58,7 +58,34 @@ describe('integration tests:', function() {
       });
     }
 
-    it('should accept a vantage connection', function(done) {
+    it('should accept a vantage connection with a callback', function(done) {
+      vantage
+        .pipe(onStdout)
+        .connect('127.0.0.1', '8040', {}, function(){
+          stdout();
+          done();
+        });
+    });
+
+    it('exit the connection with a callback', function(done) {
+      vantage.exec('exit', function() {
+        stdout();
+        done();
+      });
+    });
+
+    it('should accept a vantage connection callback and no options', function(done) {
+      vantage
+        .pipe(onStdout)
+        .connect('127.0.0.1', '8040', function(){
+          vantage.exec('exit', function() {
+            stdout();
+            done();
+          });
+        });
+    });
+
+    it('should accept a vantage connection with a promise', function(done) {
       vantage
         .pipe(onStdout)
         .connect('127.0.0.1', '8040', {}).then(function(){
@@ -70,14 +97,6 @@ describe('integration tests:', function() {
           done(err);
         });
     });
-
-    /*
-      it('should work', function(done) {
-        vantage.exec('help').then(function(data){
-          done();
-        }).catch(function(err){ console.log('!!!'); done(err); });
-      });
-    */
 
     describe('promise execution', function(){
 
