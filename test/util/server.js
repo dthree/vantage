@@ -153,5 +153,9 @@ var handler = function(req, res) {
   res.end();
 }
 
-var svr = create(handler, process.argv[2], process.argv[3]);
+try {
+  var svr = create(handler, process.argv[2], process.argv[3]);
+} catch(e) {
+  process.exit();
+}
 
