@@ -294,12 +294,37 @@ describe('integration tests:', function() {
         }).catch(function(err){ done(err); });
       });
 
-
-
-
     });
 
+    describe('mode', function() {
 
+      it('should enter REPL mode', function(done){
+        vantage.exec('repl').then(function(data) {
+          (data || '').should.containEql("Entering REPL Mode");
+          stdout().should.containEql("Entering REPL Mode");
+          done();
+        }).catch(function(err){ done(err); });
+      });
+
+      it('should execute arbitrary JS', function(done){
+        vantage.exec('3*9').then(function(data) {
+          (parseFloat(data) || '').should.equal(27);
+          parseFloat(stdout()).should.equal(27);
+          done();
+        }).catch(function(err){ done(err); });
+      });
+
+      it('should exit REPL mode properly', function(done){
+        vantage.exec('exit').then(function(data) {
+          stdout();
+          return vantage.exec('help');
+        }).then(function() {
+          stdout().should.containEql("vantage");
+          done();
+        }).catch(function(err){ done(err); });
+      });
+
+    });
 
 
   });

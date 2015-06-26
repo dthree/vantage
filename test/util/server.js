@@ -2,6 +2,7 @@ var assert = require("assert")
   , should = require('should')
   , Vantage = require('../../')
   , http = require('http')
+  , _ = require('lodash')
   ;
 
 var create = function(fn, port, ssl) {
@@ -79,7 +80,6 @@ var create = function(fn, port, ssl) {
       });
     });
 
-
   vantage
     .command('deep command [arg]')
     .description('Tests execution of deep command.')
@@ -134,6 +134,25 @@ var create = function(fn, port, ssl) {
         console.log(str);
         resolve();
       });
+    });
+
+  vantage
+    .mode('repl', 'Enters REPL mode.')
+    .delimiter('repl:')
+    .init(function(args, cb) {
+      console.log("Entering REPL Mode. To exit, type 'exit'.");
+      cb("Entering REPL Mode. To exit, type 'exit'.");
+    })
+    .action(function(command, cb) {
+      try {
+        var res = eval(command);
+        var log = (_.isString(res)) ? String(res).white : res;
+        console.log(res);
+        cb(res);
+      } catch(e) {
+        console.log("Error: " + e);
+        cb("Error: " + e);
+      }
     });
 
   var welcome = 'SERVER BANNER: ' + port;
