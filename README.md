@@ -82,7 +82,7 @@ $
 - [Standalone Vantage Server](https://github.com/dthree/vantage/tree/master/examples/server)
 - [Koa.js with Vantage](https://github.com/dthree/vantage/tree/master/examples/koa)
 - [Express.js with Vantage](https://github.com/dthree/vantage/tree/master/examples/express)
-- Using an extension - make a REPL client
+- [Using the "mode" command to make a simple REPL client](https://github.com/dthree/vantage/tree/master/examples/mode)
 - Making an extension
 - Using Automation
 - [Firewall](https://github.com/dthree/vantage/tree/master/examples/firewall)
@@ -154,16 +154,15 @@ webapp~$
 
 Adds a new command to your command line API. Returns a `Command` object, with the following chainable functions:
 
-- `.description(string)`: Used in automated help for your command.
-- `.option(string, [description])`: Provides command options, as in `-f` or `--force`.
-- `.action(function)`: Function to execute when command is executed.
-
-#### Command Syntax
+* [`.description(string)`](#): Used in automated help for your command.
+* [`.option(string, [description])`](#): Provides command options, as in `-f` or `--force`.
+* [`.action(function)`](#): Function to execute when command is executed.
+  - [`.action.prompt(object, [callback])`](#): Exposes `inquirer`'s `prompt` function.
 
 The syntax is similar to `commander.js` with the exception of allowing nested sub-commands for grouping large APIs into managable chunks. Examples:
 
 ```js
-vantage.command('foo'); // Simple command with no arguments.
+vantage.command('foo', 'Description of foo.'); // Simple command with no arguments.
 vantage.command('foo [bar]'); // Optional argument.
 vantage.command('foo <bar>'); // Required argument.
 
@@ -173,7 +172,9 @@ vantage.command('farm tools');
 vantage.command('farm feed [animal]');
 vantage.command('farm with farmer brown and reflect on <subject>');
 ```
-##### Sub-Commands
+Descriptions can optionally be passed in as the second parameter, which are used to build the automated help feature.
+
+##### Sub-commands
 
 When displaying the help menu, sub-commands will be grouped separately:
 
@@ -204,7 +205,19 @@ webapp~$ farm
     farm with *          1 sub-command.
     
 ```
-#### Option Syntax
+
+#### .command.description(string)
+
+If you don't pass a description into `vantage.command(...)` above, you can use the `description` function as an alternative.
+
+```js
+vantage
+  .command('foo')
+  .description('outputs bar')
+  // ...
+```
+
+#### .command.option(string, [description])
 
 You can provide both short and long versions of an option. Examples:
 
@@ -216,7 +229,7 @@ vantage.command(...).option('-A', 'Does amazing things.');
 vantage.command(...).option('--amazing', 'Does amazing things');
 ```
 
-#### Action Syntax
+#### .command.action(function)
 
 `command.action` passes in an `arguments` object and `callback`.
 
@@ -280,7 +293,7 @@ command(...).action(function(args, cb){
   return app.promisedAction(args.action);
 });
 ```
-#### Prompting
+#### .prompt(object, [callback])
 
 Vantage supports mid-command prompting. You can make full use of [inquirer.js](https://www.npmjs.com/package/inquirer)'s `prompt` function, which is exposed through `vantage.prompt`.
 
@@ -311,6 +324,38 @@ webapp~$ destroy database
 Good move.
 webapp~$
 ```
+
+### .mode(command, [description])
+
+Mode is a special type of `command` that brings the user into a give `mode`, wherein regular vantage commands are ignored and the full command strings are interpreted literally by thge `mode.action` function. This will continue until the user exits the mode by typing `exit`.
+
+```js
+vantage
+  .mode('repl')
+  .description('Enters the user into a REPL session.')
+  .delimiter('repl:')
+  .action(function(command, callback) {
+    console.log(eval(command));
+  });
+```
+```bash
+$ node server.js
+mysvr~$ 
+mysvr~$ repl
+mysvr~$ repl: 
+mysvr~$ repl: 6 * 7
+42
+mysvr~$ repl: exit
+mysvr~$ 
+```
+
+`mode`'s syntax is a duplicate of `command`'s, with the following exceptions / new commands:
+
+* [`.delimiter(string)`](#): Tacks on an additional prompt delimiter for orientation.
+* [`.init(args, callback)`](#): Same as `command`'s `.action`, called once on entering the mode.
+* [`.action(command, callback)`](#): Called on each command submission while in the mode.
+
+*Still IP writing...*
 
 ### .delimiter(string)
 
