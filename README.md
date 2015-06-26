@@ -157,7 +157,7 @@ Adds a new command to your command line API. Returns a `Command` object, with th
 * [`.description(string)`](#): Used in automated help for your command.
 * [`.option(string, [description])`](#): Provides command options, as in `-f` or `--force`.
 * [`.action(function)`](#): Function to execute when command is executed.
-  - [`.action.prompt(object, [callback])`](#): Exposes `inquirer`'s `prompt` function.
+  - [`.prompt(object, [callback])`](#): Exposes `inquirer`'s `prompt` function.
 
 The syntax is similar to `commander.js` with the exception of allowing nested sub-commands for grouping large APIs into managable chunks. Examples:
 
@@ -327,7 +327,7 @@ webapp~$
 
 ### .mode(command, [description])
 
-Mode is a special type of `command` that brings the user into a give `mode`, wherein regular vantage commands are ignored and the full command strings are interpreted literally by thge `mode.action` function. This will continue until the user exits the mode by typing `exit`.
+Mode is a special type of `command` that brings the user into a given `mode`, wherein regular vantage commands are ignored and the full command strings are interpreted literally by the `mode.action` function. This will continue until the user exits the mode by typing `exit`.
 
 ```js
 vantage
@@ -345,11 +345,13 @@ mysvr~$ repl
 mysvr~$ repl: 
 mysvr~$ repl: 6 * 7
 42
+mysvr~$ repl: Math.random();
+0.453483454843
 mysvr~$ repl: exit
 mysvr~$ 
 ```
 
-`mode`'s syntax is a duplicate of `command`'s, with the following exceptions / new commands:
+`mode`'s syntax is a duplicate of `command`'s, with the following additional / altered commands:
 
 * [`.delimiter(string)`](#): Tacks on an additional prompt delimiter for orientation.
 * [`.init(args, callback)`](#): Same as `command`'s `.action`, called once on entering the mode.
