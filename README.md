@@ -155,10 +155,10 @@ webapp~$
 
 Adds a new command to your command line API. Returns a `Command` object, with the following chainable functions:
 
-* [`.description(string)`](#): Used in automated help for your command.
-* [`.option(string, [description])`](#): Provides command options, as in `-f` or `--force`.
-* [`.action(function)`](#): Function to execute when command is executed.
-  - [`.prompt(object, [callback])`](#): Exposes `inquirer`'s `prompt` function.
+* [`.description(string)`](#commanddescriptionstring): Used in automated help for your command.
+* [`.option(string, [description])`](#commandoptionstring-description): Provides command options, as in `-f` or `--force`.
+* [`.action(function)`](#commandactionfunction): Function to execute when command is executed.
+  - [`.prompt(object, [callback])`](#promptobject-callback): Exposes `inquirer`'s `prompt` function.
 
 The syntax is similar to `commander.js` with the exception of allowing nested sub-commands for grouping large APIs into managable chunks. Examples:
 
@@ -354,9 +354,9 @@ node~$
 
 `mode`'s syntax is a duplicate of `command`'s, with the following additional / altered commands:
 
-* [`.delimiter(string)`](#): Tacks on an additional prompt delimiter for orientation.
-* [`.init(function)`](#): Same as `command`'s `.action`, called once on entering the mode.
-* [`.action(function)`](#): Called on each command submission while in the mode.
+* [`.delimiter(string)`](#modedelimiterstring): Tacks on an additional prompt delimiter for orientation.
+* [`.init(function)`](#modeinitfunction): Same as `command`'s `.action`, called once on entering the mode.
+* [`.action(function)`](#modeactionfunction): Called on each command submission while in the mode.
 
 #### .mode.delimiter(string)
 
