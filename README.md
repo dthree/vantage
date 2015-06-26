@@ -341,24 +341,85 @@ vantage
 ```
 ```bash
 $ node server.js
-mysvr~$ 
-mysvr~$ repl
-mysvr~$ repl: 
-mysvr~$ repl: 6 * 7
+node~$ 
+node~$ repl
+node~$ repl: 
+node~$ repl: 6 * 7
 42
-mysvr~$ repl: Math.random();
-0.453483454843
-mysvr~$ repl: exit
-mysvr~$ 
+node~$ repl: Math.random();
+0.62392647205
+node~$ repl: exit
+node~$ 
 ```
 
 `mode`'s syntax is a duplicate of `command`'s, with the following additional / altered commands:
 
 * [`.delimiter(string)`](#): Tacks on an additional prompt delimiter for orientation.
-* [`.init(args, callback)`](#): Same as `command`'s `.action`, called once on entering the mode.
-* [`.action(command, callback)`](#): Called on each command submission while in the mode.
+* [`.init(function)`](#): Same as `command`'s `.action`, called once on entering the mode.
+* [`.action(function)`](#): Called on each command submission while in the mode.
 
-*Still IP writing...*
+#### .mode.delimiter(string)
+
+This will add on an additional delimiter string to one's vantage prompt upon entering the mode, so the user can differentiate what state he is in.
+
+```js
+vantage
+  .mode('repl')
+  .delimiter('you are in repl>')
+  .action(function(command, callback) {
+    console.log(eval(command));
+  });
+```
+
+```bash
+node~$ 
+node~$ repl
+node~$ you are in repl>  
+node~$ you are in repl> exit
+node~$ 
+```
+#### .mode.init(function)
+
+Behaves exactly like `command.action`, wherein the passed in function is fired once when the user enters the given mode. Passed the same parameters as `command.action`: `args` and `callback`. `init` is helpful when one needs to set up the mode or inform the user of what is happening.
+
+```js
+vantage
+  .mode('sql')
+  .delimiter('sql:')
+  .init(function(args, callback){
+    console.log('Welcome to SQL mode.\nYou can now directly enter arbitrary SQL commands. To exit, type `exit`.');
+    callback();
+  })
+  .action(function(command, callback) {
+    app.query(command, function(res){
+      console.log(res);
+      callback();
+    });
+  });
+```
+
+```bash
+node~$
+node~$ sql
+Welcome to SQL mode.
+You can now directly enter arbitrary SQL commands. To exit, type `exit`.
+node~$ sql: 
+node~$ sql: select first_name, last_name from persons where first_name = 'George';
+
+first_name        last_name
+----------------  ----------------
+George            Clooney
+George            Smith
+George            Stevens
+
+node~$ sql: 
+node~$ sql: exit
+node~$
+```
+
+#### .mode.action(function)
+
+Similar to `command.action`, `mode.action` differs in that it is repeatedly called on each command the user types until the mode is exited. Instead of `args` passed as the first argument, the full `command` string the user typed is passed and it is expected that `mode.action` appropriately handle the command. An example is given just above.
 
 ### .delimiter(string)
 
