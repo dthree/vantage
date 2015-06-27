@@ -13,8 +13,13 @@ Vantage provides a robust, interactive CLI to your live Node application. Access
 
 ![vantage.js demo](http://i.imgur.com/ZwAxqv4.gif)
 
-#### Contents
+- [Huh? What just happened?](#)
 
+- [Tell me more](#)
+
+## Contents
+
+* [Introduction](#introduction)
 * [Getting Started](#getting-started)
   - [Tutorial](#tutorial)
   - [Examples](#examples)
@@ -34,6 +39,17 @@ Vantage provides a robust, interactive CLI to your live Node application. Access
 * [Roadmap](#roadmap)
 * [License](#license)
 
+## Introduction
+
+Inspired by and based on [commander.js](https://www.npmjs.com/package/commander), Vantage allows you to connect into and hop between running Node applications with an interactive prompt provided by [inquirer.js](https://www.npmjs.com/package/inquirer), introducing the possibility of live actions and diagnostics for your development and production environments.
+
+- A first-class CLI interface including tab-completion, command history and built-in help.
+- You build your own API with the familiar syntax of `commander.js`.
+- Build and use community-based extensions for suites of commands.
+- Import community extensions on the fly for live requirements.
+
+Unlike other REPL or CLI modules, Vantage allows you to remotely connect to your live application and access this CLI without interrupting the application. Like an SSH session, Vantage can connect through an unlimited number of running Node instances across multiple machines, piping commands and information to and from your local machine. 
+
 ## Getting Started
 
 ##### Tutorial
@@ -43,39 +59,6 @@ Vantage provides a robust, interactive CLI to your live Node application. Access
 ```bash
 $ npm install -g vantage
 $ vantage tutorial
-```
-##### Tell Me More
-
-By using Vantage, you take your existing application and turn it into a first-class citizen CLI, including:
-
-- Built-in and automated help.
-- Command history (up / down arrows).
-- Tabbed command auto-completion.
-- Support for API plugins.
-- Familiar API based on `commander.js`.
-
-Unlike other REPL or CLI modules, Vantage allows you to remotely connect to your live application and access this CLI without interrupting the application. Like an SSH session, Vantage can connect through an unlimited number of running Node instances across multiple machines, piping commands and information to and from your local machine. 
-
-```bash
-$ npm install vantage -g
-$ vantage 10.40.80.20:80
-$ Connecting to 10.40.80.20:80 using http...
-myapp~$ 
-myapp~$ debug on -v 7
-Turned on debugging with verbosity to 7.
-... [live logging] ...
-...
-...
-myapp~$ debug off
-myapp~$ vantage 10.40.80.40:443 --ssl
-$ Connecting to 10.40.80.20:443 using https...
-myotherapp~$ 
-myotherapp~$ rebuild indexes
-Successfully rebuilt application indexes.
-myotherapp~$
-myotherapp~$ exit
-myapp~$ exit
-$
 ```
 
 ##### Examples
