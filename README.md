@@ -819,10 +819,45 @@ Wait, wait! I can explain:
 $ node websvr.js
 ```
 
-Normally, you would simply see what you logged, no matter how hard you stared. Vantage gave us a prompt:
+Normally, you would simply see what you logged, and would have no interaction with Node. Instead, `vantage` gave us a prompt:
 
-```js
+```bash
 websvr~$ 
 ```
 
-2. 
+2. I typed `help`, which gave me a list of all of `vantages` built-in commands as well as commands I added.
+
+3. In my `websvr.js`, I gave `vantage` a command that would turn on logging *only for* web requests. By logging domains of activity, this assists productivity in debugging. To run this, I typed `debug web`:
+
+```bash
+websvr~$ debug web
+
+Showing all logging for web requests:
+...
+```
+4. I then typed `debug off`, which disabled logging. 
+
+5. By then entering the `repl` command, I entered a special REPL "mode" where I can access the raw javascript and objects in my application, while it's running. This is the equivilant of running `$ node` in your terminal, except it is in the context of your live application!
+
+6. Satisfied with `repl` mode, I exited out of it with the `exit` command.
+
+7. So that's nice, you can access your local app fired in your terminal. But what about remote or daemonized applications? By using the built-in `vantage` command, I remotely connect to my Node database API listening on port `5001`, by running `vantage 127.0.0.1:5001`. 
+
+8. Just like SSH, I'm now "in" the new instance, and my prompt changed to `dbsvr~$`.
+
+9. This server supports another `vantage` mode I made. By typing `sql`, I enter "sql mode". Using this, I typed an arbitrary SQL command and it connected to my database and executed it. When done, I entered `exit`.
+
+10. I felt like checking out the latest trend on Hacker News (from my DB API, of course). I typed `help` and was disappointed to find there was no `hacker-news` API command.
+
+11. Fortunately, someone made an extension for that - an NPM module called `vantage-hacker-news`. To download it and import the commands into `vantage` in realtime, I typed `use vantage-hacker-news`.
+
+12. With this command, `vantage` did a temporary `npm install` on the module and loaded it into the application's memory. By typing `help` again, I can see I now have a new `vantage` command registered: `hacker-news`!
+
+13. I used the command: `hacker-news --length 3`, and this showed me the top 3 items trending on Hacker News. One of them was obviously an article on the Node event loop, because Node is awesome.
+
+14. Satisfied, I typed `exit`, which brought me back to my web server.
+
+15. I then typed `exit -f` (for `--force`) to actually quit the web server, which was running locally in my terminal.
+
+* [Starting to make sense... Show me the video again!](#node-is-awesome)
+* [I get it, I get it. Tell me more.](#contents)
