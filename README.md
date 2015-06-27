@@ -5,11 +5,13 @@
 
 Your existing application. A brand new point of view.
 
-    npm install vantage -g
+    npm install -g vantage
 
-Vantage provides a distributed, interactive command-line interface to your live Node application or web server.
+Vantage provides a robust, interactive CLI to your live Node application. Accessible locally or remotely, it gives a real-time perspective of your application you otherwise haven't had. Extensible by you, vantage opens the door to a brand new world of possibilities that goes as far as your imagination takes it.
 
-Inspired by and based on [commander.js](https://www.npmjs.com/package/commander), Vantage allows you to connect into and hop between running Node applications with an interactive prompt provided by [inquirer.js](https://www.npmjs.com/package/inquirer), giving a real-time perspective of your application you otherwise haven't had.
+##### Node just got even more awesome:
+
+![vantage.js demo](http://i.imgur.com/ZwAxqv4.gif)
 
 #### Contents
 
