@@ -18,12 +18,19 @@ var Vantage = require('./../../lib/vantage')
  */
 
 var vantage
-  , banner = "\n  Database Server\n".white
+  , banner
   , port = process.argv[2] || 5001
   , delimiter = String('node-dbsvr~$').white
   , server
   , debug = false
   ;
+
+banner = 
+ "\n###################################################################################################################\n" + 
+ "#                                                                                                                 #\n" + 
+ "#                                                  Node DB Server                                                 #\n" + 
+ "#                                                                                                                 #\n" + 
+ "###################################################################################################################\n";
 
 server = Vantage()
  .banner(banner)

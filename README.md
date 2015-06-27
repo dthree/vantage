@@ -596,7 +596,7 @@ Vantage uses `Socket.IO` in to handle all communication between instances. The f
 
 - `server_disconnect`: Maps to `disconnect` for `socket.io`.
 
-##### Vantage events
+##### Vantage client / server events
 
 - `client_keypress`: Fires on keypress on local client terminal.
 
@@ -611,6 +611,10 @@ Vantage uses `Socket.IO` in to handle all communication between instances. The f
 - `server_command_executed`: Fires at the end-server once the command has successfully executed.
 
 - `server_command_error`: Fires at the end-server if the command has thrown an error.
+
+##### Vantage general events
+
+- `command_registered`: Fires when `vantage.command` registers a new command.
 
 ## Automation
 

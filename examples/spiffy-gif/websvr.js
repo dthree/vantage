@@ -11,6 +11,7 @@
 var Vantage = require('./../../lib/vantage')
   , colors = require('colors')
   , _ = require('lodash')
+  , repl = require('vantage-repl')
   ;
 
 /**
@@ -18,17 +19,25 @@ var Vantage = require('./../../lib/vantage')
  */
 
 var vantage
-  , banner = 'Web Server'
+  , banner
   , port = process.argv[2] || 5000
   , delimiter = String('node-websvr~$').white
   , server
   , debug = false
   ;
 
+banner = 
+ "\n###################################################################################################################\n" + 
+ "#                                                                                                                 #\n" + 
+ "#                                                  Node Web Server                                                #\n" + 
+ "#                                                                                                                 #\n" + 
+ "###################################################################################################################\n";
+
 server = Vantage()
  .banner(banner)
  .delimiter(delimiter)
  .listen(port)
+ .use(repl)
  .show();
 
 server
@@ -66,6 +75,20 @@ server
       }
       go();
       cb();
+    } else {
+      cb();
     }
 
   });
+
+global.app = {
+  requests: 87,
+}
+
+global.nodeIs = function() {
+  setTimeout(function(){ console.log("\n\n  Really,".white) }, 1);
+  setTimeout(function(){ console.log("    Really,".white) }, 300);
+  setTimeout(function(){ console.log("      Really,".white) }, 600);
+  setTimeout(function(){ console.log("        Awesome.\n".cyan) }, 900);
+  return '';
+}
