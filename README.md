@@ -7,7 +7,7 @@ Your existing application. A brand new point of view.
 
     npm install vantage -g
 
-Vantage provides a robust, interactive CLI to your live Node application. Accessible locally or remotely, vantage provides new tools, brand new ideas and a real-time perspective of your application you otherwise haven't had.
+Vantage provides a robust, interactive CLI to your live Node application. Accessible locally or remotely, vantage gives a real-time perspective of your application you otherwise haven't had, opening the door to a new world of possibilities that goes as far as your imagination.
 
 ##### Node just got even more awesome:
 
