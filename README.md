@@ -13,9 +13,9 @@ Vantage provides a robust, interactive CLI to your live Node application. Access
 
 ![vantage.js demo](http://i.imgur.com/ZwAxqv4.gif)
 
-* [Huh? What just happened?](#er-that-gif-im-so-confused)
-* [Voodoo magic! Show me the source!](https://github.com/dthree/vantage/tree/master/examples/spiffy-gif/)
-* [Hmmm... Tell me more.](#contents)
+* [What just happened?](#er-that-gif-im-so-confused)
+* [That's voodoo magic: show me the source](https://github.com/dthree/vantage/tree/master/examples/spiffy-gif/)
+* [Tell me more](#contents)
 
 ## Contents
 
@@ -859,5 +859,5 @@ Showing all logging for web requests:
 
 15. I then typed `exit -f` (for `--force`) to actually quit the web server, which was running locally in my terminal.
 
-* [Starting to make sense... Show me the video again!](#node-is-awesome)
-* [I get it, I get it. Tell me more.](#contents)
+* [Ah. Show me the video again](#node-is-awesome)
+* [I get it, I get it. Tell me more](#contents)
