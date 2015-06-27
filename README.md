@@ -3,19 +3,18 @@
 
 [<img src="https://travis-ci.org/dthree/vantage.svg" alt="Build Status" />](http://travis-ci.org/dthree/vantage)
 
-Your existing application. A brand new point of view.
+Your existing application. A brand-new point of view.
 
     npm install -g vantage
 
 Vantage provides a robust, interactive CLI to your live Node application. Accessible locally or remotely, it gives a real-time perspective of your application you otherwise haven't had. Extensible by you, vantage opens the door to a brand new world of possibilities that goes as far as your imagination takes it.
 
-##### Node just got even more awesome:
+##### Node is awesome:
 
 ![vantage.js demo](http://i.imgur.com/ZwAxqv4.gif)
 
-- [Huh? What just happened?](#)
-
-- [Tell me more](#)
+[Huh? What just happened?](#)
+[Tell me more](#contents)
 
 ## Contents
 
@@ -38,6 +37,7 @@ Vantage provides a robust, interactive CLI to your live Node application. Access
 * [Extensions](#extensions)
 * [Roadmap](#roadmap)
 * [License](#license)
+* [Footnotes](#footnotes)
 
 ## Introduction
 
@@ -809,3 +809,9 @@ The support is limited to the latest versions of Node as I use promises, however
 ## License
 
 MIT
+
+## Footnotes
+
+##### Er, that GIF... What did I just watch?
+
+
