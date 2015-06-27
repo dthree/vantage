@@ -11,7 +11,7 @@ Vantage provides a distributed, interactive command-line interface to your live 
 
 Inspired by and based on [commander.js](https://www.npmjs.com/package/commander), Vantage allows you to connect into and hop between running Node applications with an interactive prompt provided by [inquirer.js](https://www.npmjs.com/package/inquirer), giving a real-time perspective of your application you otherwise haven't had.
 
-![vantage.js demo](http://i.imgur.com/JVcRZ09.gif?1)
+![vantage.js demo](http://i.imgur.com/ZwAxqv4.gifv)
 
 #### Contents
 
