@@ -13,8 +13,9 @@ Vantage provides a robust, interactive CLI to your live Node application. Access
 
 ![vantage.js demo](http://i.imgur.com/ZwAxqv4.gif)
 
-[Huh? What just happened?](#)
-[Tell me more](#contents)
+* [Huh? What just happened?](#er-that-gif-im-so-confused)
+* [Voodoo magic! Show me the source!](https://github.com/dthree/vantage/tree/master/examples/spiffy-gif/)
+* [Hmmm... Tell me more.](#contents)
 
 ## Contents
 
@@ -802,16 +803,26 @@ The support is limited to the latest versions of Node as I use promises, however
 * `node`: `>=0.11.16`
 * `iojs`: `>=1.0.0`
 
-##### Known Issues
-
-*No known issues as of 20 June.*
-
 ## License
 
 MIT
 
 ## Footnotes
 
-##### Er, that GIF... What did I just watch?
+##### Er, that GIF... I'm so confused...
 
+Wait, wait! I can explain:
 
+1. In my terminal, I started a local Node web server:
+
+```js
+$ node websvr.js
+```
+
+Normally, you would simply see what you logged, no matter how hard you stared. Vantage gave us a prompt:
+
+```js
+websvr~$ 
+```
+
+2. 
