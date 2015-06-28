@@ -79,18 +79,17 @@ $ vantage tutorial
 Add the following to a file named `server.js`.
 
 ```js
-var Vantage = require('vantage');
-var server = new Vantage();
+var vantage = require('vantage')();
 
-server
-  .command('foo')
-  .description('Outputs "bar".')
+vantage
+  .command("foo")
+  .description("Outputs 'bar'.")
   .action(function(args, cb) {
-    console.log('bar');
+    console.log("bar");
     cb();
   });
   
-server
+vantage
   .delimiter('webapp~$')
   .listen(80)
   .show();
