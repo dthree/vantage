@@ -825,7 +825,7 @@ Normally, you would simply see what you logged, and would have no interaction wi
 websvr~$ 
 ```
 
-2. I typed `help`, which gave me a list of all of `vantages` built-in commands as well as commands I added.
+2. I typed `help`, which gave me a list of all of `vantage`'s built-in commands as well as commands I added.
 
 3. In my `websvr.js`, I gave `vantage` a command that would turn on logging *only for* web requests. By logging domains of activity, this assists productivity in debugging. To run this, I typed `debug web`:
 
@@ -841,7 +841,7 @@ Showing all logging for web requests:
 
 6. Satisfied with `repl` mode, I exited out of it with the `exit` command.
 
-7. So that's nice, you can access your local app fired in your terminal. But what about remote or daemonized applications? By using the built-in `vantage` command, I remotely connect to my Node database API listening on port `5001`, by running `vantage 127.0.0.1:5001`. 
+7. So that's nice, you can access the local Node instance in your terminal. But what about remote or daemonized applications? By using the built-in `vantage` command, I remotely connect to my Node database API listening on port `5001`, by running `vantage 127.0.0.1:5001`. 
 
 8. Just like SSH, I'm now "in" the new instance, and my prompt changed to `dbsvr~$`.
 
@@ -859,5 +859,5 @@ Showing all logging for web requests:
 
 15. I then typed `exit -f` (for `--force`) to actually quit the web server, which was running locally in my terminal.
 
-* [Ah. Show me the video again](#node-is-awesome)
+* [Ah. Show me the GIF again](#node-is-awesome)
 * [I get it, I get it. Tell me more](#contents)
