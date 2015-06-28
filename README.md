@@ -76,7 +76,13 @@ $ vantage tutorial
 
 ##### Quick Start
 
-Add the following to a file named `server.js`.
+First, install `vantage` globally:
+
+```bash
+$ npm install -g vantage
+```
+
+Now, add the following to a file named `server.js`.
 
 ```js
 // Create a new instance of vantage.
@@ -100,7 +106,7 @@ vantage
   .listen(80)
   .show();
 ```
-Now run `server.js`. You Node app has become a CLI.
+Run `server.js`. You Node app has become a CLI.
 
 ```bash
 $ node server.js
