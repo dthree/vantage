@@ -9,7 +9,7 @@ Your existing application. A brand new point of view.
 
 Vantage provides a robust, interactive CLI to your live Node application. Accessible locally or remotely, it gives a real-time perspective of your application you otherwise haven't had. Extensible by you, vantage opens the door to a brand new world of possibilities that goes as far as your imagination takes it.
 
-##### Node just got even more awesome:
+##### Node is awesome:
 
 ![vantage.js demo](http://i.imgur.com/ZwAxqv4.gif)
 
