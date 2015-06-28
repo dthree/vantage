@@ -1,6 +1,6 @@
 {
   "name": "vantage",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "A distributed, interactive CLI prompt for your application.",
   "main": "./lib/vantage.js",
   "scripts": {
