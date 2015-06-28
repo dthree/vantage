@@ -1,7 +1,5 @@
 # Spiffy README.md GIF
 
-*Before you get too confused, there isn't a GIF yet. In progress...*
-
 These are the source files that were used to produce the GIF on vantage's README.md. Probably not the best place to get started, but if you are curious or don't believe that vantage did those things, dive in.
  
 ### Running the files

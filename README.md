@@ -3,18 +3,23 @@
 
 [<img src="https://travis-ci.org/dthree/vantage.svg" alt="Build Status" />](http://travis-ci.org/dthree/vantage)
 
-Your existing application. A brand new point of view.
+Your existing application. A brand-new point of view.
 
     npm install -g vantage
 
-Vantage provides a robust, interactive CLI to your live Node application. Accessible locally or remotely, it gives a real-time perspective of your application you otherwise haven't had. Extensible by you, vantage opens the door to a brand new world of possibilities that goes as far as your imagination takes it.
+Vantage provides a foundation for adding a custom, interactive CLI to your live Node application. Accessible locally or remotely, it gives a real-time perspective from inside your application. Fully customizable and extensible, you can easily add any feature you need to develop, debug and gain insight in your development or production application. 
 
 ##### Node is awesome:
 
 ![vantage.js demo](http://i.imgur.com/ZwAxqv4.gif)
 
-#### Contents
+* [What just happened?](#er-that-gif-im-so-confused)
+* [That's voodoo magic: show me the source](https://github.com/dthree/vantage/tree/master/examples/spiffy-gif/)
+* [Tell me more](#contents)
 
+## Contents
+
+* [Introduction](#introduction)
 * [Getting Started](#getting-started)
   - [Tutorial](#tutorial)
   - [Examples](#examples)
@@ -33,6 +38,18 @@ Vantage provides a robust, interactive CLI to your live Node application. Access
 * [Extensions](#extensions)
 * [Roadmap](#roadmap)
 * [License](#license)
+* [Footnotes](#footnotes)
+
+## Introduction
+
+Inspired by and based on [commander.js](https://www.npmjs.com/package/commander), Vantage allows you to connect into and hop between running Node applications with an interactive prompt provided by [inquirer.js](https://www.npmjs.com/package/inquirer), introducing the possibility of live actions and diagnostics for your development and production environments.
+
+- A first-class CLI interface including tab-completion, command history and built-in help.
+- You build your own API with the familiar syntax of `commander.js`.
+- Build and use community-based extensions for suites of commands.
+- Import community extensions on the fly for live requirements.
+
+Unlike other REPL or CLI modules, Vantage allows you to remotely connect to your live application and access this CLI without interrupting the application. Like an SSH session, Vantage can connect through an unlimited number of running Node instances across multiple machines, piping commands and information to and from your local machine. 
 
 ## Getting Started
 
@@ -43,39 +60,6 @@ Vantage provides a robust, interactive CLI to your live Node application. Access
 ```bash
 $ npm install -g vantage
 $ vantage tutorial
-```
-##### Tell Me More
-
-By using Vantage, you take your existing application and turn it into a first-class citizen CLI, including:
-
-- Built-in and automated help.
-- Command history (up / down arrows).
-- Tabbed command auto-completion.
-- Support for API plugins.
-- Familiar API based on `commander.js`.
-
-Unlike other REPL or CLI modules, Vantage allows you to remotely connect to your live application and access this CLI without interrupting the application. Like an SSH session, Vantage can connect through an unlimited number of running Node instances across multiple machines, piping commands and information to and from your local machine. 
-
-```bash
-$ npm install vantage -g
-$ vantage 10.40.80.20:80
-$ Connecting to 10.40.80.20:80 using http...
-myapp~$ 
-myapp~$ debug on -v 7
-Turned on debugging with verbosity to 7.
-... [live logging] ...
-...
-...
-myapp~$ debug off
-myapp~$ vantage 10.40.80.40:443 --ssl
-$ Connecting to 10.40.80.20:443 using https...
-myotherapp~$ 
-myotherapp~$ rebuild indexes
-Successfully rebuilt application indexes.
-myotherapp~$
-myotherapp~$ exit
-myapp~$ exit
-$
 ```
 
 ##### Examples
@@ -92,34 +76,44 @@ $
 
 ##### Quick Start
 
-Add the following to a file named `server.js`.
+First, install `vantage` globally:
+
+```bash
+$ npm install -g vantage
+```
+
+Now, add the following to a file named `server.js`.
 
 ```js
-var Vantage = require('vantage');
-var server = new Vantage();
+// Create a new instance of vantage.
+var vantage = require('vantage')();
 
-server
-  .command('foo')
-  .description('Outputs "bar".')
+// Add the command `foo`, which 
+// outputs "bar".
+vantage
+  .command("foo")
+  .description("Outputs 'bar'.")
   .action(function(args, cb) {
-    console.log('bar');
+    console.log("bar");
     cb();
   });
   
-server
+// Name your prompt delimiter 
+// "webapp~$", listen on port 80 
+// and show the vantage prompt.
+vantage
   .delimiter('webapp~$')
   .listen(80)
   .show();
 ```
-
-You can now run it directly. The `server.show()` command enables the prompt from the terminal that started the application:
+Run `server.js`. You Node app has become a CLI.
 
 ```bash
 $ node server.js
 webapp~$ 
 ```
 
-With `server.listen(80)` given above, you can remotely connect to the application from another terminal:
+Open another terminal window. Because `vantage` is listening on port 80, you can remotely connect to it:
 
 ```bash
 $ vantage 80
@@ -127,16 +121,18 @@ $ Connecting to 127.0.0.1:80 using http...
 $ Connected successfully.
 webapp~$ 
 ```
-You can now execute your application's CLI commands remotely, and the `stdout` from the application will pipe to your terminal:
+
+Since you created the `foo` command, let's try it:
 
 ```bash
-webapp~$
 webapp~$ foo
 bar
 webapp~$
 ```
 
-A built-in help lists all available commands:
+Even though you're remotely connected to `server.js`, `vantage` sends the responses back to you.
+
+Type `help` to see `vantage`'s built in commands in addition to the one you added.
 
 ```bash
 webapp~$ help
@@ -150,6 +146,8 @@ webapp~$ help
 
 webapp~$
 ```
+
+That's the basic idea. Once you get the hang of it, read on to learn some of the fancier things `vantage` can do.
 
 ## Methods
 
@@ -823,10 +821,61 @@ The support is limited to the latest versions of Node as I use promises, however
 * `node`: `>=0.11.16`
 * `iojs`: `>=1.0.0`
 
-##### Known Issues
-
-*No known issues as of 20 June.*
-
 ## License
 
 MIT
+
+## Footnotes
+
+##### Er, that GIF... I'm so confused...
+
+Wait, wait! I can explain:
+
+1. In my terminal, I started a local Node web server:
+
+```js
+$ node websvr.js
+```
+
+Normally, you would simply see what you logged, and would have no interaction with Node. Instead, `vantage` gave us a prompt:
+
+```bash
+websvr~$ 
+```
+
+2. I typed `help`, which gave me a list of all of `vantage`'s built-in commands as well as commands I added.
+
+3. In my `websvr.js`, I gave `vantage` a command that would turn on logging *only for* web requests. By logging domains of activity, this assists productivity in debugging. To run this, I typed `debug web`:
+
+```bash
+websvr~$ debug web
+
+Showing all logging for web requests:
+...
+```
+4. I then typed `debug off`, which disabled logging. 
+
+5. By then entering the `repl` command, I entered a special REPL "mode" where I can access the raw javascript and objects in my application, while it's running. This is the equivilant of running `$ node` in your terminal, except it is in the context of your live application!
+
+6. Satisfied with `repl` mode, I exited out of it with the `exit` command.
+
+7. So that's nice, you can access the local Node instance in your terminal. But what about remote or daemonized applications? By using the built-in `vantage` command, I remotely connect to my Node database API listening on port `5001`, by running `vantage 127.0.0.1:5001`. 
+
+8. Just like SSH, I'm now "in" the new instance, and my prompt changed to `dbsvr~$`.
+
+9. This server supports another `vantage` mode I made. By typing `sql`, I enter "sql mode". Using this, I typed an arbitrary SQL command and it connected to my database and executed it. When done, I entered `exit`.
+
+10. I felt like checking out the latest trend on Hacker News (from my DB API, of course). I typed `help` and was disappointed to find there was no `hacker-news` API command.
+
+11. Fortunately, someone made an extension for that - an NPM module called `vantage-hacker-news`. To download it and import the commands into `vantage` in realtime, I typed `use vantage-hacker-news`.
+
+12. With this command, `vantage` did a temporary `npm install` on the module and loaded it into the application's memory. By typing `help` again, I can see I now have a new `vantage` command registered: `hacker-news`!
+
+13. I used the command: `hacker-news --length 3`, and this showed me the top 3 items trending on Hacker News. One of them was obviously an article on the Node event loop, because Node is awesome.
+
+14. Satisfied, I typed `exit`, which brought me back to my web server.
+
+15. I then typed `exit -f` (for `--force`) to actually quit the web server, which was running locally in my terminal.
+
+* [Ah. Show me the GIF again](#node-is-awesome)
+* [I get it, I get it. Tell me more](#contents)
