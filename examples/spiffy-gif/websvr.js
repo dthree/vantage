@@ -1,7 +1,9 @@
 
 /**
  * Mock web server using vantage.js.
- * Used for README.md GIF.
+ * Used for README.md demo GIF.
+ * This is the server that is started
+ * at the beginning of the GIF.
  */
 
 /**
@@ -10,8 +12,8 @@
 
 var Vantage = require('./../../lib/vantage')
   , colors = require('colors')
-  , _ = require('lodash')
   , repl = require('vantage-repl')
+  , _ = require('lodash')
   ;
 
 /**
@@ -19,68 +21,80 @@ var Vantage = require('./../../lib/vantage')
  */
 
 var vantage
-  , banner
-  , port = process.argv[2] || 5000
-  , delimiter = String('node-websvr~$').white
-  , server
   , debug = false
+  , banner = 
+     "\n###################################################################################################################\n" + 
+     "#                                                                                                                 #\n" + 
+     "#                                                  Node Web Server                                                #\n" + 
+     "#                                                                                                                 #\n" + 
+     "###################################################################################################################\n"
   ;
 
-banner = 
- "\n###################################################################################################################\n" + 
- "#                                                                                                                 #\n" + 
- "#                                                  Node Web Server                                                #\n" + 
- "#                                                                                                                 #\n" + 
- "###################################################################################################################\n";
-
-server = Vantage()
+// This starts up vantage: 
+// - Gives it a banner on logon,
+// - Sets the prompt delimiter,
+// - Makes it listen on port 5000,
+// - Imports the REPL npm module,
+// - Shows the prompt on app startup.
+vantage = Vantage()
  .banner(banner)
- .delimiter(delimiter)
- .listen(port)
+ .delimiter("node-websvr~$".white)
+ .listen(process.argv[2] || 5000)
  .use(repl)
  .show();
 
-server
-  .command('debug <domain>', 'Demo debug mode.') 
+// This registers the `debug` command seen
+// in the demo. No, it's not real logging
+// for the sake of brevity, but you would
+// just tie this in to your app's logging
+// logic.
+vantage
+  .command("debug <domain>", "Demo debug mode.") 
   .action(function(args, cb) {
-    var self = this;
-    if (args.domain == "off") {
-      debug = false; 
-      cb();
-      return;
-    }
+    var self = this
+      , verbs = ["GET", "PUT", "POST", "PATCH", "DELETE"]
+      , routes = ["/", "/client/record/", "/group/report/pdf/", "/marketing/ftp/files/", "/office/log/"]
+      , rand
+      , time
+      , str
+      ;
+
+    // This isn't important - just makes 
+    // random logging - you aren't going to
+    // use this.
+    debug = (args.domain == "off") ? false : debug;
     if (args.domain == "web") {
       console.log('\nShowing all logging for web requests:\n')
       debug = true;
-      var verbs = ["GET", "PUT", "POST", "PATCH", "DELETE"];
-      var routes = ["/", "/client/record/", "/group/report/pdf/", "/marketing/ftp/files/", "/office/log/"];
-      var go = function() {
-        if (debug == true) {
-          setTimeout(function(){
-            var rand = Math.round(Math.random()*5);
-            rand = (rand > 4) ? 4 : (rand < 0) ? 0 : rand;
-            var time = Math.round(Math.random()*200);
-            time = (time < 60) ? String(time).green
-              : (time < 200) ? String(time).yellow
-              : String(time).red;
-            var str = String(verbs[rand]).white
-              + " " + String(routes[rand]) + Math.round(Math.random()*100000)
-              + " (" + time + "ms".white + ")";
-            if (debug == true) {
-              self.log(str);
-              go();
-            }
-          }, Math.round(Math.random()*500));
-        }
+      function go() {
+        setTimeout(function(){
+          rand = Math.round(Math.random()*5);
+          rand = (rand > 4) ? 4 : (rand < 0) ? 0 : rand;
+          time = Math.round(Math.random()*200);
+          time = (time < 60) ? String(time).green
+            : (time < 200) ? String(time).yellow
+            : String(time).red;
+          str = String(verbs[rand]).white
+            + " " + String(routes[rand]) + Math.round(Math.random()*100000)
+            + " (" + time + "ms".white + ")";
+          if (debug == true) {
+            self.log(str);
+            go();
+          }
+        }, Math.round(Math.random()*500));
       }
       go();
-      cb();
-    } else {
-      cb();
     }
-
+    cb();
   });
 
+
+// These are global functions used by the
+// REPL module in the demo:
+// repl: app.requests
+// 87
+// repl: nodeIs();
+// ... Awesome.
 global.app = {
   requests: 87,
 }
