@@ -79,8 +79,11 @@ $ vantage tutorial
 Add the following to a file named `server.js`.
 
 ```js
+// Create a new instance of vantage.
 var vantage = require('vantage')();
 
+// Add the command `foo`, which 
+// outputs "bar".
 vantage
   .command("foo")
   .description("Outputs 'bar'.")
@@ -89,20 +92,22 @@ vantage
     cb();
   });
   
+// Name your prompt delimiter 
+// "webapp~$", listen on port 80 
+// and show the vantage prompt.
 vantage
   .delimiter('webapp~$')
   .listen(80)
   .show();
 ```
-
-You can now run it directly. The `server.show()` command enables the prompt from the terminal that started the application:
+Now run `server.js`. You Node app has become a CLI.
 
 ```bash
 $ node server.js
 webapp~$ 
 ```
 
-With `server.listen(80)` given above, you can remotely connect to the application from another terminal:
+Open another terminal window. Because `vantage` is listening on port 80, you can remotely connect to it:
 
 ```bash
 $ vantage 80
@@ -110,16 +115,18 @@ $ Connecting to 127.0.0.1:80 using http...
 $ Connected successfully.
 webapp~$ 
 ```
-You can now execute your application's CLI commands remotely, and the `stdout` from the application will pipe to your terminal:
+
+Since you created the `foo` command, let's try it:
 
 ```bash
-webapp~$
 webapp~$ foo
 bar
 webapp~$
 ```
 
-A built-in help lists all available commands:
+Even though you're remotely connected to `server.js`, `vantage` sends the responses back to you.
+
+Type `help` to see `vantage`'s built in commands in addition to the one you added.
 
 ```bash
 webapp~$ help
@@ -133,6 +140,8 @@ webapp~$ help
 
 webapp~$
 ```
+
+That's the basic idea. Once you get the hang of it, read on to learn some of the fancier things `vantage` can do.
 
 ## Methods
 
