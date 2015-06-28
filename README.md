@@ -36,6 +36,7 @@ Vantage provides a foundation for adding a custom, interactive CLI to your live 
 * [Firewall](#firewall)
 * [Authentication](#authentication)
 * [Extensions](#extensions)
+  - [Creating a Vantage Extension](#creating-an-extension)
 * [Roadmap](#roadmap)
 * [License](#license)
 * [Footnotes](#footnotes)
@@ -763,7 +764,11 @@ This will then be able to support multiple authentication strategies based on sy
 
 ## Extensions
 
-Vantage supports command extensions and this is the primary reason for supporting sub-commands. For example, someone could create a suite of server diagnostic commands under the namespace `system` and publish it as `vantage-system`:
+Vantage supports command extensions and this is the primary reason for supporting sub-commands. For example, someone could create a suite of server diagnostic commands under the namespace `system` and publish it as `vantage-system`.
+
+##### Programmatic use
+
+Vantage has a `.use(extension)` function, which expects a Node module extension (exposed as a function). You can also pass in the string of the module as an alternative, and `vantage` will `require` it for you.
 
 ```js
 var system = require('vantage-system');
@@ -777,34 +782,49 @@ vantage.use(system);
 */
 ```
 
-### .use(middleware)
-
-Imports an array of vantage commands and registers them.
-
-To use your module must expose an array of commands listed as objects:
-
 ```js
-var status = {
-  command: 'system status',
-  description: 'lists a summary of system resources',
-  options: [
-    ['-p, --pretty', 'Displays them in a pretty fashion.']
-  ],
-  action: function(args, cb) {
-    // do things...
-    cb();
-  }
-}
-
-module.exports = [status, /* ... more commands */];
+// Does the same thing as above.
+vantage.use('vantage-system');
 ```
+
+##### Realtime use
+
+Forgot to install a useful extension in development and now you need it live? No problem.
+
+Vantage has a built-in `use` command, which will automatically import a given NPM module acting as a `vantage` extension, and register the commands contained inside while the app is still live. This import has an in-memory lifecycle and the module is dumped when the thread quits.
+
 ```bash
-npm install vantage-system
+node~$
+node~$ use vantage-repl
+Installing vantage-repl from the NPM registry:
+Successfully registered 1 new command.
+node~$
+node~$ repl
+node~$ repl: 6*8
+48
+node~$ repl:
 ```
+
+### Creating an extension
+
+Creating and publishing a vantage extension is simple. Simply expose your module as a function which takes two parameters - `vantage` and `options`. When your module is imported by `vantage`, it will pass itself in as the first object, and so you are free to add any commands or configuration that `vantage` supports.
+
 ```js
-var system = require('vantage-system');
-vantage.use(system);
+module.exports = function(vantage, options) {
+  
+  vantage.
+    .command("foo", "Outputs 'bar'.")
+    .action(function(args, cb){
+      console.log("bar");
+      cb();
+    });
+
+  // ... more commands!
+
+}
 ```
+
+The options exist so the user can pass in customizations to your module. In documenting your `vantage` extension, you would lay out your supported options for the user.
 
 ## Roadmap
 
