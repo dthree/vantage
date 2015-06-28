@@ -829,7 +829,7 @@ MIT
 
 ##### Er, that GIF... I'm so confused...
 
-Wait, wait! I can explain:
+That's okay. Here's what happened:
 
 1. In my terminal, I started a local Node web server:
 
@@ -845,15 +845,9 @@ websvr~$
 
 2. I typed `help`, which gave me a list of all of `vantage`'s built-in commands as well as commands I added.
 
-3. In my `websvr.js`, I gave `vantage` a command that would turn on logging *only for* web requests. By logging domains of activity, this assists productivity in debugging. To run this, I typed `debug web`:
+3. In my `websvr.js`, I gave `vantage` a command that would turn on logging *only for* web requests. By logging domains of activity, this assists productivity in debugging. To run this, I typed `debug web`, and it started logging all web requests.
 
-```bash
-websvr~$ debug web
-
-Showing all logging for web requests:
-...
-```
-4. I then typed `debug off`, which disabled logging. 
+4. I then typed `debug off`, which disabled log output. 
 
 5. By then entering the `repl` command, I entered a special REPL "mode" where I can access the raw javascript and objects in my application, while it's running. This is the equivilant of running `$ node` in your terminal, except it is in the context of your live application!
 
@@ -878,4 +872,4 @@ Showing all logging for web requests:
 15. I then typed `exit -f` (for `--force`) to actually quit the web server, which was running locally in my terminal.
 
 * [Ah. Show me the GIF again](#node-is-awesome)
-* [I get it, I get it. Tell me more](#contents)
+* [I get it, I get it. *Tell me more*](#contents)
