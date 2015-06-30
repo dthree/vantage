@@ -7,7 +7,7 @@ Your existing application. A brand-new point of view.
 
     npm install -g vantage
 
-Vantage provides a foundation for adding a custom, interactive CLI to your live Node application. Accessible locally or remotely, it gives a real-time perspective from inside your application. Fully customizable and extensible, you can easily add any feature you need to develop, debug and gain insight in your development or production application. 
+Vantage provides a foundation for adding a custom, interactive CLI to your live Node application. Accessible locally or remotely, it gives a real-time perspective from inside your app. Customizable and extensible, easily add any feature you need for tooling, debugging and a new insight in your dev or production app. 
 
 ##### Node is awesome:
 
@@ -24,6 +24,7 @@ Vantage provides a foundation for adding a custom, interactive CLI to your live 
   - [Tutorial](#tutorial)
   - [Examples](#examples)
   - [Quick Start](#quick-start)
+  - [Slack Channel](#slack-channel)
 * [Methods](#methods)
   - [.command](#commandcommand-description)
   - [.mode](#modecommand-description)
@@ -149,6 +150,10 @@ webapp~$
 ```
 
 That's the basic idea. Once you get the hang of it, read on to learn some of the fancier things `vantage` can do.
+
+##### Slack Channel
+
+Feedback / suggestions / general Q&A? Pop me an email at threedeecee @ gmail.com for an invite to the `vantagejs` Slack channel.
 
 ## Methods
 
