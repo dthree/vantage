@@ -11,7 +11,9 @@ var commander = require('commander'),
     .version('0.0.1')
     .arguments('[server]')
     .option('-s, --ssl', "Connect using SSL.")
-    .action(function(cmd, env){
+    .option('-u, --user [user]', "Connect as a given user.")
+    .option('-p, --pass [user]', "Password for given user.")
+    .action(function(cmd, env) {
       cmdValue = cmd;
       envValue = env;
     });
@@ -24,8 +26,10 @@ var commander = require('commander'),
     process.exit(1);
   } else {
 
-    if (envValue && envValue.ssl === true) {
-      options.ssl = true;
+    if (envValue) {
+      options.ssl = (envValue.ssl) ? true : void 0;
+      options.user = (envValue.user) ? envValue.user : void 0;
+      options.pass = (envValue.pass) ? envValue.pass : void 0;
     }
 
     var str = (!cmdValue) ? '' : cmdValue;
@@ -63,7 +67,22 @@ var commander = require('commander'),
 
     var vantage = new Vantage();
 
-    return new Vantage().connect(server, port, options).then(function() {
+    // If we aren't trying to go anywhere, 
+    // just do a local instance.
+    if (cmdValue === undefined) {
+      vantage.show(); 
+      return;
+    }
 
+    return new Vantage().connect(server, port, options).then(function(err, data) {
+      if (err) {
+        vantage.log(data);
+        vantage._pause();
+        process.exit(1);
+      }
+    }).catch(function(data){
+      vantage.log(data);
+      vantage._pause();
+      process.exit(1);
     });
   }

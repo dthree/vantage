@@ -219,6 +219,10 @@ vantage
   // ...
 ```
 
+#### .command.hidden()
+
+Makes the command invisible though executable. Removes from all automated help menus and tabbed auto-completion.
+
 #### .command.option(string, [description])
 
 You can provide both short and long versions of an option. Examples:
