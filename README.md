@@ -9,8 +9,6 @@ Your existing application. A brand-new point of view.
 
 Vantage provides a foundation for adding a custom, interactive CLI to your live Node application. Accessible locally or remotely, it gives a real-time perspective from inside your app. Customizable and extensible, easily add any feature you need for tooling, debugging and a new insight in your dev or production app. 
 
-##### Node is awesome:
-
 ![vantage.js demo](http://i.imgur.com/ZwAxqv4.gif)
 
 * [What just happened?](#er-that-gif-im-so-confused)
@@ -896,5 +894,5 @@ websvr~$
 
 15. I then typed `exit -f` (for `--force`) to actually quit the web server, which was running locally in my terminal.
 
-* [Ah. Show me the GIF again](#node-is-awesome)
+* [Ah. Show me the GIF again](#)
 * [I get it, I get it. *Tell me more*](#contents)
