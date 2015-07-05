@@ -48,7 +48,7 @@ vantage = Vantage()
 vantage
   .mode("sql", "Demo SQL mode.") 
   .init(function(args, cb){
-    console.log("\n  Entering SQL Mode. You can now execute arbitrary SQL on your DB.\n  To exit, type `exit`.\n");
+    this.log("\n  Entering SQL Mode. You can now execute arbitrary SQL on your DB.\n  To exit, type `exit`.\n");
     cb();
   })
   .action(function(command, cb) {
@@ -58,6 +58,6 @@ vantage
       "  George            Clooney \n" + 
       "  George            Smith \n" + 
       "  George            Stevens \n";
-    console.log(str);
+    this.log(str);
     cb();
   });

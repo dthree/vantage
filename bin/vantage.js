@@ -38,7 +38,6 @@ var commander = require('commander'),
       var fs = require('fs');
       var path = require('path');
       var file = '/../examples/tutorial/tutorial.js';
-      console.log(__dirname + file);
       if (fs.existsSync(__dirname + file)) {
         require(__dirname + file); return;
       } else {
