@@ -3,13 +3,23 @@
 
 [<img src="https://travis-ci.org/dthree/vantage.svg" alt="Build Status" />](http://travis-ci.org/dthree/vantage)
 
-Your existing application. A brand-new point of view.
+> Your existing application. A brand-new point of view.
 
-    npm install -g vantage
+> Vantage = `CLI` + `SSH` + `REPL` for your live node app. Immediately.
+
+```bash
+npm install -g vantage
+```
+```js
+require('vantage')().listen(4000);
+```
+```bash        
+$ vantage 4000
+nodesvr:4000~$ 
+```
+
 
 Vantage provides a foundation for adding a custom, interactive CLI to your live Node application. Accessible locally or remotely, it gives a real-time perspective from inside your application. Fully customizable and extensible, you can easily add any feature you need to develop, debug and gain insight in your development or production application. 
-
-##### Node is awesome:
 
 ![vantage.js demo](http://i.imgur.com/ZwAxqv4.gif)
 
