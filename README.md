@@ -3,18 +3,20 @@
 
 [<img src="https://travis-ci.org/dthree/vantage.svg" alt="Build Status" />](http://travis-ci.org/dthree/vantage)
 
-Your existing application. A brand-new point of view.
+> Your existing application. A brand-new point of view.
 
-    npm install -g vantage
+```bash
+npm install -g vantage
+```
+Vantage = `CLI` + `SSH` + `REPL` for your live node app. In one line.
 
-Vantage provides a foundation for adding a custom, interactive CLI to your live Node application. Accessible locally or remotely, it gives a real-time perspective from inside your application. Fully customizable and extensible, you can easily add any feature you need to develop, debug and gain insight in your development or production application. 
-
-##### Node is awesome:
-
+```js
+require('vantage')().listen(4000);
+```
 ![vantage.js demo](http://i.imgur.com/ZwAxqv4.gif)
 
 * [What just happened?](#er-that-gif-im-so-confused)
-* [That's voodoo magic: show me the source](https://github.com/dthree/vantage/tree/master/examples/spiffy-gif/)
+* [That's voodoo magic: show me the code](https://github.com/dthree/vantage/tree/master/examples/spiffy-gif/)
 * [Tell me more](#contents)
 
 ## Contents
@@ -43,20 +45,21 @@ Vantage provides a foundation for adding a custom, interactive CLI to your live 
 
 ## Introduction
 
-Inspired by and based on [commander.js](https://www.npmjs.com/package/commander), Vantage allows you to connect into and hop between running Node applications with an interactive prompt provided by [inquirer.js](https://www.npmjs.com/package/inquirer), introducing the possibility of live actions and diagnostics for your development and production environments.
+Inspired by and based on [commander.js](https://www.npmjs.com/package/commander), vantage turns your live Node app into a CLI with an interactive prompt provided by [inquirer.js](https://www.npmjs.com/package/inquirer). Accessible locally or remotely, Vantage lets build your own API and import community extensions, introducing the possibility of live activity and diagnostics for your `dev` and `prod` environments.
 
-- A first-class CLI interface including tab-completion, command history and built-in help.
-- You build your own API with the familiar syntax of `commander.js`.
-- Build and use community-based extensions for suites of commands.
-- Import community extensions on the fly for live requirements.
+- Node now has a first-class CLI: tab-completion, history, piping, you name it.
+- Build your own API with the familiar syntax of `commander.js`.
+- Build and use community extensions for suites of commands: coded or in realtime.
+- Production ready, with authentication middlware and a basic firewall.
+- Built-in REPL.
 
-Unlike other REPL or CLI modules, Vantage allows you to remotely connect to your live application and access this CLI without interrupting the application. Like an SSH session, Vantage can connect through an unlimited number of running Node instances across multiple machines, piping commands and information to and from your local machine. 
+Unlike other REPL or CLI modules, vantage allows you to remotely connect to your live app and access the CLI transparently, exactly as you would in an SSH session. Vantage can connect through an unlimited number of live Node instances across multiple machines, piping commands and information to and from your local terminal. 
 
 ## Getting Started
 
 ##### Tutorial
 
-[This Vantage Tutorial](https://github.com/dthree/vantage/tree/master/examples/tutorial) will give you a live tour of Vantage's features.
+[This Vantage Tutorial](https://github.com/dthree/vantage/tree/master/examples/tutorial) will give you a live tour of vantage's features.
 
 ```bash
 $ npm install -g vantage
