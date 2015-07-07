@@ -1,7 +1,9 @@
 
-# Vantage
+![vantage.js](http://i.imgur.com/BydF5yg.png)
 
-[<img src="https://travis-ci.org/dthree/vantage.svg" alt="Build Status" />](http://travis-ci.org/dthree/vantage)
+<p align="center">
+  <img src="https://travis-ci.org/dthree/vantage.svg" alt="Build Status" />
+</p>
 
 > Your existing application. A brand-new point of view.
 
