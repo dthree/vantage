@@ -4,16 +4,17 @@
   <img src="https://travis-ci.org/dthree/vantage.svg" alt="Build Status" />
 </p>
 
-> Vantage = `CLI` + `SSH` + `REPL` for your live node app. In one line.
+> npm install -g vantage
 
-```bash
-npm install -g vantage
-```
+Vantage = `CLI` + `SSH` + `REPL` for your live node app. In one line:
 
 ```js
 require('vantage')().listen(4000);
 ```
-![vantage.js demo](http://i.imgur.com/ZwAxqv4.gif)
+
+<p align="center">
+  <img src="http://i.imgur.com/ZwAxqv4.gif" alt="vantage.js demo" />
+</p>
 
 * [What just happened?](#er-that-gif-im-so-confused)
 * [That's voodoo magic: show me the code](https://github.com/dthree/vantage/tree/master/examples/spiffy-gif/)
