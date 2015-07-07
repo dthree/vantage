@@ -1,7 +1,6 @@
 
-![vantage.js](http://i.imgur.com/BydF5yg.png)
-
 <p align="center">
+  <img src="http://i.imgur.com/BydF5yg.png" alt="vantage.js" />
   <img src="https://travis-ci.org/dthree/vantage.svg" alt="Build Status" />
 </p>
 
