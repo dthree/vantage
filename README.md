@@ -6,10 +6,11 @@
   <img src="https://travis-ci.org/dthree/vantage.svg" alt="Build Status" />
 </p>
 
-Vantage = `CLI` + `SSH` + `REPL` for your live node app. In one line:
+`Vantage.js` = `CLI` + `SSH` + `REPL` for your live node app. In one line:
 
 `require('vantage')().listen(4000);`
 
+<br>
 
 <p align="center">
   <img src="http://i.imgur.com/ZwAxqv4.gif" alt="vantage.js demo" />
