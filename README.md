@@ -1,16 +1,15 @@
 
 <p align="center">
   <img src="http://i.imgur.com/BydF5yg.png" alt="vantage.js" />
+</p>
+<p align="center">
   <img src="https://travis-ci.org/dthree/vantage.svg" alt="Build Status" />
 </p>
 
-> npm install -g vantage
-
 Vantage = `CLI` + `SSH` + `REPL` for your live node app. In one line:
 
-```js
-require('vantage')().listen(4000);
-```
+`require('vantage')().listen(4000);`
+
 
 <p align="center">
   <img src="http://i.imgur.com/ZwAxqv4.gif" alt="vantage.js demo" />
@@ -57,6 +56,10 @@ Inspired by and based on [commander.js](https://www.npmjs.com/package/commander)
 Unlike other REPL or CLI modules, vantage allows you to remotely connect to your live app and access the CLI transparently, exactly as you would in an SSH session. Vantage can connect through an unlimited number of live Node instances across multiple machines, piping commands and information to and from your local terminal. 
 
 ## Getting Started
+
+```js
+npm install -g vantage
+```
 
 ##### Tour
 
