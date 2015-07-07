@@ -6,6 +6,8 @@
   <img src="https://travis-ci.org/dthree/vantage.svg" alt="Build Status" />
 </p>
 
+<br>
+
 `Vantage.js` = `CLI` + `SSH` + `REPL` for your live node app. In one line:
 
 `require('vantage')().listen(4000);`
@@ -15,6 +17,8 @@
 <p align="center">
   <img src="http://i.imgur.com/ZwAxqv4.gif" alt="vantage.js demo" />
 </p>
+
+<br>
 
 * [What just happened?](#er-that-gif-im-so-confused)
 * [That's voodoo magic: show me the code](https://github.com/dthree/vantage/tree/master/examples/spiffy-gif/)
