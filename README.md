@@ -4,12 +4,11 @@
   <img src="https://travis-ci.org/dthree/vantage.svg" alt="Build Status" />
 </p>
 
-> Your existing application. A brand-new point of view.
+> Vantage = `CLI` + `SSH` + `REPL` for your live node app. In one line.
 
 ```bash
 npm install -g vantage
 ```
-Vantage = `CLI` + `SSH` + `REPL` for your live node app. In one line.
 
 ```js
 require('vantage')().listen(4000);
@@ -39,7 +38,7 @@ require('vantage')().listen(4000);
 * [Firewall](#firewall)
 * [Authentication](#authentication)
 * [Extensions](#extensions)
-  - [Creating a Vantage Extension](#creating-an-extension)
+  - [Creating an Extension](#creating-an-extension)
 * [Roadmap](#roadmap)
 * [License](#license)
 * [Footnotes](#footnotes)
@@ -58,9 +57,9 @@ Unlike other REPL or CLI modules, vantage allows you to remotely connect to your
 
 ## Getting Started
 
-##### Tutorial
+##### Tour
 
-[This Vantage Tutorial](https://github.com/dthree/vantage/tree/master/examples/tutorial) will give you a live tour of vantage's features.
+[This Vantage Tour](https://github.com/dthree/vantage/tree/master/examples/tutorial) will give you a live walk-through of vantage's features.
 
 ```bash
 $ npm install -g vantage
@@ -69,15 +68,11 @@ $ vantage tutorial
 
 ##### Examples
 
-*Non-linked examples are in progress.*
-
 - [Standalone Vantage Server](https://github.com/dthree/vantage/tree/master/examples/server)
 - [Koa.js with Vantage](https://github.com/dthree/vantage/tree/master/examples/koa)
 - [Express.js with Vantage](https://github.com/dthree/vantage/tree/master/examples/express)
-- [Using the "mode" command to make a simple REPL client](https://github.com/dthree/vantage/tree/master/examples/mode)
-- Making an extension
-- Using Automation
-- [Firewall](https://github.com/dthree/vantage/tree/master/examples/firewall)
+- [Using the "mode" command](https://github.com/dthree/vantage/tree/master/examples/mode)
+- [Using the Firewall](https://github.com/dthree/vantage/tree/master/examples/firewall)
 
 ##### Quick Start
 
