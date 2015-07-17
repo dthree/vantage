@@ -912,5 +912,5 @@ websvr~$
 <br>
 
 <p align="center">
-  <img src="http://i.imgur.com/B5IIg1E.png" alt="vantage.js" />
+  <img src="http://i.imgur.com/ajsjp9E.png" alt="vantage.js" />
 </p>
