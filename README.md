@@ -1,4 +1,3 @@
-
 <p align="center">
   <img src="http://i.imgur.com/NyusmRJ.png" alt="vantage.js" />
 </p>
@@ -905,3 +904,13 @@ websvr~$
 
 * [Ah. Show me the GIF again](#node-is-awesome)
 * [I get it, I get it. *Tell me more*](#contents)
+
+<br>
+
+---
+
+<br>
+
+<p align="center">
+  <img src="http://i.imgur.com/B5IIg1E.png" alt="vantage.js" />
+</p>
