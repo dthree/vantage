@@ -1,12 +1,12 @@
 # Examples
 
-## ./tutorial
+## ./tour
 
 An interactive guide that familiarizes you with Vantage.
 
 ```bash
 $ npm install -g vantage
-$ vantage tutorial
+$ vantage tour
 ```
 
 ## ./server

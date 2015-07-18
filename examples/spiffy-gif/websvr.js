@@ -64,7 +64,7 @@ vantage
     // use this.
     debug = (args.domain == "off") ? false : debug;
     if (args.domain == "web") {
-      console.log('\nShowing all logging for web requests:\n')
+      this.log('\nShowing all logging for web requests:\n')
       debug = true;
       function go() {
         setTimeout(function(){
