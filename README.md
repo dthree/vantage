@@ -1,6 +1,5 @@
-
 <p align="center">
-  <img src="http://i.imgur.com/BydF5yg.png" alt="vantage.js" />
+  <img src="http://i.imgur.com/NyusmRJ.png" alt="vantage.js" />
 </p>
 <p align="center">
   <img src="https://travis-ci.org/dthree/vantage.svg" alt="Build Status" />
@@ -905,3 +904,13 @@ websvr~$
 
 * [Ah. Show me the GIF again](#node-is-awesome)
 * [I get it, I get it. *Tell me more*](#contents)
+
+<br>
+
+---
+
+<br>
+
+<p align="center">
+  <img src="http://i.imgur.com/ajsjp9E.png" alt="vantage.js" />
+</p>
