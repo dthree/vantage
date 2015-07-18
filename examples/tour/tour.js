@@ -1,5 +1,5 @@
 /**
- * The purpose of this tutorial is to tour you
+ * The purpose of this tour is to tour you
  * through the main user features of Vantage,
  * and illustrate what it is capable of doing.
  *
@@ -23,7 +23,7 @@ var banner =
   util.pad("", 80, "\n") + "\n" +
   util.pad("", process.stdout.columns, "#") + "\n" +
   util.pad("# ", process.stdout.columns - 1, " ") + "#" + "\n" +
-  "#" + util.pad("", (process.stdout.columns / 2) - 17, " ") + "Welcome to the Vantage Tutorial!" + util.pad("", (process.stdout.columns / 2) - 18, " ") + " #" + "\n" +
+  "#" + util.pad("", (process.stdout.columns / 2) - 17, " ") + "Welcome to the Vantage tour!" + util.pad("", (process.stdout.columns / 2) - 18, " ") + " #" + "\n" +
   util.pad("# ", process.stdout.columns - 1, " ") + "#" + "\n" +
   util.pad("", process.stdout.columns, "#") + "\n" +
   util.pad("", 0, "\n") + "";
@@ -42,7 +42,7 @@ var commands = function(svr) {
 
   svr
     .command("start server <port>")
-    .description("Starts a new Vantage Tutorial server.")
+    .description("Starts a new Vantage tour server.")
     .action(function(args, cb){
       if (isNaN(args.port)) { console.log(chalk.yellow("\n  Er... Ports are usually numbers...\n")); cb(); return; }
       if (args.port < 3001) { console.log(chalk.yellow("\n  Eh, not sure if you are sudo, so pick a port above 3000.\n")); cb(); return; }
@@ -52,7 +52,7 @@ var commands = function(svr) {
       var vtg = new Vantage();
 
       vtg
-        .delimiter("tutorialsvr:" + args.port + "~$")
+        .delimiter("toursvr:" + args.port + "~$")
         .banner(welcome)
         .use(tools)
         .listen(args.port);
@@ -153,7 +153,7 @@ var steps = {
       server.removeListener("client_command_executed", steps.step6Listener);
       setTimeout(function(){
         steps.step7();
-      }, 500);
+      }, 50);
     }
   },
 
@@ -184,27 +184,89 @@ var steps = {
   },
 
   step9: function() {
-    log.br().cols(2, [2, hdr], 1, chalk.white("Getting the hang of it?"));
-    log.br().cols(2, [2, hdr], 1, chalk.cyan("8. Run 'exit' to go back to the first server (this doesn\'t exit the process - just your viewing session).")).br();
+    log.br().cols(2, [2, hdr], 1, chalk.cyan("9. Let's import a node module in realtime to add another command to Vantage.")).br();
+    log.cols(5, chalk.cyan("use vantage-hacker-news")).br();
     server.on("client_command_executed", steps.step9Listener);
   },
 
   step9Listener: function(data) {
-    if (String(data.command).trim().toLowerCase().indexOf("exit") > -1) {
-      server.removeListener("client_command_executed", steps.step8Listener);
+    if (String(data.command).trim().toLowerCase().indexOf("use vantage-hacker-news") > -1) {
+      server.removeListener("client_command_executed", steps.step9Listener);
       setTimeout(function(){
         steps.step10();
-      }, 500);
+      }, 50);
     }
   },
 
   step10: function() {
-    log.br().cols(2, [2, hdr], 1, chalk.white("Welcome back. By the way, you've now used three of Vantage's built in commands:"));
+    log.br().cols(2, [2, hdr], 1, chalk.white("That just installed the module 'vantage-hacker-news' from the NPM registry. This module adds a command to Vantage which displays the top items currently on Hacker News. By running 'help', you'll see the command 'hacker-news' is now registered."));
+    log.br().cols(2, [2, hdr], 1, chalk.cyan("10. Run the newly registered command.")).br();
+    server.on("client_command_executed", steps.step10Listener);
+  },
+
+  step10Listener: function(data) {
+    if (String(data.command).trim().toLowerCase().indexOf("hacker-news") > -1) {
+      server.removeListener("client_command_executed", steps.step10Listener);
+      setTimeout(function(){
+        steps.step11();
+      }, 50);
+    }
+  },
+
+  step11: function() {
+    log.br().cols(2, [2, hdr], 1, chalk.white("You can build your own Vantage extensions like the above."));
+    log.br().cols(2, [2, hdr], 1, chalk.cyan("11. A 'mode' is a special command that puts you in a dedicated session for doing a particular type of action. For example, in REPL mode, every command you type is interpreted as javascript in the context of your application. Let's enter REPL mode:")).br();
+    log.cols(5, chalk.cyan("repl")).br();
+    server.on("client_command_executed", steps.step11Listener);
+  },
+
+  step11Listener: function(data) {
+    if (String(data.command).trim().toLowerCase().indexOf("repl") > -1) {
+      server.removeListener("client_command_executed", steps.step11Listener);
+      setTimeout(function(){
+        steps.step12();
+      }, 50);
+    }
+  },
+
+  step12: function() {
+    log.br().cols(2, [2, hdr], 1, chalk.white("Notice that REPL has been added to the delimiter."));
+    log.br().cols(2, [2, hdr], 1, chalk.cyan("12. Play around with some javascript commands. When done, exit the mode by typing 'exit'.")).br();
+    server.on("client_command_executed", steps.step12Listener);
+  },
+
+  step12Listener: function(data) {
+    if (String(data.command).trim().toLowerCase().indexOf("exit") > -1) {
+      server.removeListener("client_command_executed", steps.step12Listener);
+      setTimeout(function(){
+        steps.step13();
+      }, 50);
+    }
+  },
+
+  step13: function() {
+    log.br().cols(2, [2, hdr], 1, chalk.white("Getting the hang of it?"));
+    log.br().cols(2, [2, hdr], 1, chalk.cyan("8. Run 'exit' to go back to the first server (this doesn\'t exit the process - just your viewing session).")).br();
+    server.on("client_command_executed", steps.step13Listener);
+  },
+
+  step13Listener: function(data) {
+    if (String(data.command).trim().toLowerCase().indexOf("exit") > -1) {
+      server.removeListener("client_command_executed", steps.step8Listener);
+      setTimeout(function(){
+        steps.step14();
+      }, 50);
+    }
+  },
+
+  step14: function() {
+    log.br().cols(2, [2, hdr], 1, chalk.white("Welcome back. By the way, you've now used four of Vantage's built in commands:"));
     log.br().cols(5, chalk.white("help [command]"));
     log.br().cols(5, chalk.white("vantage [server]"));
+    log.br().cols(5, chalk.white("use [module]"));
     log.br().cols(5, chalk.white("exit"));
     log.br().cols(2, [2, hdr], 1, chalk.white("That concludes the tour and shows some of the things Vantage can do! To get started building your own Vantage magic, check out the other examples."));
-    log.br().cols(2, [2, hdr], 1, chalk.cyan("9. To fully exit the tutorial, type 'exit -f'.")).br();
+    log.br().cols(2, [2, hdr], 1, chalk.cyan("9. To fully exit the tour, type 'exit -f'.")).br();
   }
 
 };
@@ -213,7 +275,7 @@ log = log(server);
 
 server
   .use(commands)
-  .delimiter("tutorial~$")
+  .delimiter("tour~$")
   .banner(banner)
   .show();
 
