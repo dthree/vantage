@@ -2,6 +2,7 @@
 # Vantage
 
 [<img src="https://travis-ci.org/dthree/vantage.svg" alt="Build Status" />](http://travis-ci.org/dthree/vantage)
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/dthree/vantage?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 Your existing application. A brand-new point of view.
 
