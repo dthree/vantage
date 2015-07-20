@@ -3,10 +3,8 @@
 </p>
 <p align="center">
   <img src="https://travis-ci.org/dthree/vantage.svg" alt="Build Status" />
-</p>
-<p align="center">
   <a href="https://gitter.im/dthree/vantage?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge">
-    <img src="https://badges.gitter.im/Join%20Chat.svg" alt="Gitter" />
+    <img src="https://img.shields.io/badge/gitter-join%20chat-brightgreen.svg" alt="Gitter" />
   </a>
 </p>
 
