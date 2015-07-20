@@ -4,7 +4,12 @@
 <p align="center">
   <img src="https://travis-ci.org/dthree/vantage.svg" alt="Build Status" />
 </p>
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/dthree/vantage?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+<p align="center">
+  <a href="https://gitter.im/dthree/vantage?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge">
+    <img src="https://badges.gitter.im/Join%20Chat.svg" alt="Gitter" />
+  </a>
+</p>
+
 <br>
 
 `Vantage.js` = `CLI` + `SSH` + `REPL` for your live node app. In one line:
