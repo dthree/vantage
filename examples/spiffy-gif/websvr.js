@@ -11,7 +11,7 @@
  */
 
 var Vantage = require('./../../lib/vantage')
-  , colors = require('colors')
+  , chalk = require('chalk')
   , repl = require('vantage-repl')
   , _ = require('lodash')
   ;
@@ -22,15 +22,15 @@ var Vantage = require('./../../lib/vantage')
 
 var vantage
   , debug = false
-  , banner = 
-     "\n###################################################################################################################\n" + 
-     "#                                                                                                                 #\n" + 
-     "#                                                  Node Web Server                                                #\n" + 
-     "#                                                                                                                 #\n" + 
+  , banner =
+     "\n###################################################################################################################\n" +
+     "#                                                                                                                 #\n" +
+     "#                                                  Node Web Server                                                #\n" +
+     "#                                                                                                                 #\n" +
      "###################################################################################################################\n"
   ;
 
-// This starts up vantage: 
+// This starts up vantage:
 // - Gives it a banner on logon,
 // - Sets the prompt delimiter,
 // - Makes it listen on port 5000,
@@ -38,7 +38,7 @@ var vantage
 // - Shows the prompt on app startup.
 vantage = Vantage()
  .banner(banner)
- .delimiter("node-websvr~$".white)
+ .delimiter(chalk.white("node-websvr~$"))
  .listen(process.argv[2] || 5000)
  .use(repl)
  .show();
@@ -49,7 +49,7 @@ vantage = Vantage()
 // just tie this in to your app's logging
 // logic.
 vantage
-  .command("debug <domain>", "Demo debug mode.") 
+  .command("debug <domain>", "Demo debug mode.")
   .action(function(args, cb) {
     var self = this
       , verbs = ["GET", "PUT", "POST", "PATCH", "DELETE"]
@@ -59,7 +59,7 @@ vantage
       , str
       ;
 
-    // This isn't important - just makes 
+    // This isn't important - just makes
     // random logging - you aren't going to
     // use this.
     debug = (args.domain == "off") ? false : debug;
@@ -71,12 +71,12 @@ vantage
           rand = Math.round(Math.random()*5);
           rand = (rand > 4) ? 4 : (rand < 0) ? 0 : rand;
           time = Math.round(Math.random()*200);
-          time = (time < 60) ? String(time).green
-            : (time < 200) ? String(time).yellow
-            : String(time).red;
-          str = String(verbs[rand]).white
+          time = (time < 60) ? chalk.green(time)
+            : (time < 200) ? chalk.yellow(time)
+            : chalk.red(time);
+          str = chalk.white(verbs[rand])
             + " " + String(routes[rand]) + Math.round(Math.random()*100000)
-            + " (" + time + "ms".white + ")";
+            + " (" + time + chalk.white("ms") + ")";
           if (debug == true) {
             self.log(str);
             go();
@@ -100,9 +100,9 @@ global.app = {
 }
 
 global.nodeIs = function() {
-  setTimeout(function(){ console.log("\n\n  Really,".white) }, 1);
-  setTimeout(function(){ console.log("    Really,".white) }, 300);
-  setTimeout(function(){ console.log("      Really,".white) }, 600);
-  setTimeout(function(){ console.log("        Awesome.\n".cyan) }, 900);
+  setTimeout(function(){ console.log(chalk.white("\n\n  Really,")) }, 1);
+  setTimeout(function(){ console.log(chalk.white("    Really,")) }, 300);
+  setTimeout(function(){ console.log(chalk.white("      Really,")) }, 600);
+  setTimeout(function(){ console.log(chalk.cyan("        Awesome.\n")) }, 900);
   return '';
 }

@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
-var commander = require('commander')
-  , Vantage = require('../lib/vantage')
+var commander = require("commander")
+  , Vantage = require("../lib/vantage")
+  , chalk = require("chalk")
   ;
 
 var command
@@ -89,7 +90,7 @@ function showTour() {
   if (fs.existsSync(__dirname + file)) {
     require(__dirname + file); return;
   } else {
-    console.log("\n  Looks like the tour isn't included in your Vantage instance.\n  Ensure ./examples/ is in your Vantage directory.\n".yellow);
+    console.log(chalk.yellow("\n  Looks like the tour isn't included in your Vantage instance.\n  Ensure ./examples/ is in your Vantage directory.\n"));
     process.exit(1);
   }
 }

@@ -23,6 +23,20 @@ for (var i = 0; i < 10; ++i) {
     .delimiter(chalk.white("svr:" + port + "~$"))
     .listen(port);
 
+  vantage
+    .command("port")
+    .action(function(args, cb){
+      this.log(this.parent.server._port);
+      cb();
+    });
+
+  vantage
+    .command("throw error")
+    .action(function(args, cb){
+      throw new Error("I am shamelessly erroring because you told me to.");
+      cb();
+    });
+
   (function(curr){
     vantage
       .command("show <port>")
@@ -39,4 +53,37 @@ for (var i = 0; i < 10; ++i) {
 
   port++;
 }
+
+ports[6001].auth("basic", {
+  users: [
+    { user: "user", pass: "Qwer234" }
+  ],
+  deny: 3,
+  unlockTime: 60000,
+  retry: 3,
+  retryTime: 500,
+});
+
+ports[6009].show();
+
+/*
+ports[6009].exec("port").then(function(data){
+  this.log("executed port", data);
+}).catch(function(err){
+  this.log("got back port error", err);
+})
+*/
+
+/*
+
+ports[6009].exec("throw error").then(function(data){
+  ports[6009].log("threw error", data);
+}).catch(function(err, data){
+  //console.log(err.stack)
+  ports[6009].log("throw error catch", err, data);
+})
+
+*/
+
+
 

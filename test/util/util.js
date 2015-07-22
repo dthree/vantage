@@ -1,8 +1,10 @@
-var pm2 = require('pm2')
+var Vantage = require("../../")
   , _ = require('lodash')
   ;
 
 module.exports = {
+
+  instances: [],
 
   spawn: function(options, cb) {
 
@@ -13,54 +15,27 @@ module.exports = {
       ssl: false,
     });
 
-    pm2.connect(function() {
-
-      var ports = options.ports;
-
-      var done = 0;
-      var handler = function(err, cb) {
-        done++;
-        if (done == ports.length) {
-          cb(err);
-        };
-      }
-
-      var start = function(cb) {
-        for (var i = 0; i < ports.length; ++i) {
-          (function(port){
-            pm2.start({
-              script: './test/util/server.js',
-              cluster: false,
-              args: [port, false],
-              instances: 1,
-            }, function(err, apps){
-              handler(err, cb);
-            });
-          })(ports[i]);
-        }
-      }
-
-      var kill = function(cb){
-        pm2.delete('all', cb);
-      }
-
-      kill(function() {
-        start(function() {
-          pm2.disconnect();
-          cb();
+    for (var i = 0; i < options.ports.length; ++i) {
+      var vantage = new Vantage();
+      var port = options.ports[i];
+      vantage
+        .delimiter(port + ':')
+        .use(__dirname + "/server")
+        .listen(port, function(){
+          // Callback shouldn't throw.
         });
-      });
-    });
+      module.exports.instances.push(vantage);
+    }
 
+    cb(void 0, module.exports.instances);
+    return;
   },
 
   kill: function(what, cb) {
     cb = cb || function(){}
-    pm2.connect(function() {
-      pm2.delete('all', function(){
-        cb();
-      });
-    });
+    for (var i = 0; i < module.exports.instances.length; ++i) {
+      // ...
+    }
   },
 
 }
