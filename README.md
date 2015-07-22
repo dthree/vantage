@@ -3,6 +3,9 @@
 </p>
 <p align="center">
   <img src="https://travis-ci.org/dthree/vantage.svg" alt="Build Status" />
+  <a href="https://gitter.im/dthree/vantage?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge">
+    <img src="https://img.shields.io/badge/gitter-join%20chat-brightgreen.svg" alt="Gitter" />
+  </a>
 </p>
 
 <br>
@@ -16,6 +19,7 @@
 <p align="center">
   <img src="http://i.imgur.com/ZwAxqv4.gif" alt="vantage.js demo" />
 </p>
+
 
 <br>
 
