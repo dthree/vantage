@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <i>Vantage is rapidly approaching 1.0<br>and so is nearly production-ready! <br>Any and all feedback is welcome.</i>
+  <i>Vantage is rapidly approaching 1.0.<br>All feedback and bug hunters welcome.</i>
 </p>
 
 <br>
