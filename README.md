@@ -8,6 +8,10 @@
   </a>
 </p>
 
+<p align="center">
+  <i>Vantage is rapidly approaching 1.0<br>and so is nearly production-ready! <br>Any and all feedback is welcome.</i>
+</p>
+
 <br>
 
 `Vantage.js` = `CLI` + `SSH` + `REPL` for your live node app. In one line:
