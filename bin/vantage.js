@@ -71,13 +71,17 @@ function validateConnection(connection) {
 function connect(vantage, server, port, options) {
   return vantage.connect(server, port, options).then(function(err, data) {
     if (err) {
-      console.log(err)
-      vantage.log(data);
       vantage._pause();
       process.exit(1);
+    } else {
+      if (!vantage.ui.midPrompt()) {
+        vantage._prompt();
+      }
     }
   }).catch(function(err){
-    vantage.log(err.stack);
+    if (err.stack) {
+      vantage.log(err.stack);
+    }
     vantage._pause();
     process.exit(1);
   });
