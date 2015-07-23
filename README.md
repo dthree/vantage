@@ -1,19 +1,30 @@
+<p align="center">
+  <img src="http://i.imgur.com/NyusmRJ.png" alt="vantage.js" />
+</p>
+<p align="center">
+  <img src="https://travis-ci.org/dthree/vantage.svg" alt="Build Status" />
+  <a href="https://gitter.im/dthree/vantage?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge">
+    <img src="https://img.shields.io/badge/gitter-join%20chat-brightgreen.svg" alt="Gitter" />
+  </a>
+</p>
 
-# Vantage
+<br>
 
-[<img src="https://travis-ci.org/dthree/vantage.svg" alt="Build Status" />](http://travis-ci.org/dthree/vantage)
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/dthree/vantage?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+`Vantage.js` = `CLI` + `SSH` + `REPL` for your live node app. In one line:
 
-Your existing application. A brand-new point of view.
+`require('vantage')().listen(4000);`
 
-    npm install -g vantage
+<br>
 
-Vantage provides a foundation for adding a custom, interactive CLI to your live Node application. Accessible locally or remotely, it gives a real-time perspective from inside your app. Customizable and extensible, easily add any feature you need for tooling, debugging and a new insight in your dev or production app. 
+<p align="center">
+  <img src="http://i.imgur.com/ZwAxqv4.gif" alt="vantage.js demo" />
+</p>
 
-![vantage.js demo](http://i.imgur.com/ZwAxqv4.gif)
+
+<br>
 
 * [What just happened?](#er-that-gif-im-so-confused)
-* [That's voodoo magic: show me the source](https://github.com/dthree/vantage/tree/master/examples/spiffy-gif/)
+* [That's voodoo magic: show me the code](https://github.com/dthree/vantage/tree/master/examples/spiffy-gif/)
 * [Tell me more](#contents)
 
 ## Contents
@@ -23,7 +34,6 @@ Vantage provides a foundation for adding a custom, interactive CLI to your live 
   - [Tutorial](#tutorial)
   - [Examples](#examples)
   - [Quick Start](#quick-start)
-  - [Slack Channel](#slack-channel)
 * [Methods](#methods)
   - [.command](#commandcommand-description)
   - [.mode](#modecommand-description)
@@ -36,27 +46,32 @@ Vantage provides a foundation for adding a custom, interactive CLI to your live 
 * [Firewall](#firewall)
 * [Authentication](#authentication)
 * [Extensions](#extensions)
-  - [Creating a Vantage Extension](#creating-an-extension)
+  - [Creating an Extension](#creating-an-extension)
 * [Roadmap](#roadmap)
 * [License](#license)
 * [Footnotes](#footnotes)
 
 ## Introduction
 
-Inspired by and based on [commander.js](https://www.npmjs.com/package/commander), Vantage allows you to connect into and hop between running Node applications with an interactive prompt provided by [inquirer.js](https://www.npmjs.com/package/inquirer), introducing the possibility of live actions and diagnostics for your development and production environments.
+Inspired by and based on [commander.js](https://www.npmjs.com/package/commander), vantage turns your live Node app into a CLI with an interactive prompt provided by [inquirer.js](https://www.npmjs.com/package/inquirer). Accessible locally or remotely, Vantage lets build your own API and import community extensions, introducing the possibility of live activity and diagnostics for your `dev` and `prod` environments.
 
-- A first-class CLI interface including tab-completion, command history and built-in help.
-- You build your own API with the familiar syntax of `commander.js`.
-- Build and use community-based extensions for suites of commands.
-- Import community extensions on the fly for live requirements.
+- Node now has a first-class CLI: tab-completion, history, piping, you name it.
+- Build your own API with the familiar syntax of `commander.js`.
+- Build and use community extensions for suites of commands: coded or in realtime.
+- Production ready, with authentication middlware and a basic firewall.
+- Built-in REPL.
 
-Unlike other REPL or CLI modules, Vantage allows you to remotely connect to your live application and access this CLI without interrupting the application. Like an SSH session, Vantage can connect through an unlimited number of running Node instances across multiple machines, piping commands and information to and from your local machine. 
+Unlike other REPL or CLI modules, vantage allows you to remotely connect to your live app and access the CLI transparently, exactly as you would in an SSH session. Vantage can connect through an unlimited number of live Node instances across multiple machines, piping commands and information to and from your local terminal. 
 
 ## Getting Started
 
-##### Tutorial
+```js
+npm install -g vantage
+```
 
-[This Vantage Tutorial](https://github.com/dthree/vantage/tree/master/examples/tutorial) will give you a live tour of Vantage's features.
+##### Tour
+
+[This Vantage Tour](https://github.com/dthree/vantage/tree/master/examples/tutorial) will give you a live walk-through of vantage's features.
 
 ```bash
 $ npm install -g vantage
@@ -65,15 +80,11 @@ $ vantage tutorial
 
 ##### Examples
 
-*Non-linked examples are in progress.*
-
 - [Standalone Vantage Server](https://github.com/dthree/vantage/tree/master/examples/server)
 - [Koa.js with Vantage](https://github.com/dthree/vantage/tree/master/examples/koa)
 - [Express.js with Vantage](https://github.com/dthree/vantage/tree/master/examples/express)
-- [Using the "mode" command to make a simple REPL client](https://github.com/dthree/vantage/tree/master/examples/mode)
-- Making an extension
-- Using Automation
-- [Firewall](https://github.com/dthree/vantage/tree/master/examples/firewall)
+- [Using the "mode" command](https://github.com/dthree/vantage/tree/master/examples/mode)
+- [Using the Firewall](https://github.com/dthree/vantage/tree/master/examples/firewall)
 
 ##### Quick Start
 
@@ -150,10 +161,6 @@ webapp~$
 
 That's the basic idea. Once you get the hang of it, read on to learn some of the fancier things `vantage` can do.
 
-##### Slack Channel
-
-Feedback / suggestions / general Q&A? Pop me an email at threedeecee @ gmail.com for an invite to the `vantagejs` Slack channel.
-
 ## Methods
 
 ### .command(command, [description])
@@ -222,6 +229,10 @@ vantage
   .description('outputs bar')
   // ...
 ```
+
+#### .command.hidden()
+
+Makes the command invisible though executable. Removes from all automated help menus and tabbed auto-completion.
 
 #### .command.option(string, [description])
 
@@ -895,5 +906,15 @@ websvr~$
 
 15. I then typed `exit -f` (for `--force`) to actually quit the web server, which was running locally in my terminal.
 
-* [Ah. Show me the GIF again](#)
+* [Ah. Show me the GIF again](#node-is-awesome)
 * [I get it, I get it. *Tell me more*](#contents)
+
+<br>
+
+---
+
+<br>
+
+<p align="center">
+  <img src="http://i.imgur.com/ajsjp9E.png" alt="vantage.js" />
+</p>

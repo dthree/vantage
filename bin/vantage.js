@@ -1,69 +1,103 @@
 #!/usr/bin/env node
 
-var commander = require('commander'),
-    Vantage = require('../lib/vantage')
-    colors = require('colors')
+"use strict";
+
+var commander = require("commander")
+  , Vantage = require("../lib/vantage")
+  , chalk = require("chalk")
   ;
 
-  var cmdValue, envValue, script, options = {}, self = this;
+var command
+  , options = {}
+  ;
 
-  commander
-    .version('0.0.1')
-    .arguments('[server]')
-    .option('-s, --ssl', "Connect using SSL.")
-    .action(function(cmd, env){
-      cmdValue = cmd;
-      envValue = env;
-    });
+commander
+  .arguments("[server]")
+  .option("-s, --ssl", "Connect using SSL.")
+  .option("-u, --user [user]", "Connect as a given user.")
+  .option("-p, --pass [user]", "Password for given user.")
+  .action(function(cmd, opts) {
+    command = cmd || "";
+    opts = opts || {};
+    options.ssl = (opts.ssl) ? true : void 0;
+    options.user = (opts.user) ? opts.user : void 0;
+    options.pass = (opts.pass) ? opts.pass : void 0;
+  });
 
-  commander.parse(process.argv);
+commander.parse(process.argv);
 
-  if (typeof cmdValue === 'undefined' && 1 == 2) {
-    self.log('\n  Please specify a server and a port.');
-    self.log('\n  Example: vantage 192.168.0.1:3000.\n')
-    process.exit(1);
-  } else {
+function parseConnection(str) {
+  var parts = String(str).split(":");
+  var port = (parts.length === 2) ? parts[1] : void 0;
+  var server = (parts.length === 2) ? parts[0] : void 0;
+  if (parts.length === 1) {
+    server = (String(parts[0]).split(".").length === 4) ? parts[0] : void 0;
+    port = (String(parts[0]).length < 6 && !isNaN(parts[0])) ? parts[0] : void 0;
+  }
+  server = (!server) ? "127.0.0.1" : server;
+  port = (!port) ? "80" : port;
+  return ({
+    server: server,
+    port: port
+  });
+}
 
-    if (envValue && envValue.ssl === true) {
-      options.ssl = true;
-    }
+function validateConnection(connection) {
+  var valid = (String(connection.server).split(".").length !== 4 || isNaN(connection.port))
+    ? ("\n  Invalid server/port passed: " + connection.server + ":" + connection.port + "\n")
+    : true;
+  return valid;
+}
 
-    var str = (!cmdValue) ? '' : cmdValue;
-
-    if (str === 'tutorial') {
-      var fs = require('fs');
-      var path = require('path');
-      var file = '/../examples/tutorial/tutorial.js';
-      console.log(__dirname + file);
-      if (fs.existsSync(__dirname + file)) {
-        require(__dirname + file); return;
-      } else {
-        console.log("\n  Looks like the tutorial isn't included in your Vantage instance.\n  Ensure ./examples/ is in your Vantage directory.\n".yellow);
-        process.exit(1);
+function connect(vantage, server, port, opt) {
+  return vantage.connect(server, port, opt).then(function(err) {
+    if (err) {
+      vantage._pause();
+      process.exit(1);
+    } else {
+      if (!vantage.ui.midPrompt()) {
+        vantage._prompt();
       }
     }
-
-    var parts = String(str).split(':');
-
-    var port = (parts.length == 2) ? parts[1] : void 0;
-    var server = (parts.length == 2) ? parts[0] : void 0;
-
-    if (parts.length == 1) {
-      server = (String(parts[0]).split('.').length == 4) ? parts[0] : void 0;
-      port = (String(parts[0]).length < 6 && !isNaN(parts[0])) ? parts[0] : void 0;
+  }).catch(function(err){
+    if (err.stack) {
+      vantage.log(err.stack);
     }
+    vantage._pause();
+    process.exit(1);
+  });
+}
 
-    server = (!server) ? '127.0.0.1' : server;
-    port = (!port) ? '80' : port;
-
-    if (String(server).split('.').length !== 4 || isNaN(port)) {
-      self.log('\n  Invalid server/port passed: ' + server + ':' + port + '\n');
-      process.exit(1);
-    }
-
-    var vantage = new Vantage();
-
-    return new Vantage().connect(server, port, options).then(function() {
-
-    });
+function showTour() {
+  var fs = require("fs");
+  var path = require("path");
+  var file = "/../examples/tour/tour.js";
+  if (fs.existsSync(path.join(__dirname, file))) {
+    require(path.join(__dirname, file)); return;
+  } else {
+    console.log(chalk.yellow("\n  Looks like the tour isn't included in your Vantage instance.\n  Ensure ./examples/ is in your Vantage directory.\n"));
+    process.exit(1);
   }
+}
+
+function execute(cmd, opt) {
+  if (cmd === "tour") {
+    return showTour();
+  }
+
+  var vantage = new Vantage().show();
+  var connection = parseConnection(cmd);
+  var valid = validateConnection(connection);
+  if (valid !== true) {
+    vantage.log(valid);
+    process.exit(1);
+  }
+
+  // If there is somewhere to go, connect.
+  if (cmd !== undefined) {
+    connect(vantage, connection.server, connection.port, opt);
+  }
+}
+
+execute(command, options);
+
