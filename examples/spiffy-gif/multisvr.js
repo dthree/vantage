@@ -37,6 +37,14 @@ for (var i = 0; i < 10; ++i) {
       cb();
     });
 
+  vantage
+    .command("delimiter <string>", "Sets the delimiter to a given string.")
+    .action(function(args, cb){
+      console.log("Setting delmiter to ", args.string);
+      this.delimiter(args.string);
+      cb();
+    });
+
   (function(curr){
     vantage
       .command("show <port>")

@@ -366,7 +366,7 @@ Vantage supports mid-command prompting. You can make full use of [inquirer.js](h
 Regardless of a direct vantage connection or one proxying your request through ten hops, `vantage.prompt` will send the remote prompt request to your local client and pipe response back to the remote application.
 
 ```js
-vantage.command('destroy database').action(function(args, cb){
+vantage.command("destroy database").action(function(args, cb){
   var self = this;
   this.prompt({
     type: "confirm",
@@ -375,10 +375,10 @@ vantage.command('destroy database').action(function(args, cb){
     message: "That sounds like a really bad idea. Continue?",
   }, function(result){
     if (!result.continue) {
-      self.log('Good move.');
+      self.log("Good move.");
       cb();
     } else {
-      self.log('Time to dust off that resume.');
+      self.log("Time to dust off that resume.");
       app.destroyDatabase(cb);
     }
   });
@@ -390,6 +390,24 @@ dbsvr~$ destroy database
 ? That sounds like a really bad idea. Continue? y/N: N
 Good move.
 dbsvr~$
+```
+
+##### session.delimiter(string)
+
+You can change the prompt delimiter mid command through `this.delimiter`.
+
+```js
+vantage
+  .command("delimiter <string>")
+  .action(function(args, cb){
+    this.delimiter(args.string);
+    cb();
+  });
+```
+
+```bash
+websvr~$ delimiter unicornsvr~$
+unicornsvr~$
 ```
 
 ##### session.user
