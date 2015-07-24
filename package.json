@@ -36,6 +36,8 @@
   "homepage": "https://github.com/dthree/vantage#readme",
   "devDependencies": {
     "express": "^4.12.4",
+    "gulp": "^3.9.0",
+    "gulp-eslint": "^0.15.0",
     "koa": "^0.21.0",
     "mocha": "^2.2.5",
     "moment": "^2.10.3",
@@ -77,7 +79,9 @@
       "no-underscore-dangle": 0,
       "no-process-exit": 0,
       "no-undef": 0,
-      "no-proto": 0
-    }
+      "no-proto": 0,
+      "no-use-before-define": 0,
+      "new-cap": 0
+    }  
   }
 }
