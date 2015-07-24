@@ -8,9 +8,14 @@
   </a>
 </p>
 
-<p align="center">
-  <i>Vantage is nearly ready for 1.0!<br>[New features & updates.](https://github.com/dthree/vantage/releases)<br><br>All feedback and bug hunters welcome.</i>
-</p>
+
+<p align="center"><i>
+  Vantage is nearly ready for 1.0!
+  <br>
+  <a href="https://github.com/dthree/vantage/releases">New features & updates.</a>
+  <br><br>
+  All feedback and bug hunters welcome.
+</i></p>
 
 <br>
 
