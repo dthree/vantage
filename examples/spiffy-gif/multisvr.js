@@ -40,7 +40,6 @@ for (var i = 0; i < 10; ++i) {
   vantage
     .command("delimiter <string>", "Sets the delimiter to a given string.")
     .action(function(args, cb){
-      console.log("Setting delmiter to ", args.string);
       this.delimiter(args.string);
       cb();
     });
