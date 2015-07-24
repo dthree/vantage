@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <i>Vantage is rapidly approaching 1.0.<br>All feedback and bug hunters welcome.</i>
+  <i>Vantage is nearly ready for 1.0!<br>[New features & updates.](https://github.com/dthree/vantage/releases)<br><br>All feedback and bug hunters welcome.</i>
 </p>
 
 <br>
@@ -125,7 +125,7 @@ $ node server.js
 websvr~$ 
 ```
 
-Open another terminal window. Because `vantage` is listening on port 80, you can remotely connect to it:
+Open another terminal. Because Vantage is listening on port 80, you can remotely connect to it:
 
 ```bash
 $ vantage 80
@@ -352,7 +352,7 @@ vantage
   });
 ```
 
-#### session.prompt(object, [callback])
+##### session.prompt(object, [callback])
 
 Vantage supports mid-command prompting. You can make full use of [inquirer.js](https://www.npmjs.com/package/inquirer)'s `prompt` function, which is exposed through `this.prompt`.
 
@@ -865,7 +865,7 @@ var users = [
 var vantage = require("vantage")();
 
 vantage.auth("basic", {
-    "users": users,
+  "users": users,
   "retry": 3,
   "retryTime": 500,
   "deny": 1,
