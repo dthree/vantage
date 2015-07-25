@@ -28,7 +28,7 @@ var banner =
   util.pad("", process.stdout.columns, "#") + "\n" +
   util.pad("", 0, "\n") + "";
 
-var hdr = "#".grey;
+var hdr = chalk.grey("#");
 
 var commands = function(svr) {
 

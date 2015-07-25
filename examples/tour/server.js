@@ -1,12 +1,14 @@
 "use strict";
 
+var chalk = require("chalk");
+
 var debug = false
   , ctr = 1
   , max = 8
   , logs = {
-      1: "loglogloglogloglogloglogloglogloglogloglogloglogloglogloglogloglogloglogloglog".grey,
-      2: "loglogloglogloglogloglogloglogloglogloglogloglogloglogloglogloglogloglogloglog".grey,
-      3: "loglogloglogloglogloglogloglogloglogloglogloglogloglogloglogloglogloglogloglog".grey,
+      1: chalk.grey("loglogloglogloglogloglogloglogloglogloglogloglogloglogloglogloglogloglogloglog"),
+      2: chalk.grey("loglogloglogloglogloglogloglogloglogloglogloglogloglogloglogloglogloglogloglog"),
+      3: chalk.grey("loglogloglogloglogloglogloglogloglogloglogloglogloglogloglogloglogloglogloglog"),
       4: "",
       5: "  Notice how the logging doesn't interrupt the prompt? That's useful.",
       6: "",
