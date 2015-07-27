@@ -10,7 +10,7 @@
 
 <p align="center">
   <i>
-  Vantage is now production ready at 1.0!
+  Vantage is now production ready at 1.0.
   <br>
   <a href="https://github.com/dthree/vantage/releases">New features & updates.</a>
   </i>
@@ -22,14 +22,10 @@
 
 `require("vantage")().listen(4000);`
 
-<br>
-
 <p align="center">
   <img src="http://i.imgur.com/ZwAxqv4.gif" alt="vantage.js demo" />
 </p>
 
-
-<br>
 
 * [What just happened?](#er-that-gif-im-so-confused)
 * [That's voodoo magic: show me the code](https://github.com/dthree/vantage/tree/master/examples/spiffy-gif/)
