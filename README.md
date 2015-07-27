@@ -22,6 +22,8 @@
 
 `require("vantage")().listen(4000);`
 
+<br>
+
 <p align="center">
   <img src="http://i.imgur.com/ZwAxqv4.gif" alt="vantage.js demo" />
 </p>
