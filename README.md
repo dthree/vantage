@@ -58,14 +58,14 @@
 
 ## Introduction
 
-Vangtage gives you a new perspective into your live node application not previously available.
+Vantage gives you a new perspective into your live node application not previously available.
 
-Inspired by and based on [commander.js](https://www.npmjs.com/package/commander), Vantage turns your live Node app into a CLI with an interactive prompt provided by [inquirer.js](https://www.npmjs.com/package/inquirer). Accessible locally or remotely, Vantage lets build your own API and import community extensions, introducing the possibility of live activity and diagnostics for your `dev` and `prod` environments.
+Inspired by and based on [commander.js](https://www.npmjs.com/package/commander), Vantage turns your live Node app into a CLI with an interactive prompt provided by [inquirer.js](https://www.npmjs.com/package/inquirer). Accessible locally or remotely, Vantage lets you build your own API and import community extensions, introducing the possibility of live activity and diagnostics for your `dev` and `prod` environments.
 
-- Node now has a first-class CLI: tab-completion, history, you name it.
+- Node now has a first-class CLI: tab completion, history, you name it.
 - Build your own API with the familiar syntax of `commander.js`.
 - Build and use community extensions for suites of commands: coded or in realtime.
-- Production ready, with authentication middlware and a basic firewall.
+- Production-ready, with authentication middlware and a basic firewall.
 - Built-in REPL.
 
 Unlike other REPL or CLI modules, Vantage allows you to remotely connect to your live app and access the CLI transparently, exactly as you would in an SSH session. Vantage can connect through an unlimited number of live Node instances across multiple machines, piping commands and information to and from your local terminal. 
@@ -306,7 +306,7 @@ vantage
   .command('order pizza [type]', 'Orders a type of food.')
   .option('-s, --size <size>', 'Size of pizza.')
   .option('-a, --anchovies', 'Include anchovies.')
-  .option('-p, --pineapple', 'Include pineapples.')
+  .option('-p, --pineapple', 'Include pineapple.')
   .option('-o', 'Include olives.')
   .option('-d, --delivery', 'Pizza should be delivered')
   .action(function(args, cb){
@@ -474,7 +474,7 @@ node~$ you are in repl>
 ```
 #### .mode.init(function)
 
-Behaves exactly like `command.action`, wherein the passed in function is fired once when the user enters the given mode. Passed the same parameters as `command.action`: `args` and `callback`. `init` is helpful when one needs to set up the mode or inform the user of what is happening.
+Behaves exactly like `command.action`, where the function passed in is fired once when the user enters the given mode. Passed the same parameters as `command.action`: `args` and `callback`. `init` is helpful when one needs to set up the mode or inform the user of what is happening.
 
 ```js
 vantage
@@ -514,7 +514,7 @@ node~$
 
 #### .mode.action(function)
 
-Similar to `command.action`, `mode.action` differs in that it is repeatedly called on each command the user types until the mode is exited. Instead of `args` passed as the first argument, the full `command` string the user typed is passed and it is expected that `mode.action` appropriately handle the command. Example given above.
+Similar to `command.action`, `mode.action` differs in that it is repeatedly called on each command the user types until the mode is exited. Instead of `args` passed as the first argument, the full `command` string the user typed is passed and it is expected that `mode.action` appropriately handles the command. Example given above.
 
 ### .delimiter(string)
 
@@ -539,7 +539,7 @@ $
 
 ### .banner(string)
 
-Sets a banner for display when logging in to a given Vantage server.
+Sets a banner for display when logging into a given Vantage server.
 
 ```js
 var banner = 
@@ -571,7 +571,7 @@ $ Connected successfully.
 
 ### .show()
 
-Attaches the TTY's CLI prompt to that given instance of Vantage. While useless for deployed servers, this is great for testing an application's functions mid development.
+Attaches the TTY's CLI prompt to that given instance of Vantage. While useless for deployed servers, this is great for testing an application's functions mid-development.
 
 ```js
 // ... (your web server code)
@@ -693,9 +693,9 @@ vantage.listen(someMiddleware, {
 
 Vantage extends `EventEmitter.prototype`. Simply use `vantage.on('event', fn)` and `vantage.emit('event', data)`. The following events are supported:
 
-##### Socket.IO client / server events
+##### Socket.io client / server events
 
-Vantage uses `Socket.IO` in to handle all communication between instances. The following events map to the default `Socket.IO` events:
+Vantage uses `socket.io` to handle all communication between instances. The following events map to the default `socket.io` events:
 
 - `client_connect`: Maps to `connect` for `socket.io-client`.
 
@@ -731,11 +731,11 @@ Vantage uses `Socket.IO` in to handle all communication between instances. The f
 
 ## Automation
 
-Vantage allows you execute your API commands from javascript synchronously, using either callbacks or Promises.
+Vantage allows you execute your API commands from javascript synchronously, using either callbacks or promises.
 
 ### .connect(server, port, [options or callback], [callback])
 
-Connects to another instance of Vantage. Returns callback or Promise.
+Connects to another instance of Vantage. Returns callback or promise.
 
 ```js
 // With a promise
@@ -827,7 +827,7 @@ vantage.firewall.policy("REJECT");
 
 ### .firewall.accept(address, [subnet])
 
-Allows a particular address / subnet to connect to Vantage. Returns `vantage.firewall`. If no arguments are passed, returns the currently applied policiy.
+Allows a particular address / subnet to connect to Vantage. Returns `vantage.firewall`. If no arguments are passed, returns the currently-applied policy.
 
 ```js
 vantage.firewall
@@ -895,7 +895,7 @@ vantage.auth("basic", {
 
 ##### Security Note
 
-If no `vantage.auth` function is declared, your app will not require authentication. As a security measure, if your `NODE_ENV` environmental variable is not set to "development" and there is no authentication, Vantage will disallow remote connections. To permit remote connections without authentication, simply set your `NODE_ENV` to "development".
+If no `vantage.auth` function is declared, your app will not require authentication. As a security measure, if your `NODE_ENV` environment variable is not set to "development" and there is no authentication, Vantage will disallow remote connections. To permit remote connections without authentication, simply set your `NODE_ENV` to "development".
 
 ##### Building Authentication Strategies
 
@@ -909,12 +909,12 @@ The format for publishing a strategy is simple:
 
 module.exports = function(vantage, options) {
 
-  // The Vantge instance is exposed through
+  // The Vantage instance is exposed through
   // the `vantage` parameter. `options` exposes
   // options passed in by the strategy's user, and
-  // defined by you.
+  // is defined by you.
 
-  // This is where you can persist the logon state of 
+  // This is where you can persist the log on state of 
   // the users attempting to log in, etc.
 
   // You return a function, which executes
