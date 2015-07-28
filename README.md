@@ -895,7 +895,7 @@ vantage.auth("basic", {
 
 ##### Security Note
 
-If no `vantage.auth` function is declared, your app will not require authentication. As a security measure, if your `NODE_ENV` environmental variable is not set to "development" and there is no authentication, Vantage will disallow remote connections. To permit remote connections without authentication, simply set your `NODE_EVN` to "development".
+If no `vantage.auth` function is declared, your app will not require authentication. As a security measure, if your `NODE_ENV` environmental variable is not set to "development" and there is no authentication, Vantage will disallow remote connections. To permit remote connections without authentication, simply set your `NODE_ENV` to "development".
 
 ##### Building Authentication Strategies
 
