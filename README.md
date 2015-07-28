@@ -65,7 +65,7 @@ Inspired by and based on [commander.js](https://www.npmjs.com/package/commander)
 - Node now has a first-class CLI: tab completion, history, you name it.
 - Build your own API with the familiar syntax of `commander.js`.
 - Build and use community extensions for suites of commands: coded or in realtime.
-- Production-ready, with authentication middlware and a basic firewall.
+- Production-ready, with authentication middleware and a basic firewall.
 - Built-in REPL.
 
 Unlike other REPL or CLI modules, Vantage allows you to remotely connect to your live app and access the CLI transparently, exactly as you would in an SSH session. Vantage can connect through an unlimited number of live Node instances across multiple machines, piping commands and information to and from your local terminal. 
@@ -181,7 +181,7 @@ vantage
     callback();
   });
 ```
-The syntax is similar to `commander.js` with the exception of allowing nested sub-commands for grouping large APIs into managable chunks.
+The syntax is similar to `commander.js` with the exception of allowing nested sub-commands for grouping large APIs into manageable chunks.
 
 ```js
 // Simple command with no arguments.
@@ -641,7 +641,7 @@ vantage.listen(80, function(socket){
 
 If you want Vantage to listen on the same port as your web application, you can use Vantage's `listen` function in place of your existing web server's `listen` function.
 
-This is usefull when running clustered instances of your server, such as behind a reverse proxy, where every instance has a separate port that can only be accessed internally. In this way, you can hop into any running instance without having to remember a separate set of ports.
+This is useful when running clustered instances of your server, such as behind a reverse proxy, where every instance has a separate port that can only be accessed internally. In this way, you can hop into any running instance without having to remember a separate set of ports.
 
 ##### With Koa.js
 
@@ -1053,7 +1053,7 @@ websvr~$
 
 4. I then typed `debug off`, which disabled log output. 
 
-5. By then entering the `repl` command, I entered a special REPL "mode" where I can access the raw javascript and objects in my application, while it's running. This is the equivilant of running `$ node` in your terminal, except it is in the context of your live application!
+5. By then entering the `repl` command, I entered a special REPL "mode" where I can access the raw javascript and objects in my application, while it's running. This is the equivalent of running `$ node` in your terminal, except it is in the context of your live application!
 
 6. Satisfied with `repl` mode, I exited out of it with the `exit` command.
 
