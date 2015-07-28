@@ -151,7 +151,7 @@ websvr~$ help
   Commands
   
     help [command]    Provides help for a given command.
-    exit [options]    Exists instance of Vantage.
+    exit [options]    Exits instance of Vantage.
     use <module>      Installs a vantage extension in realtime.
     vantage [server]  Connects to another application running vantage.
     foo               Outputs "bar".
