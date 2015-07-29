@@ -93,7 +93,7 @@ $ vantage tour
 ##### Community
 
 - [Q&A? Join Gitter Chat](https://gitter.im/dthree/vantage?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-- [List of Vantage Extensions](https://gitter.im/dthree/vantage?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+- [List of Vantage Extensions](https://github.com/vantagejs/awesome-vantagejs)
 
 ##### Quick Start
 
