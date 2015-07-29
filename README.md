@@ -39,6 +39,7 @@
 * [Getting Started](#getting-started)
   - [Tutorial](#tutorial)
   - [Examples](#examples)
+  - [Community](#community)
   - [Quick Start](#quick-start)
 * [Methods](#methods)
   - [.command](#commandcommand-description)
@@ -88,6 +89,11 @@ $ vantage tour
 - [Express.js with Vantage](https://github.com/dthree/vantage/tree/master/examples/express)
 - [Using the "mode" command](https://github.com/dthree/vantage/tree/master/examples/mode)
 - [Using the Firewall](https://github.com/dthree/vantage/tree/master/examples/firewall)
+
+##### Community
+
+- [Q&A? Join Gitter Chat](https://gitter.im/dthree/vantage?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+- [List of Vantage Extensions](https://gitter.im/dthree/vantage?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 ##### Quick Start
 
