@@ -144,24 +144,5 @@ module.exports = function(vantage) {
       });
     });
 
-  vantage
-    .mode('repl', 'Enters REPL mode.')
-    .delimiter('repl:')
-    .init(function(args, cb) {
-      this.log("Entering REPL Mode. To exit, type 'exit'.");
-      cb("Entering REPL Mode. To exit, type 'exit'.");
-    })
-    .action(function(command, cb) {
-      try {
-        var res = eval(command);
-        var log = (_.isString(res)) ? String(res).white : res;
-        this.log(res);
-        cb(res);
-      } catch(e) {
-        this.log("Error: " + e);
-        cb("Error: " + e);
-      }
-    });
-
 }
 

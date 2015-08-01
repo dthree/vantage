@@ -31,6 +31,16 @@ for (var i = 0; i < 10; ++i) {
     });
 
   vantage
+    .command("aliasme")
+    .alias("donald trump")
+    .alias("sinterclaus")
+    .alias("linus torvalds")
+    .action(function(args, cb){
+      console.log("You found me.")
+      cb();
+    });
+
+  vantage
     .command("throw error")
     .action(function(args, cb){
       throw new Error("I am shamelessly erroring because you told me to.");

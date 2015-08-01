@@ -25,12 +25,6 @@ describe('vantage client', function() {
     }).should.not.throw();
   });
 
-  it('should register a command with a description', function() {
-    (function() {
-      self.vantage.command("foo", "Should return 'bar'.")
-    }).should.not.throw();
-  });
-
   it('should register a command, description and action.', function() {
     (function() {
       self.vantage

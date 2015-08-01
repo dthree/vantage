@@ -26,6 +26,66 @@ var stdout = function() {
 
 describe("integration tests:", function() {
 
+  describe("vantage client:", function() {
+
+    it("should overwrite duplicate commands", function(done){
+      var arr = ["a", "b", "c"];
+      arr.forEach(function(item){
+        vantage
+          .command("overwritten", "This command gets overwritten.")
+          .action(function(args, cb){
+            cb(void 0, item);
+          });
+        vantage
+          .command("overwrite me")
+          .action(function(args, cb){
+            cb(void 0, item);
+          });
+      });
+
+      vantage.exec("overwritten", function(err, data){
+        (err === undefined).should.be.true;
+        data.should.equal("c");
+        vantage.exec("overwrite me", function(err, data){
+          (err === undefined).should.be.true;
+          data.should.equal("c");
+          done();
+        });
+      });
+    });
+
+    it("should register and execute aliases", function(done){
+      vantage
+        .command("i go by other names", "This command has many aliases.")
+        .alias("donald trump")
+        .alias("sinterclaus")
+        .alias("linus torvalds")
+        .alias("nan nan nan nan nan nan nan watman!")
+        .action(function(args, cb){
+          cb(void 0, "You have found me.");
+        });
+
+        var ctr = 0;
+        var arr = ["donald trump", "sinterclaus", "linus torvalds", "nan nan nan nan nan nan nan watman!"];
+        function go() {
+          if (arr[ctr]) {
+            vantage.exec(arr[ctr], function(err, data){
+              (err === undefined).should.be.true;
+              data.should.equal("You have found me.");
+              ctr++;
+              if (!arr[ctr]) {
+                done();
+              } else {
+                go();
+              }
+            });
+          }
+        }
+        go();
+    });
+
+  });
+
   describe("vantage server:", function() {
 
     before("should start on three ports", function(done){
