@@ -10,7 +10,7 @@
 
 <p align="center">
   <i>
-  Vantage is now production ready at 1.0!
+  Vantage is now production ready at 1.0.
   <br>
   <a href="https://github.com/dthree/vantage/releases">New features & updates.</a>
   </i>
@@ -29,8 +29,6 @@
 </p>
 
 
-<br>
-
 * [What just happened?](#er-that-gif-im-so-confused)
 * [That's voodoo magic: show me the code](https://github.com/dthree/vantage/tree/master/examples/spiffy-gif/)
 * [Tell me more](#contents)
@@ -41,6 +39,7 @@
 * [Getting Started](#getting-started)
   - [Tutorial](#tutorial)
   - [Examples](#examples)
+  - [Community](#community)
   - [Quick Start](#quick-start)
 * [Methods](#methods)
   - [.command](#commandcommand-description)
@@ -60,14 +59,14 @@
 
 ## Introduction
 
-Vangtage gives you a new perspective into your live node application not previously available.
+Vantage gives you a new perspective into your live node application not previously available.
 
-Inspired by and based on [commander.js](https://www.npmjs.com/package/commander), Vantage turns your live Node app into a CLI with an interactive prompt provided by [inquirer.js](https://www.npmjs.com/package/inquirer). Accessible locally or remotely, Vantage lets build your own API and import community extensions, introducing the possibility of live activity and diagnostics for your `dev` and `prod` environments.
+Inspired by and based on [commander.js](https://www.npmjs.com/package/commander), Vantage turns your live Node app into a CLI with an interactive prompt provided by [inquirer.js](https://www.npmjs.com/package/inquirer). Accessible locally or remotely, Vantage lets you build your own API and import community extensions, introducing the possibility of live activity and diagnostics for your `dev` and `prod` environments.
 
-- Node now has a first-class CLI: tab-completion, history, you name it.
+- Node now has a first-class CLI: tab completion, history, you name it.
 - Build your own API with the familiar syntax of `commander.js`.
 - Build and use community extensions for suites of commands: coded or in realtime.
-- Production ready, with authentication middlware and a basic firewall.
+- Production-ready, with authentication middleware and a basic firewall.
 - Built-in REPL.
 
 Unlike other REPL or CLI modules, Vantage allows you to remotely connect to your live app and access the CLI transparently, exactly as you would in an SSH session. Vantage can connect through an unlimited number of live Node instances across multiple machines, piping commands and information to and from your local terminal. 
@@ -90,6 +89,11 @@ $ vantage tour
 - [Express.js with Vantage](https://github.com/dthree/vantage/tree/master/examples/express)
 - [Using the "mode" command](https://github.com/dthree/vantage/tree/master/examples/mode)
 - [Using the Firewall](https://github.com/dthree/vantage/tree/master/examples/firewall)
+
+##### Community
+
+- [Q&A? Join Gitter Chat](https://gitter.im/dthree/vantage?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+- [List of Vantage Extensions](https://github.com/vantagejs/awesome-vantagejs)
 
 ##### Quick Start
 
@@ -153,7 +157,7 @@ websvr~$ help
   Commands
   
     help [command]    Provides help for a given command.
-    exit [options]    Exists instance of Vantage.
+    exit [options]    Exits instance of Vantage.
     use <module>      Installs a vantage extension in realtime.
     vantage [server]  Connects to another application running vantage.
     foo               Outputs "bar".
@@ -183,7 +187,7 @@ vantage
     callback();
   });
 ```
-The syntax is similar to `commander.js` with the exception of allowing nested sub-commands for grouping large APIs into managable chunks.
+The syntax is similar to `commander.js` with the exception of allowing nested sub-commands for grouping large APIs into manageable chunks.
 
 ```js
 // Simple command with no arguments.
@@ -308,7 +312,7 @@ vantage
   .command('order pizza [type]', 'Orders a type of food.')
   .option('-s, --size <size>', 'Size of pizza.')
   .option('-a, --anchovies', 'Include anchovies.')
-  .option('-p, --pineapple', 'Include pineapples.')
+  .option('-p, --pineapple', 'Include pineapple.')
   .option('-o', 'Include olives.')
   .option('-d, --delivery', 'Pizza should be delivered')
   .action(function(args, cb){
@@ -476,7 +480,7 @@ node~$ you are in repl>
 ```
 #### .mode.init(function)
 
-Behaves exactly like `command.action`, wherein the passed in function is fired once when the user enters the given mode. Passed the same parameters as `command.action`: `args` and `callback`. `init` is helpful when one needs to set up the mode or inform the user of what is happening.
+Behaves exactly like `command.action`, where the function passed in is fired once when the user enters the given mode. Passed the same parameters as `command.action`: `args` and `callback`. `init` is helpful when one needs to set up the mode or inform the user of what is happening.
 
 ```js
 vantage
@@ -516,7 +520,7 @@ node~$
 
 #### .mode.action(function)
 
-Similar to `command.action`, `mode.action` differs in that it is repeatedly called on each command the user types until the mode is exited. Instead of `args` passed as the first argument, the full `command` string the user typed is passed and it is expected that `mode.action` appropriately handle the command. Example given above.
+Similar to `command.action`, `mode.action` differs in that it is repeatedly called on each command the user types until the mode is exited. Instead of `args` passed as the first argument, the full `command` string the user typed is passed and it is expected that `mode.action` appropriately handles the command. Example given above.
 
 ### .delimiter(string)
 
@@ -541,7 +545,7 @@ $
 
 ### .banner(string)
 
-Sets a banner for display when logging in to a given Vantage server.
+Sets a banner for display when logging into a given Vantage server.
 
 ```js
 var banner = 
@@ -573,7 +577,7 @@ $ Connected successfully.
 
 ### .show()
 
-Attaches the TTY's CLI prompt to that given instance of Vantage. While useless for deployed servers, this is great for testing an application's functions mid development.
+Attaches the TTY's CLI prompt to that given instance of Vantage. While useless for deployed servers, this is great for testing an application's functions mid-development.
 
 ```js
 // ... (your web server code)
@@ -643,7 +647,7 @@ vantage.listen(80, function(socket){
 
 If you want Vantage to listen on the same port as your web application, you can use Vantage's `listen` function in place of your existing web server's `listen` function.
 
-This is usefull when running clustered instances of your server, such as behind a reverse proxy, where every instance has a separate port that can only be accessed internally. In this way, you can hop into any running instance without having to remember a separate set of ports.
+This is useful when running clustered instances of your server, such as behind a reverse proxy, where every instance has a separate port that can only be accessed internally. In this way, you can hop into any running instance without having to remember a separate set of ports.
 
 ##### With Koa.js
 
@@ -695,9 +699,9 @@ vantage.listen(someMiddleware, {
 
 Vantage extends `EventEmitter.prototype`. Simply use `vantage.on('event', fn)` and `vantage.emit('event', data)`. The following events are supported:
 
-##### Socket.IO client / server events
+##### Socket.io client / server events
 
-Vantage uses `Socket.IO` in to handle all communication between instances. The following events map to the default `Socket.IO` events:
+Vantage uses `socket.io` to handle all communication between instances. The following events map to the default `socket.io` events:
 
 - `client_connect`: Maps to `connect` for `socket.io-client`.
 
@@ -733,11 +737,11 @@ Vantage uses `Socket.IO` in to handle all communication between instances. The f
 
 ## Automation
 
-Vantage allows you execute your API commands from javascript synchronously, using either callbacks or Promises.
+Vantage allows you execute your API commands from javascript synchronously, using either callbacks or promises.
 
 ### .connect(server, port, [options or callback], [callback])
 
-Connects to another instance of Vantage. Returns callback or Promise.
+Connects to another instance of Vantage. Returns callback or promise.
 
 ```js
 // With a promise
@@ -829,7 +833,7 @@ vantage.firewall.policy("REJECT");
 
 ### .firewall.accept(address, [subnet])
 
-Allows a particular address / subnet to connect to Vantage. Returns `vantage.firewall`. If no arguments are passed, returns the currently applied policiy.
+Allows a particular address / subnet to connect to Vantage. Returns `vantage.firewall`. If no arguments are passed, returns the currently-applied policy.
 
 ```js
 vantage.firewall
@@ -897,7 +901,7 @@ vantage.auth("basic", {
 
 ##### Security Note
 
-If no `vantage.auth` function is declared, your app will not require authentication. As a security measure, if your `NODE_ENV` environmental variable is not set to "development" and there is no authentication, Vantage will disallow remote connections. To permit remote connections without authentication, simply set your `NODE_EVN` to "development".
+If no `vantage.auth` function is declared, your app will not require authentication. As a security measure, if your `NODE_ENV` environment variable is not set to "development" and there is no authentication, Vantage will disallow remote connections. To permit remote connections without authentication, simply set your `NODE_ENV` to "development".
 
 ##### Building Authentication Strategies
 
@@ -911,12 +915,12 @@ The format for publishing a strategy is simple:
 
 module.exports = function(vantage, options) {
 
-  // The Vantge instance is exposed through
+  // The Vantage instance is exposed through
   // the `vantage` parameter. `options` exposes
   // options passed in by the strategy's user, and
-  // defined by you.
+  // is defined by you.
 
-  // This is where you can persist the logon state of 
+  // This is where you can persist the log on state of 
   // the users attempting to log in, etc.
 
   // You return a function, which executes
@@ -1055,7 +1059,7 @@ websvr~$
 
 4. I then typed `debug off`, which disabled log output. 
 
-5. By then entering the `repl` command, I entered a special REPL "mode" where I can access the raw javascript and objects in my application, while it's running. This is the equivilant of running `$ node` in your terminal, except it is in the context of your live application!
+5. By then entering the `repl` command, I entered a special REPL "mode" where I can access the raw javascript and objects in my application, while it's running. This is the equivalent of running `$ node` in your terminal, except it is in the context of your live application!
 
 6. Satisfied with `repl` mode, I exited out of it with the `exit` command.
 
