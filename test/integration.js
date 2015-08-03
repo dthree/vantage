@@ -83,7 +83,6 @@ describe("integration tests:", function() {
         }
         go();
     });
-
   });
 
   describe("vantage server:", function() {
