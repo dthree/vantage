@@ -5,7 +5,14 @@
   <img src="https://travis-ci.org/dthree/vantage.svg" alt="Build Status" />
   <a href="https://gitter.im/dthree/vantage?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge">
     <img src="https://img.shields.io/badge/gitter-join%20chat-brightgreen.svg" alt="Gitter" />
+  </a><br>
+  <a href="https://www.npmjs.com/package/vantage">
+    <img src="https://img.shields.io/npm/v/vantage.svg" alt="NPM Version" />
   </a>
+  <a href="https://www.npmjs.com/package/vantage">
+    <img src="https://img.shields.io/npm/dm/vantage.svg" alt="NPM Downloads" />
+  </a>
+
 </p>
 
 <p align="center">
