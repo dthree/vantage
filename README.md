@@ -87,6 +87,7 @@ $ vantage tour
 - [Standalone Vantage Server](https://github.com/dthree/vantage/tree/master/examples/server)
 - [Koa.js with Vantage](https://github.com/dthree/vantage/tree/master/examples/koa)
 - [Express.js with Vantage](https://github.com/dthree/vantage/tree/master/examples/express)
+- [Hapi.js with Vantage](https://github.com/dthree/vantage/tree/master/examples/hapi)
 - [Using the "mode" command](https://github.com/dthree/vantage/tree/master/examples/mode)
 - [Using the Firewall](https://github.com/dthree/vantage/tree/master/examples/firewall)
 
@@ -672,6 +673,21 @@ var app = express();
 
 vantage.listen(app, 80);
 ```
+
+##### With Hapi.js
+
+```js
+var Hapi = require('hapi');
+var Vantage = require('vantage');
+
+var vantage = new Vantage();
+var server = new Hapi.Server();
+
+vantage.listen(server, 80);
+
+server.start();
+```
+
 ##### With SSL / advanced options
 
 You can pass detailed options to your web server with the second argument in place of the port. These options are the same options you would pass into your web server, with a few exceptions:
