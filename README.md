@@ -17,7 +17,7 @@
 
 <p align="center">
   <i>
-  Vantage is now production ready at 1.0.
+  Vantage is now production ready.
   <br>
   <a href="https://github.com/dthree/vantage/releases">New features & updates.</a>
   </i>
