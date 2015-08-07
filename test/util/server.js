@@ -42,6 +42,15 @@ module.exports = function(vantage) {
     });
 
   vantage
+    .command('variadic [pizza] [ingredients...]')
+    .description('Should optionally return an arg.')
+    .option('-e, --extra', 'Extra complexity on the place.')
+    .action(function(args, cb){
+      var self = this;
+      cb(void 0, args);
+    });
+
+  vantage
     .command('port')
     .description('Returns port.')
     .action(function(args, cb){
@@ -63,10 +72,8 @@ module.exports = function(vantage) {
     .description('Must return an arg.')
     .action(function(args, cb){
       var self = this;
-      return new Promise(function(resolve, reject){
-        self.log(args.arg);
-        resolve();
-      });
+      self.log(args.arg);
+      cb(void 0, args);
     });
 
 

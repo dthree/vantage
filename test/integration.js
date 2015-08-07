@@ -112,8 +112,8 @@ describe("integration tests:", function() {
     });
 
     var exec = function(cmd, done, cb) {
-      vantage.exec(cmd).then(function(){
-        cb();
+      vantage.exec(cmd).then(function(data){
+        cb(void 0, data);
       }).catch(function(err){
         console.log(err);
         done(err);
@@ -251,7 +251,6 @@ describe("integration tests:", function() {
           vantage.exec("count " + i).then(hnFn).catch(cFn);
         }
       });
-
     });
 
     describe("command validation", function() {
@@ -270,6 +269,22 @@ describe("integration tests:", function() {
         });
       });
 
+      it("should ignore variadic arguments when not warranted", function(done) {
+        exec("required something with extra something", done, function(err, data) {
+          data.arg.should.equal("something");
+          done();
+        });
+      });
+
+      it("should receive variadic arguments as array", function(done) {
+        exec("variadic pepperoni olives pineapple anchovies", done, function(err, data) {
+          data.pizza.should.equal("pepperoni");
+          data.ingredients[0].should.equal("olives");
+          data.ingredients[1].should.equal("pineapple");
+          data.ingredients[2].should.equal("anchovies");
+          done();
+        });
+      });
 
       it("should show help when not passed a required variable", function(done) {
         exec("required", done, function() {
