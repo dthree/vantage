@@ -239,7 +239,7 @@ describe("integration tests:", function() {
             done();
           }
         };
-        var hnFn = function(){
+        var hnFn = function() {
           result = result + stdout();
           handler();
         };
@@ -279,6 +279,15 @@ describe("integration tests:", function() {
       it("should receive variadic arguments as array", function(done) {
         exec("variadic pepperoni olives pineapple anchovies", done, function(err, data) {
           data.pizza.should.equal("pepperoni");
+          data.ingredients[0].should.equal("olives");
+          data.ingredients[1].should.equal("pineapple");
+          data.ingredients[2].should.equal("anchovies");
+          done();
+        });
+      });
+
+      it("should accept variadic args as the first arg", function(done) {
+        exec("variadic-pizza olives pineapple anchovies", done, function(err, data) {
           data.ingredients[0].should.equal("olives");
           data.ingredients[1].should.equal("pineapple");
           data.ingredients[2].should.equal("anchovies");

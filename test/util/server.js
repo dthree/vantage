@@ -51,6 +51,15 @@ module.exports = function(vantage) {
     });
 
   vantage
+    .command('variadic-pizza [ingredients...]')
+    .description('Should optionally return an arg.')
+    .option('-e, --extra', 'Extra complexity on the place.')
+    .action(function(args, cb){
+      var self = this;
+      cb(void 0, args);
+    });
+
+  vantage
     .command('port')
     .description('Returns port.')
     .action(function(args, cb){
