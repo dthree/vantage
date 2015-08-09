@@ -295,6 +295,18 @@ describe("integration tests:", function() {
         });
       });
 
+      it("should accept a lot of arguments", function(done) {
+        exec("cmd that has a ton of arguments", done, function(err, data) {
+          data.with.should.equal('that');
+          data.one.should.equal('has');
+          data.million.should.equal('a');
+          data.arguments.should.equal('ton');
+          data.in.should.equal('of');
+          data.it.should.equal('arguments');
+          done();
+        });
+      });
+
       it("should show help when not passed a required variable", function(done) {
         exec("required", done, function() {
           (stdout().indexOf("Missing required argument") > -1).should.equal(true);
