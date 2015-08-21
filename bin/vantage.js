@@ -31,8 +31,8 @@ function parseConnection(str) {
   var port = (parts.length === 2) ? parts[1] : void 0;
   var server = (parts.length === 2) ? parts[0] : void 0;
   if (parts.length === 1) {
-    server = (String(parts[0]).split(".").length === 4) ? parts[0] : void 0;
-    port = (String(parts[0]).length < 6 && !isNaN(parts[0])) ? parts[0] : void 0;
+    server = (isNumber(parts[0])) ? void 0 : parts[0];
+    port = (String(parts[0]).length < 6 && isNumber(parts[0])) ? parts[0] : void 0;
   }
   server = (!server) ? "127.0.0.1" : server;
   port = (!port) ? "80" : port;
@@ -42,11 +42,8 @@ function parseConnection(str) {
   });
 }
 
-function validateConnection(connection) {
-  var valid = (String(connection.server).split(".").length !== 4 || isNaN(connection.port))
-    ? ("\n  Invalid server/port passed: " + connection.server + ":" + connection.port + "\n")
-    : true;
-  return valid;
+function isNumber(str) {
+  !isNaN(parseInt(str));
 }
 
 function connect(vantage, server, port, opt) {
@@ -87,11 +84,6 @@ function execute(cmd, opt) {
 
   var vantage = new Vantage().show();
   var connection = parseConnection(cmd);
-  var valid = validateConnection(connection);
-  if (valid !== true) {
-    vantage.log(valid);
-    process.exit(1);
-  }
 
   // If there is somewhere to go, connect.
   if (cmd !== undefined) {
@@ -100,4 +92,3 @@ function execute(cmd, opt) {
 }
 
 execute(command, options);
-
