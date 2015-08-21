@@ -43,7 +43,7 @@ function parseConnection(str) {
 }
 
 function isNumber(str) {
-  !isNaN(parseInt(str));
+  return !isNaN(parseInt(str));
 }
 
 function connect(vantage, server, port, opt) {
