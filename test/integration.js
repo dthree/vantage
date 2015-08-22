@@ -1,6 +1,7 @@
 "use strict";
 
-var Vantage = require("../")
+var Vantage = require("../");
+var commands = require('./util/server')
   , util = require("./util/util")
   ; require("assert")
   ; require("should")
@@ -26,7 +27,7 @@ var stdout = function() {
 
 describe("integration tests:", function() {
 
-  describe("vantage client:", function() {
+  describe("vantage", function() {
 
     it("should overwrite duplicate commands", function(done){
       var arr = ["a", "b", "c"];
@@ -85,26 +86,10 @@ describe("integration tests:", function() {
     });
   });
 
-  describe("vantage server:", function() {
+  describe("vantage 2", function() {
 
-    before("should start on three ports", function(done){
-      this.timeout(8000);
-      util.spawn({
-        ports: [8040, 8041, 8042, 8043]
-       }, function(err, instances){
-        (err === undefined).should.be.true;
-        var users = [{ user: "user", pass: "Fantabulous!" }];
-        instances[3].auth("basic", {
-          "users": users,
-          "retry": 1,
-          "retryTime": 10,
-          "deny": 1,
-          "unlockTime": 3000
-        });
-        setTimeout(function(){
-          done(err);
-        }, 50);
-      });
+    before("preparation", function(){
+      vantage.pipe(onStdout).use(commands);
     });
 
     afterEach(function(){
@@ -120,51 +105,14 @@ describe("integration tests:", function() {
       });
     };
 
-    it("should accept a vantage connection with a callback", function(done) {
-      vantage
-        .pipe(onStdout)
-        .connect("127.0.0.1", "8040", {}, function(){
-          stdout();
-          done();
-        });
-    });
-
-    it("exit the connection with a callback", function(done) {
-      vantage.exec("exit", function() {
-        stdout();
-        done();
-      });
-    });
-
-    it("should accept a vantage connection callback and no options", function(done) {
-      vantage
-        .pipe(onStdout)
-        .connect("127.0.0.1", "8040", function(){
-          vantage.exec("exit", function() {
-            stdout();
-            done();
-          });
-        });
-    });
-
-    it("should accept a vantage connection with a promise", function(done) {
-      vantage
-        .pipe(onStdout)
-        .connect("127.0.0.1", "8040", {}).then(function(){
-          stdout();
-          done();
-        }).catch(function(err){
-          console.log(err);
-          done(err);
-        });
-    });
-
-    describe("promise execution", function(){
+    describe("promise execution", function() {
 
       it("should not fail", function(done) {
         vantage.exec("fail me not").then(function(){
           true.should.be.true; done();
         }).catch(function(err) {
+          console.log(stdout());
+          console.log('b', err.stack)
           true.should.not.be.true; done(err);
         });
       });
@@ -308,7 +256,7 @@ describe("integration tests:", function() {
       });
 
       it("should show help when not passed a required variable", function(done) {
-        exec("required", done, function() {
+        exec("required", done, function(err, data) {
           (stdout().indexOf("Missing required argument") > -1).should.equal(true);
           done();
         });
@@ -322,7 +270,7 @@ describe("integration tests:", function() {
       });
 
       it("should show help when passed an invalid command", function(done) {
-        exec("gooblediguck", done, function() {
+        exec("gooblediguck", done, function(err, data) {
           (stdout().indexOf("Invalid Command. Showing Help:") > -1).should.equal(true);
           done();
         });
@@ -333,150 +281,6 @@ describe("integration tests:", function() {
           stdout().should.containEql("very complicated deep *");
           done();
         });
-      });
-
-    });
-
-    describe("navigation", function(){
-
-      it("should error with 503 when connecting to an invalid server", function(done) {
-        vantage.exec("vantage 8088").then(function(){
-          true.should.not.be.true;
-          done();
-        }).catch(function(){
-          true.should.be.true;
-          done();
-        });
-      });
-
-      it("should hop from one server (8040) to another (8041)", function(done) {
-        vantage.exec("vantage 8041").then(function(data){
-          (data || "").should.not.containEql("Error connecting");
-          done();
-        }).catch(function(err){ done(err); });
-      });
-
-      it("should read the valid port from the new server (8041)", function(done){
-        vantage.exec("port").then(function(data){
-          (String(data) || "").should.equal("8041");
-          done();
-        }).catch(function(err){ done(err); });
-      });
-
-      it("should hop from second server (8041) to third server (8042)", function(done){
-        vantage.exec("vantage 8042").then(function(data) {
-          (data || "").should.not.containEql("Error connecting");
-          done();
-        }).catch(function(err){ done(err); });
-      });
-
-      it("should read the valid port from the third server (8042)", function(done){
-        vantage.exec("port").then(function(data){
-          (String(data) || "").should.equal("8042");
-          done();
-        }).catch(function(err){ done(err); });
-      });
-
-      it("should exit back to 8041", function(done){
-        setTimeout(function(){
-          vantage.exec("exit").then(function(data){
-            return vantage.exec("port");
-          }).then(function(data){
-            (String(data) || "").should.equal("8041");
-            done();
-          }).catch(function(err){ done(err); });
-        }, 1000);
-      });
-
-      it("should exit back to 8040", function(done){
-        vantage.exec("exit").then(function(){
-          return vantage.exec("port");
-        }).then(function(data){
-          (String(data) || "").should.equal("8040");
-          done();
-        }).catch(function(err){ done(err); });
-      });
-
-    });
-
-    describe.skip("authentication", function() {
-
-      it("should deny authentication with an invalid password", function(done){
-        this.timeout(8000);
-        vantage.exec("vantage 8043 -u user -p foobar").then(function(data) {
-          true.should.not.be.true;
-          done();
-        }).catch(function(err, data){ 
-          try {
-            (stdout() || "").should.containEql("too many attempts");
-            done(); 
-          } catch(e) {
-            done(e);
-          }
-        });
-      });
-
-      it("should read the original server port (8040)", function(done){
-        vantage.exec("port").then(function(data, and){
-          (String(data) || "").should.equal("8040");
-          done();
-        }).catch(function(err){ done(err); });
-      });
-
-      it("should lock out a future attempt with an invalid password", function(done){
-        this.timeout(8000);
-        vantage.exec("vantage 8043 -u user -p foobar").then(function(data) {
-          true.should.not.be.true;
-          done();
-        }).catch(function(err, data){ 
-          try {
-            (stdout() || "").should.containEql("locked out");
-            done(); 
-          } catch(e) {
-            done(e);
-          }
-        });
-      });
-
-      it("should read the original server port (8040)", function(done){
-        vantage.exec("port").then(function(data, and){
-          (String(data) || "").should.equal("8040");
-          done();
-        }).catch(function(err){ done(err); });
-      });
-
-      it("should reject a future valid connection until unlock time expires", function(done){
-        this.timeout(10000);
-        vantage.exec("vantage 8043 -u user -p Fantabulous!").then(function(data, b) {
-          true.should.not.be.true;
-          done();
-        }).catch(function(err){
-          try {
-            (stdout() || "").should.containEql("locked out");
-            done(); 
-          } catch(e) {
-            done(e);
-          }
-        });
-      });
-
-      it("should successfully reconnect after unlock time expires", function(done){
-        this.timeout(10000);
-        setTimeout(function(){
-          vantage.exec("vantage 8043 -u user -p Fantabulous!").then(function(data, b) {
-            return vantage.exec("port");
-          }).then(function(data){
-            (String(data) || "").should.equal("8043");
-            done();
-          }).catch(function(err, data){
-            try {
-              true.should.not.be.true;
-              done(); 
-            } catch(e) {
-              done(e);
-            }
-          });
-        }, 3000)
       });
 
     });
@@ -505,27 +309,7 @@ describe("integration tests:", function() {
           stdout();
           return vantage.exec("help");
         }).then(function() {
-          stdout().should.containEql("vantage");
-          done();
-        }).catch(function(err){ done(err); });
-      });
-
-    });
-
-    describe("use", function() {
-
-      it("should install a live vantage-module", function(done){
-        this.timeout(90000);
-        vantage.exec("use vantage-hacker-news").then(function() {
-          stdout().should.containEql("Successfully registered");
-          done();
-        }).catch(function(err){ done(err); });
-      });
-
-      it("should run the live vantage-module's command", function(done){
-        this.timeout(20000);
-        vantage.exec("hacker-news").then(function() {
-          stdout().should.containEql("points by");
+          stdout().should.containEql("exit");
           done();
         }).catch(function(err){ done(err); });
       });

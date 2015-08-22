@@ -17,34 +17,24 @@
 
 <p align="center">
   <i>
-  Vantage is now production ready.
+  Important: Vantage has split into two applications.
   <br>
-  <a href="https://github.com/dthree/vantage/releases">New features & updates.</a>
+  <a href="https://github.com/dthree/vantage/tree/master/split.md">See details here.</a>
   </i>
 </p>
 
 <br>
 
-`Vantage.js` = `CLI` + `SSH` + `REPL` for your live node app. In one line:
+Vantage is Node's first framework for building immersive CLI applications. Vantage opens the door to a new breed of rich, interactive CLI environments [such as this one](https://github.com/dthree/wat), with a simple but powerful API.
 
-`require("vantage")().listen(4000);`
+[Vantage-io](https://github.com/vantagejs/vantage-io) gives Vantage wings: as an extension of Vantage, it provides `CLI` + `SSH` + `REPL` for your live node app, giving a new perspective to your existing application not previously available.
 
 <br>
-
-<p align="center">
-  <img src="http://i.imgur.com/ZwAxqv4.gif" alt="vantage.js demo" />
-</p>
-
-
-* [What just happened?](#er-that-gif-im-so-confused)
-* [That's voodoo magic: show me the code](https://github.com/dthree/vantage/tree/master/examples/spiffy-gif/)
-* [Tell me more](#contents)
 
 ## Contents
 
 * [Introduction](#introduction)
 * [Getting Started](#getting-started)
-  - [Tutorial](#tutorial)
   - [Examples](#examples)
   - [Community](#community)
   - [Quick Start](#quick-start)
@@ -57,8 +47,6 @@
   - [.listen](#listenapp-options)
 * [Events](#events)
 * [Automation](#automation)
-* [Firewall](#firewall)
-* [Authentication](#authentication)
 * [Extensions](#extensions)
   - [Creating an Extension](#creating-an-extension)
 * [License](#license)
@@ -66,52 +54,36 @@
 
 ## Introduction
 
-Vantage gives you a new perspective into your live node application not previously available.
+Inspired by and based on [commander.js](https://www.npmjs.com/package/commander), Vantage is a framework for building immersive CLI applications built on an interactive prompt provided by [inquirer.js](https://www.npmjs.com/package/inquirer). Vantage launches Node into an isolated CLI environment and provides a suite of API commands and functionality including:
 
-Inspired by and based on [commander.js](https://www.npmjs.com/package/commander), Vantage turns your live Node app into a CLI with an interactive prompt provided by [inquirer.js](https://www.npmjs.com/package/inquirer). Accessible locally or remotely, Vantage lets you build your own API and import community extensions, introducing the possibility of live activity and diagnostics for your `dev` and `prod` environments.
+- Commander.js-flavored command creation, including optional, required and variadic commands and arguments; aliases; and negation options.
+- Built-in help,
+- Built-in tabbed auto-completion,
+- Customizable command-specific auto-completion,
+- Persistent command history,
+- Prompts,
+- Live delimiter control,
+- Action-based event listeners
 
-- Node now has a first-class CLI: tab completion, history, you name it.
-- Build your own API with the familiar syntax of `commander.js`.
-- Build and use community extensions for suites of commands: coded or in realtime.
-- Production-ready, with authentication middleware and a basic firewall.
-- Built-in REPL.
-
-Unlike other REPL or CLI modules, Vantage allows you to remotely connect to your live app and access the CLI transparently, exactly as you would in an SSH session. Vantage can connect through an unlimited number of live Node instances across multiple machines, piping commands and information to and from your local terminal. 
+Vantage supports community extensions, which can empower Vantage to do such things as [auto-reloading commands](https://github.com/vantagejs/vantage-watch), [live command imports](https://github.com/vantagejs/vantage-use) or even supporting a [built-in REPL](https://github.com/vantagejs/vantage-repl).
 
 ## Getting Started
-
-##### Tour
-
-[This Vantage tour](https://github.com/dthree/vantage/tree/master/examples/tour) will give you a live walk-through of vantage's features.
-
-```bash
-$ npm install -g vantage
-$ vantage tour
-```
-
-##### Examples
-
-- [Standalone Vantage Server](https://github.com/dthree/vantage/tree/master/examples/server)
-- [Koa.js with Vantage](https://github.com/dthree/vantage/tree/master/examples/koa)
-- [Express.js with Vantage](https://github.com/dthree/vantage/tree/master/examples/express)
-- [Hapi.js with Vantage](https://github.com/dthree/vantage/tree/master/examples/hapi)
-- [Using the "mode" command](https://github.com/dthree/vantage/tree/master/examples/mode)
-- [Using the Firewall](https://github.com/dthree/vantage/tree/master/examples/firewall)
 
 ##### Community
 
 - [Q&A? Join Gitter Chat](https://gitter.im/dthree/vantage?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-- [List of Vantage Extensions](https://github.com/vantagejs/awesome-vantagejs)
+- [Projects Made with Vantage](https://github.com/vantagejs/awesome-vantagejs)
+- [List of Vantage Extensions](https://github.com/vantagejs/awesome-vantagejs#extensions)
 
 ##### Quick Start
 
-First, install `vantage` globally:
+First, install `vantage` into your project:
 
 ```bash
-$ npm install -g vantage
+$ npm install vantage --save
 ```
 
-Now, add the following to a file named `server.js`.
+In your project, add in the following:
 
 ```js
 // Create a new instance of vantage.
@@ -127,26 +99,16 @@ vantage
   });
   
 // Name your prompt delimiter 
-// "websvr~$", listen on port 80 
-// and show the Vantage prompt.
+// "websvr~$" and show the Vantage prompt.
 vantage
-  .delimiter("websvr~$")
-  .listen(80)
+  .delimiter("myapp$")
   .show();
 ```
-Run `server.js`. You Node app has become a CLI.
+Run your project file. You Node app has become a CLI.
 
 ```bash
 $ node server.js
-websvr~$ 
-```
-
-Open another terminal. Because Vantage is listening on port 80, you can remotely connect to it:
-
-```bash
-$ vantage 80
-$ Connecting to 127.0.0.1:80 using http...
-websvr~$ 
+myapp~$ 
 ```
 
 Try out your "foo" command.
@@ -166,8 +128,6 @@ websvr~$ help
   
     help [command]    Provides help for a given command.
     exit [options]    Exits instance of Vantage.
-    use <module>      Installs a vantage extension in realtime.
-    vantage [server]  Connects to another application running vantage.
     foo               Outputs "bar".
 
 websvr~$
@@ -182,14 +142,17 @@ That's the basic idea. Once you get the hang of it, read on to learn some of the
 Adds a new command to your command line API. Returns a `Command` object, with the following chainable functions:
 
 * [`.description(string)`](#commanddescriptionstring): Used in automated help for your command.
+* [`.alias()`](#commandaliasstring): Gives an alias to execute the command with.
 * [`.hidden()`](#commandhidden): Removes command from help menus.
 * [`.option(string, [description])`](#commandoptionstring-description): Provides command options, as in `-f` or `--force`.
-* [`.action(function)`](#commandactionfunction): Function to execute when command is executed.
+* [`.autocompletion(function(text, iteration, callback))`](#commandautocompletiontextiterationcallback): Command-specific tabbed auto-completion.
+* [`.action(function(args, callback))`](#commandactionfunction): Function to execute when command is executed.
 
 ```js
 vantage
   .command("foo")
   .description("Outputs 'bar'.")
+  .alias('foosball')
   .action(function(args, callback) {
     this.log("bar");
     callback();
@@ -206,6 +169,9 @@ vantage.command("foo [bar]");
 
 // Required argument.
 vantage.command("foo <bar>"); 
+
+// Variadic argument.
+vantage.command("foo [bars...]"); 
 
 // Examples of nested subcommands:
 vantage.command("farm animals");
@@ -256,6 +222,10 @@ vantage
   .description("outputs bar")
   // ...
 ```
+
+#### .command.alias(string)
+
+Provides an alias to the command. If the user enters the alias, the original command will be fired.
 
 #### .command.hidden()
 
@@ -382,7 +352,7 @@ Given the following command:
 
 ```js
 vantage
-  .command('order pizza [type]', 'Orders a type of food.')
+  .command('order pizza [type] [otherThings...]', 'Orders a type of food.')
   .option('-s, --size <size>', 'Size of pizza.')
   .option('-a, --anchovies', 'Include anchovies.')
   .option('-p, --pineapple', 'Include pineapple.')
@@ -396,9 +366,10 @@ vantage
 Args would be returned as follows:
 
 ```bash
-$webapp~$ order pizza pepperoni -pod --size "medium" --no-anchovies
+$webapp~$ order pizza pepperoni some other args -pod --size "medium" --no-anchovies
 {
   "type": "pepperoni",
+  "otherThings": ["some", "other", "args"]
   "options": {
     "pineapple": true,
     "o": true,
@@ -415,7 +386,7 @@ The `this` variable in a `command.action` function is exposed to a special "Sess
 
 ##### session.log(string)
 
-Any and all logging in `command.action` should be done through `this.log`, which behaves exactly like `console.log`. This ensures all output for your given Vantage session is piped back to your original TTY, regardless how many hops into other servers you have made with Vantage.
+Any and all logging in `command.action` should be done through `this.log`, which behaves exactly like `console.log`. This ensures all output for your given Vantage session is piped back properly to your TTY, and so that logging does not interrupt what the user is typing in their prompt.
 
 ```js
 vantage
@@ -436,8 +407,6 @@ vantage
 ##### session.prompt(object, [callback])
 
 Vantage supports mid-command prompting. You can make full use of [inquirer.js](https://www.npmjs.com/package/inquirer)'s `prompt` function, which is exposed through `this.prompt`.
-
-Regardless of a direct vantage connection or one proxying your request through ten hops, `vantage.prompt` will send the remote prompt request to your local client and pipe response back to the remote application.
 
 ```js
 vantage.command("destroy database").action(function(args, cb){
@@ -482,23 +451,6 @@ vantage
 ```bash
 websvr~$ delimiter unicornsvr~$
 unicornsvr~$
-```
-
-##### session.user
-
-The currently logged on user executing the command is exposed through `this.user`. Defaults to "guest" when there is no authentication enabled.
-
-```js
-vantage
-  .command("view classified information", "Shows all of our secrets.")
-  .action(function(args, callback) {
-    if (this.user === "president") {
-      this.log(app.classifiedInformation);
-    } else {
-      this.log("Access Denied");
-    }
-    callback(true, "Access Denied");
-  });
 ```
 
 ### .mode(command, [description])
@@ -597,23 +549,17 @@ Similar to `command.action`, `mode.action` differs in that it is repeatedly call
 
 ### .delimiter(string)
 
-Sets the prompt delimiter for the given Vantage server.
+Sets the prompt delimiter for the given Vantage instance.
 
 ```js
-new Vantage().delimiter('appsvr:3000~$').listen(3000);
-new Vantage().delimiter('appsvr:3001~$').listen(3001);
-new Vantage().delimiter('appsvr:3002~$').listen(3002);
+new Vantage().delimiter('unicorn-approved-app$');
 ```
 
 ```bash
-$ vantage 3000
-appsvr:3000~$ 
-appsvr:3000~$ vantage 3001
-appsvr:3001~$ vantage 3002
-appsvr:3002~$ exit
-appsvr:3001~$ exit
-appsvr:3000~$ exit -f
-$
+~$ myglobalapp
+unicorn-approved-app$ 
+unicorn-approved-app$ exit -f
+~$ 
 ```
 
 ### .banner(string)
@@ -903,153 +849,6 @@ vantage
   .pipe(onStdout)
   .connect("127.0.0.1", 80, {});
 ```
-
-## Firewall
-
-If your Vantage server is listening on a public-facing web port such as 80 or 443, your organization's firewall is not going to help you. This is a barebones IP firewall for limiting connections down to your internal subnets. For sensitive applications, this obviously does not replace authentication.
-
-### .firewall.policy(string)
-
-Sets the default policy for the firewall to either `ACCEPT` or `REJECT`. Any request that does not match a rule will fall back to this policy. Returns `vantage.firewall`.
-
-**Defaults to `ACCEPT`.** 
-
-```js
-// This will reject all remote connections.
-vantage.firewall.policy("REJECT");
-```
-
-### .firewall.accept(address, [subnet])
-
-Allows a particular address / subnet to connect to Vantage. Returns `vantage.firewall`. If no arguments are passed, returns the currently-applied policy.
-
-```js
-vantage.firewall
-  .policy("REJECT")
-  .accept("10.0.0.0/8")
-  .accept("192.168.0.0", 24);
-
-console.log(vantage.firewall.policy()) // -> REJECT  
-```
-
-### .firewall.reject(address, [subnet])
-
-Denies access to a particular address / subnet. Returns `vantage.firewall`.
-
-```js
-vantage.firewall
-  .policy("ACCEPT")
-  .reject("64.0.0.0", 8)
-  .reject("192.168.0.0/16");
-```
-### .firewall.rules()
-
-Returns an array of applied rules.
-
-```js
-console.log(vantage.firewall.rules());
-// -> [{ ip: "64.0.0.0", subnet: 8, rule: "REJECT" }]
-```
-
-### .firewall.reset()
-
-Reverts `vantage.firewall` to an `ACCEPT` policy and erases all rules.
-
-## Authentication
-
-Vantage supports authentication strategies as middleware. It comes with a default [Basic Authentication module](https://github.com/vantagejs/vantage-auth-basic).
-
-### vantage.auth(middleware, options)
-
-Uses a given authentication strategy. Pass the required middleware into the first variable, and any options / configuration for that middleware as given in that module's documentation into the options parameter.
-
-```js
-var pam = require("vantage-auth-pam");
-vantage.auth(pam, options);
-```
-
-Vantage Basic Auth is built in, and so can be used with the "basic" string instead of requiring a module. 
-
-```js
-var users = [
-    { user: "admin", pass: "4k#842jx!%s" },
-    { user: "user", pass: "Unicorn11" }
-];
-
-var vantage = require("vantage")();
-
-vantage.auth("basic", {
-  "users": users,
-  "retry": 3,
-  "retryTime": 500,
-  "deny": 1,
-  "unlockTime": 3000
-});
-```
-
-##### Security Note
-
-If no `vantage.auth` function is declared, your app will not require authentication. As a security measure, if your `NODE_ENV` environment variable is not set to "development" and there is no authentication, Vantage will disallow remote connections. To permit remote connections without authentication, simply set your `NODE_ENV` to "development".
-
-##### Building Authentication Strategies
-
-You can publish your own custom authentication strategies for Vantage.js as its own Node module.
-
-*I am currently looking to team up with a rocket scientist like you to build a pam-based authentication strategy for Vantage. If you are interested, send me a note!*
-
-The format for publishing a strategy is simple:
-
-```js
-
-module.exports = function(vantage, options) {
-
-  // The Vantage instance is exposed through
-  // the `vantage` parameter. `options` exposes
-  // options passed in by the strategy's user, and
-  // is defined by you.
-
-  // This is where you can persist the log on state of 
-  // the users attempting to log in, etc.
-
-  // You return a function, which executes
-  // in the same context as a vantage command.
-  // Every time the user attempts to connect,
-  // this function runs. In it you can prompt
-  // the user, etc.
-  return function(args, callback) {
-
-    /** 
-     * Args exposes several pieces of data
-     * you can use:
-     * {
-     *   // If the user pre-passes auth data, it will be
-     *   // available here. Otherwise, prompt him for it.
-     *   user: "admin", 
-     *   pass: "Unicorn11",
-     *   // This is based on socket.io's connection handshake,
-     *   // and has a lot more data than this.
-     *   handshake: { 
-     *     host: "192.168.0.1",
-     *     port: "800"
-     *   }
-     * }
-     */
-
-    // Prompt user / look up credentials, etc.
-
-    // Authentication is determined by your
-    // callback: `callback(message, authenticated)`.
-
-    // Example of rejected auth.
-    callback("Invalid credentials.", false);
-
-    // Example of accepted auth.
-    // callback(void 0, true);
-  }
-
-}
-
-``` 
 
 ## Extensions
 

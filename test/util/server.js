@@ -9,6 +9,18 @@ var assert = require("assert")
 module.exports = function(vantage) {
 
   vantage
+    .mode('repl', 'Enters REPL Mode.')
+    .init(function(args, cb){
+      this.log('Entering REPL Mode.');
+      cb();
+    })
+    .action(function(command, cb){
+      var res = eval(command);
+      this.log(res);
+      cb(res);
+    });
+
+  vantage
     .command('foo')
     .description('Should return "bar".')
     .action(function(args, cb){
