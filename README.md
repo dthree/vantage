@@ -9,10 +9,14 @@
   <a href="https://www.npmjs.com/package/vantage">
     <img src="https://img.shields.io/npm/v/vantage.svg" alt="NPM Version" />
   </a>
+  <a href="https://github.com/dthree/wat">
+    <img src="https://img.shields.io/badge/wat-cheat%20sheeted-blue.svg" alt="Wat: Cheat Sheeted" />
+  </a>
   <a href="https://www.npmjs.com/package/vantage">
     <img src="https://img.shields.io/npm/dm/vantage.svg" alt="NPM Downloads" />
   </a>
 </p>
+
 
 <br>
 
