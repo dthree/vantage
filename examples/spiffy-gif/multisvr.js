@@ -2,7 +2,7 @@
  * Module dependencies.
  */
 
-var Vantage = require('./../../lib/vantage')
+var Vantage = require('./../../lib/index')
   , chalk = require("chalk")
   , _ = require("lodash")
   ;

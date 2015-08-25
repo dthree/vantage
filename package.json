@@ -44,7 +44,8 @@
     "mocha": "^2.2.5",
     "moment": "^2.10.3",
     "request": "^2.58.0",
-    "should": "^6.0.3"
+    "should": "^6.0.3",
+    "vorpal-use": "^1.0.1"
   },
   "dependencies": {
     "chalk": "^1.1.0",

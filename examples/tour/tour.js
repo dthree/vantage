@@ -12,7 +12,6 @@
 
 var Vantage = require("../../")
   , tools = require("./server")
-  , util = require("./../../lib/util")
   , log = (require("./../../lib/logger"))
   , chalk = require("chalk")
   ;
@@ -20,13 +19,13 @@ var Vantage = require("../../")
 var server = new Vantage();
 
 var banner =
-  util.pad("", 80, "\n") + "\n" +
-  util.pad("", process.stdout.columns, "#") + "\n" +
-  util.pad("# ", process.stdout.columns - 1, " ") + "#" + "\n" +
-  "#" + util.pad("", (process.stdout.columns / 2) - 17, " ") + "Welcome to the Vantage tour!" + util.pad("", (process.stdout.columns / 2) - 18, " ") + " #" + "\n" +
-  util.pad("# ", process.stdout.columns - 1, " ") + "#" + "\n" +
-  util.pad("", process.stdout.columns, "#") + "\n" +
-  util.pad("", 0, "\n") + "";
+  server.util.pad("", 80, "\n") + "\n" +
+  server.util.pad("", process.stdout.columns, "#") + "\n" +
+  server.util.pad("# ", process.stdout.columns - 1, " ") + "#" + "\n" +
+  "#" + server.util.pad("", (process.stdout.columns / 2) - 17, " ") + "Welcome to the Vantage tour!" + server.util.pad("", (process.stdout.columns / 2) - 18, " ") + " #" + "\n" +
+  server.util.pad("# ", process.stdout.columns - 1, " ") + "#" + "\n" +
+  server.util.pad("", process.stdout.columns, "#") + "\n" +
+  server.util.pad("", 0, "\n") + "";
 
 var hdr = chalk.grey("#");
 
@@ -179,7 +178,7 @@ var steps = {
   step8Listener: function(data) {
     if (String(data.command).trim().toLowerCase().indexOf("debug off") > -1) {
       server.removeListener("client_command_executed", steps.step8Listener);
-      steps.step9();
+      steps.step11();
     }
   },
 
@@ -271,7 +270,7 @@ var steps = {
 
 };
 
-log = log(server);
+log = log(server, server);
 
 server
   .use(commands)

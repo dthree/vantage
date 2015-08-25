@@ -3,7 +3,7 @@
 "use strict";
 
 var commander = require("commander")
-  , VantageIO = require("../lib/index")
+  , Vantage = require("../lib/index")
   , chalk = require("chalk")
   ;
 
@@ -82,7 +82,7 @@ function execute(cmd, opt) {
     return showTour();
   }
 
-  var vantage = new VantageIO();
+  var vantage = new Vantage();
   vantage.show();
 
   var connection = parseConnection(cmd);
