@@ -57,7 +57,7 @@
 
 Vantage gives you a new perspective into your live node application not previously available.
 
-An extension of [Vorpal](https://github.com/dthree/vorpal), Vantage turns your live Node app into a immersive CLI.Accessible remotely or locally, Vantage lets you build your own API for your application and import community extensions, introducing a new means of live diagnostics and activity for your `dev` and `prod` environments.
+An extension of [Vorpal](https://github.com/dthree/vorpal), Vantage turns your live Node app into a immersive CLI. Accessible remotely or locally, Vantage lets you build your own API for your application and import community extensions, introducing a new means of live diagnostics and activity for your `dev` and `prod` environments.
 
 - First-class CLI: tab completion, history, you name it.
 - Build your own API with the familiar syntax of `commander.js`.
