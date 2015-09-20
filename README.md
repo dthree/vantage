@@ -596,3 +596,5 @@ websvr~$
 <p align="center" width="128px" height="128px">
   <img src="http://i.imgur.com/ajsjp9E.png" alt="vantage.js" />
 </p>
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/dthree/vantage/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
