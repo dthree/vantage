@@ -13,7 +13,7 @@
  * Module dependencies.
  */
 
-var Vantage = require('./../../lib/vantage')
+var Vantage = require('./../../lib/index')
   ;
 
 /**
