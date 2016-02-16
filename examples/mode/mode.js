@@ -15,7 +15,7 @@
  * Module dependencies.
  */
 
-var Vantage = require('./../../lib/vantage')
+var Vantage = require('./../../lib/index')
   , colors = require('colors')
   , _ = require('lodash')
   ;

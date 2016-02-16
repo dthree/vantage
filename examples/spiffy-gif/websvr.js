@@ -10,7 +10,7 @@
  * Module dependencies.
  */
 
-var Vantage = require('./../../lib/vantage')
+var Vantage = require('./../../lib/index')
   , chalk = require('chalk')
   , repl = require('vantage-repl')
   , _ = require('lodash')

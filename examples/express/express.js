@@ -11,7 +11,7 @@
  * Module dependencies.
  */
 
-var Vantage = require('./../../lib/vantage')
+var Vantage = require('./../../lib/index')
   , express = require('express')
   , app = express()
   ;
