@@ -1,6 +1,6 @@
 {
   "name": "vantage",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "CLI + SSH + REPL for Node",
   "main": "./lib/index.js",
   "scripts": {
