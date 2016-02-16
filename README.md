@@ -5,15 +5,9 @@
   <img src="https://travis-ci.org/dthree/vantage.svg" alt="Build Status" />
   <a href="https://gitter.im/dthree/vantage?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge">
     <img src="https://img.shields.io/badge/gitter-join%20chat-brightgreen.svg" alt="Gitter" />
-  </a><br>
+  </a>
   <a href="https://www.npmjs.com/package/vantage">
     <img src="https://img.shields.io/npm/v/vantage.svg" alt="NPM Version" />
-  </a>
-  <a href="https://github.com/dthree/wat">
-    <img src="https://img.shields.io/badge/wat-cheat%20sheeted-blue.svg" alt="Wat: Cheat Sheeted" />
-  </a>
-  <a href="https://www.npmjs.com/package/vantage">
-    <img src="https://img.shields.io/npm/dm/vantage.svg" alt="NPM Downloads" />
   </a>
 </p>
 
@@ -66,6 +60,8 @@ An extension of [Vorpal](https://github.com/dthree/vorpal), Vantage turns your l
 - Built-in REPL.
 
 Unlike any other REPL or CLI module, Vantage allows you to remotely connect to your live app and access the CLI transparently, exactly as you would in an SSH session. Vantage can connect through an unlimited number of live Node instances across multiple machines, piping commands and information to and from your local terminal. 
+
+Made with :heart: by [@dthree](https://github.com/dthree).
 
 ## Getting Started
 
