@@ -157,7 +157,7 @@ describe("integration tests:", function() {
       });
 
       it("should execute a long command with arguments", function(done) {
-        exec("very complicated deep command abc123 -rad -sleep 'well' -t -i 'j' ", done, function() {
+        exec("very complicated deep command abc123 -rad --sleep 'well' -t -i 'j' ", done, function() {
           stdout().should.equal("radtjabc123");
           done();
         });
@@ -263,8 +263,8 @@ describe("integration tests:", function() {
       });
 
       it("should show subcommand help on invalid subcommand", function(done) {
-        exec("very complicated", done, function() {
-          stdout().should.containEql("very complicated deep *");
+        exec("very", done, function() {
+          stdout().should.containEql("very complicated deep");
           done();
         });
       });

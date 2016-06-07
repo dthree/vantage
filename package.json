@@ -56,9 +56,9 @@
     "socket.io": "1.4.5",
     "socket.io-client": "1.4.5",
     "strip-ansi": "^3.0.0",
-    "vantage-auth-basic": "latest",
-    "vorpal": "1.0.5",
-    "vorpal-repl": "1.1.8"
+    "vantage-auth-basic": "^1.0.0",
+    "vorpal": "^1.11.1",
+    "vorpal-repl": "^1.1.8"
   },
   "engines": {
     "node": ">= 0.10.0",
