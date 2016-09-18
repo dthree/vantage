@@ -63,6 +63,10 @@ Unlike any other REPL or CLI module, Vantage allows you to remotely connect to y
 
 Made with :heart: by [@dthree](https://github.com/dthree).
 
+## Notice
+
+This is now an [OPEN Open Source](http://openopensource.org/) project. I am not able to invest a significant amount of time into maintaining Vantage and so am looking for volunteers who would like to be active maintainers of the project. If you are interested, shoot me a note.
+
 ## Getting Started
 
 ##### Tour
