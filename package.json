@@ -51,7 +51,7 @@
     "chalk": "^1.1.0",
     "commander": "2.8.1",
     "insubnet": "0.0.8",
-    "lodash": "3.10.0",
+    "lodash": "^4.0.0",
     "native-promise-only": "0.8.0-a",
     "socket.io": "1.4.5",
     "socket.io-client": "1.4.5",
